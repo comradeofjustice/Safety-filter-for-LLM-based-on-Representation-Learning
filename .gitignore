@@ -1,7 +1,18 @@
 # Model directories (large files)
-8B/
-0.6B/
-4B/
+8B/embedding_model/*
+0.6B/embedding_model/*
+4B/embedding_model/*
+
+# Data files (large binary files)
+*/data/*.npy
+*/data/*.csv
+*/data/*.pkl
+*/data/*.pt
+*/data/*.pth
+
+# Log files
+*.log
+*/log/*
 
 # Python cache
 __pycache__/
