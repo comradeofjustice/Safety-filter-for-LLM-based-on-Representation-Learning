@@ -1,0 +1,16 @@
+# Model directories (large files)
+8B/
+0.6B/
+4B/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Optuna database
+*.db
+
+# OS files
+.DS_Store
+Thumbs.db
