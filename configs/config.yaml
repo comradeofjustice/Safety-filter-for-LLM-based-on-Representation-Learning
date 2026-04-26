@@ -1,0 +1,74 @@
+# configs/config.yaml - Centralized configuration for LLM Safety Classifier
+
+# Paths
+paths:
+  project_dir: /root/autodl-tmp/llm-safety-classifier
+  data_dir: data
+  raw_dir: data/raw
+  processed_dir: data/processed
+  embeddings_dir: embeddings
+  models_dir: models
+  reports_dir: reports
+  figures_dir: reports/figures
+  pretrained_dir: pretrained
+
+# Data
+data:
+  train_path: data/processed/train.parquet
+  test_path: data/processed/test.parquet
+  corpus_path: data/processed/corpus.parquet
+  test_size: 0.2
+  random_state: 42
+  min_text_length: 5
+  max_text_length: 8000
+
+# Embedding models
+embedding_models:
+  - qwen3-embedding-0.6B
+  - qwen3-embedding-4B
+  - qwen3-embedding-8B
+
+# Encoding
+encoding:
+  max_length: 512
+  batch_size: 16
+  batch_size_8b: 8
+  torch_dtype: bfloat16
+
+# Classifiers
+classifiers:
+  logistic:
+    max_iter: 2000
+    n_jobs: -1
+    class_weight: balanced
+  mlp:
+    hidden_dims: [512, 128]
+    lr: 0.001
+    weight_decay: 0.0001
+    batch_size: 256
+    max_epoch: 30
+    patience: 3
+    val_size: 0.1
+    dropout: 0.1
+  linear_svm:
+    C: 1.0
+    class_weight: balanced
+    max_iter: 5000
+  rbf_svm:
+    C: 1.0
+    gamma: scale
+    class_weight: balanced
+    cache_size: 2000
+    probability: true
+    pca_components: 256
+    use_pca_threshold_dim: 2048
+    use_pca_threshold_samples: 100000
+
+# Evaluation
+evaluation:
+  metrics:
+    - accuracy
+    - precision_macro
+    - recall_macro
+    - f1_macro
+    - roc_auc

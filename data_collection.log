@@ -1,0 +1,160 @@
+2026-04-25 20:37:17,192 [INFO] Loading datasets: ['xguard', 'beavertails', 'toxicchat', 'xstest', 'hh-rlhf', 'do-not-answer', 'aegis', 'wildguard']
+2026-04-25 20:37:17,624 [INFO] Loading XGuard-Train-Open-200K...
+2026-04-25 20:37:20,351 [INFO] HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/Alibaba-AAIG/XGuard-Train-Open-200K/Alibaba-AAIG/XGuard-Train-Open-200K.py "HTTP/1.1 404 Not Found"
+2026-04-25 20:37:31,180 [INFO] XGuard: 200000 samples, safe=92405, unsafe=107595
+2026-04-25 20:37:31,211 [INFO] ✓ Loaded xguard: 200000 samples
+2026-04-25 20:37:31,211 [INFO] Loading BeaverTails...
+2026-04-25 20:37:32,261 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/PKU-Alignment/BeaverTails/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-04-25 20:37:32,262 [WARNING] Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-04-25 20:37:32,462 [INFO] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/PKU-Alignment/BeaverTails/8401fe609d288129cc684a9b3be6a93e41cfe678/README.md "HTTP/1.1 200 OK"
+2026-04-25 20:37:33,501 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/PKU-Alignment/BeaverTails/resolve/8401fe609d288129cc684a9b3be6a93e41cfe678/BeaverTails.py "HTTP/1.1 404 Not Found"
+2026-04-25 20:37:34,279 [INFO] HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/PKU-Alignment/BeaverTails/PKU-Alignment/BeaverTails.py "HTTP/1.1 404 Not Found"
+2026-04-25 20:37:34,292 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/PKU-Alignment/BeaverTails/revision/8401fe609d288129cc684a9b3be6a93e41cfe678 "HTTP/1.1 200 OK"
+2026-04-25 20:37:34,560 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/PKU-Alignment/BeaverTails/resolve/8401fe609d288129cc684a9b3be6a93e41cfe678/.huggingface.yaml "HTTP/1.1 404 Not Found"
+2026-04-25 20:37:35,347 [INFO] HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=PKU-Alignment/BeaverTails "HTTP/1.1 200 OK"
+2026-04-25 20:37:35,353 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/PKU-Alignment/BeaverTails/tree/8401fe609d288129cc684a9b3be6a93e41cfe678/round0%2F330k?recursive=false&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:35,360 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/PKU-Alignment/BeaverTails/tree/8401fe609d288129cc684a9b3be6a93e41cfe678/round0%2F30k?recursive=false&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:35,644 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/PKU-Alignment/BeaverTails/resolve/8401fe609d288129cc684a9b3be6a93e41cfe678/dataset_infos.json "HTTP/1.1 404 Not Found"
+2026-04-25 20:37:35,948 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/PKU-Alignment/BeaverTails/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-04-25 20:37:36,149 [INFO] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/PKU-Alignment/BeaverTails/8401fe609d288129cc684a9b3be6a93e41cfe678/README.md "HTTP/1.1 200 OK"
+2026-04-25 20:37:37,195 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/PKU-Alignment/BeaverTails/resolve/8401fe609d288129cc684a9b3be6a93e41cfe678/BeaverTails.py "HTTP/1.1 404 Not Found"
+2026-04-25 20:37:37,448 [INFO] HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/PKU-Alignment/BeaverTails/PKU-Alignment/BeaverTails.py "HTTP/1.1 404 Not Found"
+2026-04-25 20:37:37,720 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/PKU-Alignment/BeaverTails/resolve/8401fe609d288129cc684a9b3be6a93e41cfe678/.huggingface.yaml "HTTP/1.1 404 Not Found"
+2026-04-25 20:37:37,725 [INFO] HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=PKU-Alignment/BeaverTails "HTTP/1.1 200 OK"
+2026-04-25 20:37:38,006 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/PKU-Alignment/BeaverTails/resolve/8401fe609d288129cc684a9b3be6a93e41cfe678/dataset_infos.json "HTTP/1.1 404 Not Found"
+2026-04-25 20:37:53,664 [INFO] BeaverTails: 333963 samples, safe=148892, unsafe=185071
+2026-04-25 20:37:53,692 [INFO] ✓ Loaded beavertails: 333963 samples
+2026-04-25 20:37:53,692 [INFO] Loading ToxicChat...
+2026-04-25 20:37:54,707 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/lmsys/toxic-chat/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-04-25 20:37:54,907 [INFO] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/lmsys/toxic-chat/29df8e4dba60e1f4af4b4075c0705c5b313548a8/README.md "HTTP/1.1 200 OK"
+2026-04-25 20:37:55,944 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/lmsys/toxic-chat/resolve/29df8e4dba60e1f4af4b4075c0705c5b313548a8/toxic-chat.py "HTTP/1.1 404 Not Found"
+2026-04-25 20:37:56,629 [INFO] HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/lmsys/toxic-chat/lmsys/toxic-chat.py "HTTP/1.1 404 Not Found"
+2026-04-25 20:37:56,651 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/lmsys/toxic-chat/revision/29df8e4dba60e1f4af4b4075c0705c5b313548a8 "HTTP/1.1 200 OK"
+2026-04-25 20:37:56,921 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/lmsys/toxic-chat/resolve/29df8e4dba60e1f4af4b4075c0705c5b313548a8/.huggingface.yaml "HTTP/1.1 404 Not Found"
+2026-04-25 20:37:57,695 [INFO] HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=lmsys/toxic-chat "HTTP/1.1 200 OK"
+2026-04-25 20:37:57,701 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/lmsys/toxic-chat/tree/29df8e4dba60e1f4af4b4075c0705c5b313548a8/data%2F0124?recursive=false&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:57,978 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/lmsys/toxic-chat/resolve/29df8e4dba60e1f4af4b4075c0705c5b313548a8/dataset_infos.json "HTTP/1.1 404 Not Found"
+2026-04-25 20:37:58,269 [INFO] ToxicChat: 5082 samples, safe=4698, unsafe=384
+2026-04-25 20:37:58,270 [INFO] ✓ Loaded toxicchat: 5082 samples
+2026-04-25 20:37:58,270 [INFO] Loading XSTest...
+2026-04-25 20:37:58,273 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/walledai/XSTest/resolve/main/README.md "HTTP/1.1 200 OK"
+2026-04-25 20:37:58,534 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/walledai/XSTest/resolve/f1d713187c61b6ae64e602d74f0b3d812cc2e8e8/XSTest.py "HTTP/1.1 401 Unauthorized"
+2026-04-25 20:37:58,535 [WARNING] Failed to load xstest: Dataset 'walledai/XSTest' is a gated dataset on the Hub. You must be authenticated to access it.
+2026-04-25 20:37:58,535 [WARNING] ✗ Failed to load xstest: Dataset 'walledai/XSTest' is a gated dataset on the Hub. You must be authenticated to access it.. Skipping.
+2026-04-25 20:37:58,535 [INFO] Loading HH-RLHF (harmless-base)...
+2026-04-25 20:37:58,796 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/Anthropic/hh-rlhf/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-04-25 20:37:58,798 [INFO] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/Anthropic/hh-rlhf/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa/README.md "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,063 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/Anthropic/hh-rlhf/resolve/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa/hh-rlhf.py "HTTP/1.1 404 Not Found"
+2026-04-25 20:37:59,283 [INFO] HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/Anthropic/hh-rlhf/Anthropic/hh-rlhf.py "HTTP/1.1 404 Not Found"
+2026-04-25 20:37:59,289 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/revision/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,553 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/Anthropic/hh-rlhf/resolve/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa/.huggingface.yaml "HTTP/1.1 404 Not Found"
+2026-04-25 20:37:59,557 [INFO] HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=Anthropic/hh-rlhf "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,825 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa/data?recursive=true&expand=false "HTTP/1.1 404 Not Found"
+2026-04-25 20:37:59,830 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=false&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,836 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,842 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,847 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,853 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,858 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,863 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,868 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,874 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,879 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,884 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,889 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,895 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,900 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,906 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,911 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,916 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,920 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,925 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,930 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,935 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,939 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,944 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,948 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,952 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,957 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,966 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,970 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,979 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,987 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,992 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:37:59,996 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,000 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,004 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,007 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,010 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,013 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,016 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,019 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,022 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,025 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,028 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,031 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,034 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,038 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,041 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,044 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,047 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,050 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,053 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,056 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,059 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,062 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,065 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,068 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,071 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,074 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,077 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,080 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,083 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,086 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,090 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,093 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/Anthropic/hh-rlhf/tree/09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,094 [WARNING] Failed to load hh-rlhf: The directory at hf://datasets/Anthropic/hh-rlhf@09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa doesn't contain any data files
+2026-04-25 20:38:00,094 [WARNING] ✗ Failed to load hh-rlhf: The directory at hf://datasets/Anthropic/hh-rlhf@09be8c5bbc57cb3887f3a9732ad6aa7ec602a1fa doesn't contain any data files. Skipping.
+2026-04-25 20:38:00,094 [INFO] Loading Do-Not-Answer...
+2026-04-25 20:38:00,358 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/LibrAI/do-not-answer/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-04-25 20:38:00,361 [INFO] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/LibrAI/do-not-answer/74e74f2e4507ef256fe536f78a776f4a1ff67955/README.md "HTTP/1.1 200 OK"
+2026-04-25 20:38:00,632 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/LibrAI/do-not-answer/resolve/74e74f2e4507ef256fe536f78a776f4a1ff67955/do-not-answer.py "HTTP/1.1 404 Not Found"
+2026-04-25 20:38:00,851 [INFO] HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/LibrAI/do-not-answer/LibrAI/do-not-answer.py "HTTP/1.1 404 Not Found"
+2026-04-25 20:38:00,873 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/LibrAI/do-not-answer/revision/74e74f2e4507ef256fe536f78a776f4a1ff67955 "HTTP/1.1 200 OK"
+2026-04-25 20:38:01,137 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/LibrAI/do-not-answer/resolve/74e74f2e4507ef256fe536f78a776f4a1ff67955/.huggingface.yaml "HTTP/1.1 404 Not Found"
+2026-04-25 20:38:01,143 [INFO] HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=LibrAI/do-not-answer "HTTP/1.1 200 OK"
+2026-04-25 20:38:01,148 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/LibrAI/do-not-answer/tree/74e74f2e4507ef256fe536f78a776f4a1ff67955/data?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:01,151 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/LibrAI/do-not-answer/tree/74e74f2e4507ef256fe536f78a776f4a1ff67955?recursive=false&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:01,422 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/LibrAI/do-not-answer/resolve/74e74f2e4507ef256fe536f78a776f4a1ff67955/dataset_infos.json "HTTP/1.1 404 Not Found"
+2026-04-25 20:38:01,552 [INFO] Do-Not-Answer: 939 samples, safe=0, unsafe=939
+2026-04-25 20:38:01,553 [INFO] ✓ Loaded do-not-answer: 939 samples
+2026-04-25 20:38:01,553 [INFO] Loading Aegis...
+2026-04-25 20:38:01,839 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/nvidia/Aegis-AI-Content-Safety-Dataset-1.0/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-04-25 20:38:01,842 [INFO] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/nvidia/Aegis-AI-Content-Safety-Dataset-1.0/bd96d862068e47630197de64eb91f8d1481ff3e0/README.md "HTTP/1.1 200 OK"
+2026-04-25 20:38:02,120 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/nvidia/Aegis-AI-Content-Safety-Dataset-1.0/resolve/bd96d862068e47630197de64eb91f8d1481ff3e0/Aegis-AI-Content-Safety-Dataset-1.0.py "HTTP/1.1 404 Not Found"
+2026-04-25 20:38:02,340 [INFO] HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/nvidia/Aegis-AI-Content-Safety-Dataset-1.0/nvidia/Aegis-AI-Content-Safety-Dataset-1.0.py "HTTP/1.1 404 Not Found"
+2026-04-25 20:38:02,347 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/nvidia/Aegis-AI-Content-Safety-Dataset-1.0/revision/bd96d862068e47630197de64eb91f8d1481ff3e0 "HTTP/1.1 200 OK"
+2026-04-25 20:38:02,610 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/nvidia/Aegis-AI-Content-Safety-Dataset-1.0/resolve/bd96d862068e47630197de64eb91f8d1481ff3e0/.huggingface.yaml "HTTP/1.1 404 Not Found"
+2026-04-25 20:38:02,614 [INFO] HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=nvidia/Aegis-AI-Content-Safety-Dataset-1.0 "HTTP/1.1 200 OK"
+2026-04-25 20:38:02,880 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/nvidia/Aegis-AI-Content-Safety-Dataset-1.0/tree/bd96d862068e47630197de64eb91f8d1481ff3e0/data?recursive=true&expand=false "HTTP/1.1 404 Not Found"
+2026-04-25 20:38:02,884 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/nvidia/Aegis-AI-Content-Safety-Dataset-1.0/tree/bd96d862068e47630197de64eb91f8d1481ff3e0?recursive=false&expand=false "HTTP/1.1 200 OK"
+2026-04-25 20:38:03,242 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/nvidia/Aegis-AI-Content-Safety-Dataset-1.0/resolve/bd96d862068e47630197de64eb91f8d1481ff3e0/dataset_infos.json "HTTP/1.1 404 Not Found"
+2026-04-25 20:38:03,796 [INFO] Aegis: 10798 samples, safe=4020, unsafe=6778
+2026-04-25 20:38:03,797 [INFO] ✓ Loaded aegis: 10798 samples
+2026-04-25 20:38:03,797 [INFO] Loading WildGuard...
+2026-04-25 20:38:03,800 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/allenai/wildguardmix/resolve/main/README.md "HTTP/1.1 200 OK"
+2026-04-25 20:38:04,060 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/allenai/wildguardmix/resolve/d29c47f41c8b51348b5c8e8c81c039b3132b66d1/wildguardmix.py "HTTP/1.1 401 Unauthorized"
+2026-04-25 20:38:04,062 [WARNING] Failed to load wildguard: Dataset 'allenai/wildguardmix' is a gated dataset on the Hub. You must be authenticated to access it.
+2026-04-25 20:38:04,062 [WARNING] ✗ Failed to load wildguard: Dataset 'allenai/wildguardmix' is a gated dataset on the Hub. You must be authenticated to access it.. Skipping.
+2026-04-25 20:38:04,187 [INFO] Total corpus: 550782 samples
+2026-04-25 20:38:07,185 [INFO] Saved 550782 rows to data/raw/corpus_raw.parquet
+2026-04-25 20:38:07,185 [INFO] Saved raw corpus to data/raw/corpus_raw.parquet
+
+=== Dataset Statistics ===
+xguard              :   200000 total  safe= 92405  unsafe=107595
+beavertails         :   333963 total  safe=148892  unsafe=185071
+toxicchat           :     5082 total  safe=  4698  unsafe=   384
+do-not-answer       :      939 total  safe=     0  unsafe=   939
+aegis               :    10798 total  safe=  4020  unsafe=  6778
+============================================================

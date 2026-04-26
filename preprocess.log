@@ -1,0 +1,18 @@
+2026-04-25 20:40:26,634 [INFO] Loading data/raw/corpus_raw.parquet
+2026-04-25 20:40:29,096 [INFO] Loaded 550782 raw samples
+2026-04-25 20:40:29,596 [INFO] After length filter: 549762 samples (removed 1020)
+2026-04-25 20:40:29,994 [INFO] After deduplication: 321086 samples (removed 228676)
+2026-04-25 20:40:30,115 [INFO] Saved data_stats.csv
+2026-04-25 20:40:30,197 [INFO] Train: 256868, Test: 64218
+2026-04-25 20:40:32,364 [INFO] Saved 256868 rows to data/processed/train.parquet
+2026-04-25 20:40:32,909 [INFO] Saved 64218 rows to data/processed/test.parquet
+2026-04-25 20:40:34,993 [INFO] Saved 321086 rows to data/processed/corpus.parquet
+2026-04-25 20:40:34,993 [INFO] Preprocessing complete!
+
+=== Dataset Statistics (After Cleaning) ===
+aegis               :     9956 total  safe=  3597  unsafe=  6359
+beavertails         :   110822 total  safe= 49258  unsafe= 61564
+do-not-answer       :      938 total  safe=     0  unsafe=   938
+toxicchat           :     4949 total  safe=  4574  unsafe=   375
+xguard              :   194421 total  safe= 90311  unsafe=104110
+============================================================
