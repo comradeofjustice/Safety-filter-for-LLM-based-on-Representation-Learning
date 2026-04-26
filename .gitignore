@@ -1,6 +1,5 @@
 # Large binary data
 embeddings/
-models/
 data/raw/
 data/interim/
 data/processed/
@@ -12,9 +11,12 @@ pretrained/
 0.6B/embedding_model/*
 4B/embedding_model/*
 
+# Model weights - exclude oversized and temp files
+models/qwen3-embedding-0.6B/rbf_svm.pkl
+models/qwen3-embedding-8B_8B-v2/
+
 # Data files
 *.npy
-*.pkl
 *.pt
 *.pth
 *.db

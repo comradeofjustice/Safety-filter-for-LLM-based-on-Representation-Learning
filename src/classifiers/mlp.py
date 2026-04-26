@@ -13,18 +13,22 @@ logger = logging.getLogger(__name__)
 
 
 class MLPModel(nn.Module):
-    """MLP: Linear(D,512) → ReLU → Dropout(0.1) → Linear(512,128) → ReLU → Dropout(0.1) → Linear(128,2)"""
+    """MLP: Linear(D,1024) → BN → ReLU → Dropout(0.3) → Linear(1024,256) → BN → ReLU → Dropout(0.2) → Linear(256,64) → ReLU → Linear(64,2)"""
 
     def __init__(self, input_dim: int):
         super().__init__()
         self.network = nn.Sequential(
-            nn.Linear(input_dim, 512),
+            nn.Linear(input_dim, 1024),
+            nn.BatchNorm1d(1024),
             nn.ReLU(),
-            nn.Dropout(0.1),
-            nn.Linear(512, 128),
+            nn.Dropout(0.5),
+            nn.Linear(1024, 256),
+            nn.BatchNorm1d(256),
             nn.ReLU(),
-            nn.Dropout(0.1),
-            nn.Linear(128, 2),
+            nn.Dropout(0.4),
+            nn.Linear(256, 64),
+            nn.ReLU(),
+            nn.Linear(64, 2),
         )
 
     def forward(self, x):
@@ -36,11 +40,11 @@ class MLPClassifier:
 
     def __init__(
         self,
-        lr=1e-3,
-        weight_decay=1e-4,
+        lr=5e-5,
+        weight_decay=1e-3,
         batch_size=256,
-        max_epoch=30,
-        patience=3,
+        max_epoch=150,
+        patience=15,
         random_state=42,
     ):
         self.lr = lr
@@ -85,6 +89,9 @@ class MLPClassifier:
         optimizer = torch.optim.AdamW(
             self.model.parameters(), lr=self.lr, weight_decay=self.weight_decay
         )
+        scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
+            optimizer, T_max=self.max_epoch, eta_min=1e-6
+        )
 
         # Training loop with early stopping
         best_val_loss = float("inf")
@@ -104,6 +111,7 @@ class MLPClassifier:
                 train_loss += loss.item()
 
             train_loss /= len(train_loader)
+            scheduler.step()
 
             # Validation
             self.model.eval()
@@ -111,7 +119,11 @@ class MLPClassifier:
                 val_outputs = self.model(X_val_t)
                 val_loss = criterion(val_outputs, y_val_t).item()
 
-            logger.info(f"Epoch {epoch+1}/{self.max_epoch}: train_loss={train_loss:.4f}, val_loss={val_loss:.4f}")
+            current_lr = scheduler.get_last_lr()[0]
+            logger.info(
+                f"Epoch {epoch+1}/{self.max_epoch}: train_loss={train_loss:.4f}, "
+                f"val_loss={val_loss:.4f}, lr={current_lr:.2e}"
+            )
 
             if val_loss < best_val_loss:
                 best_val_loss = val_loss

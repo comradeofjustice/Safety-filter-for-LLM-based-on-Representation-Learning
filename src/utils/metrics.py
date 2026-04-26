@@ -20,7 +20,8 @@ def compute_metrics(y_true: np.ndarray, y_pred: np.ndarray, y_prob: np.ndarray =
         "f1_macro": f1_score(y_true, y_pred, average="macro"),
     }
     if y_prob is not None:
-        metrics["roc_auc"] = roc_auc_score(y_true, y_prob)
+        y_score = y_prob[:, 1] if y_prob.ndim == 2 else y_prob
+        metrics["roc_auc"] = roc_auc_score(y_true, y_score)
     else:
         metrics["roc_auc"] = None
     metrics["confusion_matrix"] = confusion_matrix(y_true, y_pred).tolist()

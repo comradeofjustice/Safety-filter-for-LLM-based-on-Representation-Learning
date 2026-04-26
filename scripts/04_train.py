@@ -43,12 +43,18 @@ def main():
         choices=list(CLASSIFIERS.keys()),
         help="Classifier type",
     )
+    parser.add_argument(
+        "--tag",
+        type=str,
+        default="",
+        help="Optional tag appended to model dir, e.g. 'v2' -> models/{embed_model}_v2/",
+    )
     args = parser.parse_args()
 
     set_seed(42)
 
     embed_dir = f"embeddings/{args.embed_model}"
-    model_dir = f"models/{args.embed_model}"
+    model_dir = f"models/{args.embed_model}_{args.tag}" if args.tag else f"models/{args.embed_model}"
     os.makedirs(model_dir, exist_ok=True)
 
     model_path = os.path.join(model_dir, f"{args.classifier}.pkl")
