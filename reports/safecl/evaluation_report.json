@@ -1,0 +1,33 @@
+{
+  "embed_model": "qwen3-embedding-0.6B",
+  "representation_quality": {
+    "original": {
+      "silhouette_score": 0.0071758851408958435,
+      "inter_class_distance": 0.11400651186704636,
+      "intra_class_distance": 0.7432423830032349,
+      "separation_ratio": 0.15339075028896332
+    },
+    "projected": {
+      "silhouette_score": 0.28815317153930664,
+      "inter_class_distance": 0.3784956932067871,
+      "intra_class_distance": 0.24184507131576538,
+      "separation_ratio": 1.5650336742401123
+    }
+  },
+  "downstream_classification": {
+    "baseline_frozen": {
+      "accuracy": 0.8098196767261515,
+      "precision": 0.8086886353399405,
+      "recall": 0.81011578877743,
+      "f1": 0.8091116633315931,
+      "roc_auc": 0.8903747653961743
+    },
+    "safecl_projected": {
+      "accuracy": 0.8561929677037591,
+      "precision": 0.8551074905549352,
+      "recall": 0.8558260036252775,
+      "f1": 0.8554254571313971,
+      "roc_auc": 0.9287208087672943
+    }
+  }
+}

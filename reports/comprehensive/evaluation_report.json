@@ -1,0 +1,83 @@
+{
+  "timestamp": "2026-04-30T22:22:33.744794",
+  "embed_model": "qwen3-embedding-0.6B",
+  "safecl_version": "v9",
+  "baseline_classifiers": {
+    "Logistic Regression": {
+      "accuracy": 0.8122956180510137,
+      "precision_macro": 0.8111463398992365,
+      "recall_macro": 0.8125388338223406,
+      "f1_macro": 0.8115769540544988,
+      "roc_auc": 0.8928480462231277
+    },
+    "Linear SVM": {
+      "accuracy": 0.8126382011274098,
+      "precision_macro": 0.8115402465206953,
+      "recall_macro": 0.8130311060259159,
+      "f1_macro": 0.8119630519094776,
+      "roc_auc": 0.8928127006849356
+    },
+    "Naive Bayes": {
+      "accuracy": 0.7137095518390483,
+      "precision_macro": 0.7126905078176259,
+      "recall_macro": 0.7138528231664159,
+      "f1_macro": 0.7128364445302191,
+      "roc_auc": 0.7856388957143703
+    },
+    "KNN (k=5)": {
+      "accuracy": 0.8096172412719175,
+      "precision_macro": 0.8088598922884882,
+      "recall_macro": 0.8073458803144573,
+      "f1_macro": 0.8079608940125742,
+      "roc_auc": 0.8817671453241336
+    }
+  },
+  "safecl_classifier": {
+    "accuracy": 0.84224049331963,
+    "precision_macro": 0.8410858971771287,
+    "recall_macro": 0.8423141859804146,
+    "f1_macro": 0.8415448414453742,
+    "roc_auc": 0.9182845156418625
+  },
+  "representation_quality": {
+    "original": {
+      "silhouette": 0.0072,
+      "separation_ratio": 0.1534
+    },
+    "projected": {
+      "silhouette": 0.1825,
+      "separation_ratio": 1.082
+    },
+    "improvement": {
+      "silhouette_gain": 25.35,
+      "separation_gain": 7.05
+    }
+  },
+  "per_intent_accuracy": [
+    {
+      "intent": "safe",
+      "count": 25538,
+      "accuracy": 0.8641
+    },
+    {
+      "intent": "benign_sensitive",
+      "count": 7705,
+      "accuracy": 0.7874
+    },
+    {
+      "intent": "malicious",
+      "count": 30975,
+      "accuracy": 0.8378
+    }
+  ],
+  "counterfactuals": {
+    "n_improved": 7,
+    "n_total": 20,
+    "avg_euc_ratio": 0.929
+  },
+  "delta_vs_best_baseline": {
+    "accuracy": 0.0296,
+    "f1": 0.0296,
+    "roc_auc": 0.0254
+  }
+}
