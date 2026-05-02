@@ -1,0 +1,33 @@
+{
+  "classification": {
+    "original_lr_8B": {
+      "accuracy": 0.8601171011242954,
+      "f1_macro": 0.8596320491010994,
+      "roc_auc": 0.9348522830021746
+    },
+    "robust_8B_lr": {
+      "accuracy": 0.86919555264879,
+      "f1_macro": 0.8686042372375655,
+      "roc_auc": 0.9385107458284379
+    },
+    "delta": {
+      "accuracy": 0.0091,
+      "f1_macro": 0.009,
+      "roc_auc": 0.0037
+    }
+  },
+  "representation": {
+    "original": {
+      "silhouette": 0.0067,
+      "separation": 0.1519
+    },
+    "projected": {
+      "silhouette": 0.3417,
+      "separation": 1.8095
+    },
+    "improvement": {
+      "silhouette_gain": 50.8,
+      "separation_gain": 11.9
+    }
+  }
+}

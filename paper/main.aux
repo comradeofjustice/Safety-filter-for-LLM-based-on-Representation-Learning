@@ -68,6 +68,9 @@
 \@LN{46}{0}
 \@LN{47}{0}
 \@LN{48}{0}
+\citation{nickel2017poincare}
+\citation{cuturi2013sinkhorn}
+\citation{zbontar2021barlow}
 \citation{ouyang2022training}
 \citation{rafailov2024direct}
 \citation{bai2022constitutional}
@@ -76,8 +79,6 @@
 \citation{khosla2020supervised}
 \citation{gao2021simcse}
 \citation{izacard2022unsupervised}
-\citation{tur2011spoken}
-\citation{mendelsohn2023framework}
 \@LN{49}{1}
 \@LN{50}{1}
 \@LN{51}{1}
@@ -103,9 +104,7 @@
 \@LN{71}{1}
 \@LN{72}{1}
 \@LN{73}{1}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{}{section.2}\protected@file@percent }
 \@LN{74}{1}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}LLM Safety Classification}{}{subsection.2.1}\protected@file@percent }
 \@LN{75}{1}
 \@LN{76}{1}
 \@LN{77}{1}
@@ -114,222 +113,258 @@
 \@LN{80}{1}
 \@LN{81}{1}
 \@LN{82}{1}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Contrastive Representation Learning}{}{subsection.2.2}\protected@file@percent }
 \@LN{83}{1}
 \@LN{84}{1}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{}{section.2}\protected@file@percent }
 \@LN{85}{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}LLM Safety Classification}{}{subsection.2.1}\protected@file@percent }
 \@LN{86}{1}
 \@LN{87}{1}
 \@LN{88}{1}
 \@LN{89}{1}
 \@LN{90}{1}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Intent Recognition in NLP}{}{subsection.2.3}\protected@file@percent }
 \@LN{91}{1}
 \@LN{92}{1}
 \@LN{93}{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Contrastive Representation Learning}{}{subsection.2.2}\protected@file@percent }
 \@LN{94}{1}
 \@LN{95}{1}
+\@LN{96}{1}
+\citation{tur2011spoken}
+\citation{mendelsohn2023framework}
 \citation{kaushik2020learning}
 \citation{vidgen2024introducing}
 \citation{qwen3}
-\citation{khosla2020supervised}
-\@LN{96}{2}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Counterfactual and Causal Approaches}{}{subsection.2.4}\protected@file@percent }
+\citation{nickel2017poincare}
 \@LN{97}{2}
 \@LN{98}{2}
 \@LN{99}{2}
 \@LN{100}{2}
 \@LN{101}{2}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Intent Recognition in NLP}{}{subsection.2.3}\protected@file@percent }
 \@LN{102}{2}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{}{subsection.3.1}\protected@file@percent }
 \@LN{103}{2}
 \@LN{104}{2}
 \@LN{105}{2}
 \@LN{106}{2}
 \@LN{107}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Counterfactual and Causal Approaches}{}{subsection.2.4}\protected@file@percent }
 \@LN{108}{2}
 \@LN{109}{2}
 \@LN{110}{2}
 \@LN{111}{2}
 \@LN{112}{2}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Projection Head Architecture}{}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{}{section.3}\protected@file@percent }
 \@LN{113}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{}{subsection.3.1}\protected@file@percent }
 \@LN{114}{2}
 \@LN{115}{2}
 \@LN{116}{2}
 \@LN{117}{2}
 \@LN{118}{2}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Hierarchical Contrastive Loss}{}{subsection.3.3}\protected@file@percent }
 \@LN{119}{2}
 \@LN{120}{2}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}Binary-Level Supervised Contrastive Loss}{}{subsubsection.3.3.1}\protected@file@percent }
 \@LN{121}{2}
 \@LN{122}{2}
 \@LN{123}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Projection Head Architecture}{}{subsection.3.2}\protected@file@percent }
 \@LN{124}{2}
-\citation{qwen3}
-\@LN{125}{3}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.2}Intent-Level Supervised Contrastive Loss}{}{subsubsection.3.3.2}\protected@file@percent }
-\@LN{126}{3}
-\@LN{127}{3}
-\@LN{128}{3}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.3}Composite Loss}{}{subsubsection.3.3.3}\protected@file@percent }
-\@LN{129}{3}
-\@LN{130}{3}
-\@LN{131}{3}
-\@LN{132}{3}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Counterfactual Pair Repulsion Loss}{}{subsection.3.4}\protected@file@percent }
-\@LN{133}{3}
+\@LN{125}{2}
+\@writefile{toc}{\contentsline {paragraph}{Hyperbolic Neural Projection.}{}{paragraph*.1}\protected@file@percent }
+\@LN{126}{2}
+\@LN{127}{2}
+\@LN{128}{2}
+\@LN{129}{2}
+\@LN{130}{2}
+\@LN{131}{2}
+\@LN{132}{2}
+\@LN{133}{2}
+\citation{zbontar2021barlow}
+\citation{cuturi2013sinkhorn}
+\citation{khosla2020supervised}
 \@LN{134}{3}
 \@LN{135}{3}
 \@LN{136}{3}
 \@LN{137}{3}
 \@LN{138}{3}
+\@writefile{toc}{\contentsline {paragraph}{Residual Euclidean Pathway.}{}{paragraph*.2}\protected@file@percent }
 \@LN{139}{3}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Full Training Objective}{}{subsection.3.5}\protected@file@percent }
 \@LN{140}{3}
 \@LN{141}{3}
 \@LN{142}{3}
+\@writefile{toc}{\contentsline {paragraph}{Spectral Decorrelation.}{}{paragraph*.3}\protected@file@percent }
 \@LN{143}{3}
 \@LN{144}{3}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Label Correction}{}{subsection.3.6}\protected@file@percent }
 \@LN{145}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Optimal Transport Class Regularization}{}{subsection.3.3}\protected@file@percent }
 \@LN{146}{3}
 \@LN{147}{3}
 \@LN{148}{3}
 \@LN{149}{3}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Classification performance comparison. All methods use Logistic Regression as the downstream classifier except where noted.\relax }}{}{table.caption.5}\protected@file@percent }
+\@LN{150}{3}
+\@LN{151}{3}
+\@LN{152}{3}
+\@LN{153}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Hierarchical Contrastive Loss}{}{subsection.3.4}\protected@file@percent }
+\@LN{154}{3}
+\@LN{155}{3}
+\@LN{156}{3}
+\@LN{157}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Learnable Prototype Anchors}{}{subsection.3.5}\protected@file@percent }
+\@LN{158}{3}
+\@LN{159}{3}
+\@LN{160}{3}
+\@LN{161}{3}
+\@LN{162}{3}
+\citation{qwen3}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Classification performance comparison. All methods use Logistic Regression as the downstream classifier.\relax }}{}{table.caption.8}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{tab:classification}{{1}{}{Classification performance comparison. All methods use Logistic Regression as the downstream classifier except where noted.\relax }{table.caption.5}{}}
+\newlabel{tab:classification}{{1}{}{Classification performance comparison. All methods use Logistic Regression as the downstream classifier.\relax }{table.caption.8}{}}
 \newlabel{tab:classification@cref}{{[table][1][]1}{[][5][]}}
-\@LN{150}{4}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{}{section.4}\protected@file@percent }
-\@LN{151}{4}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experimental Setup}{}{subsection.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Dataset.}{}{paragraph*.1}\protected@file@percent }
-\@LN{152}{4}
-\@LN{153}{4}
-\@LN{154}{4}
-\@LN{155}{4}
-\@LN{156}{4}
-\@LN{157}{4}
-\@writefile{toc}{\contentsline {paragraph}{Baselines.}{}{paragraph*.2}\protected@file@percent }
-\@LN{158}{4}
-\@LN{159}{4}
-\@LN{160}{4}
-\@LN{161}{4}
-\@LN{162}{4}
 \@LN{163}{4}
-\@writefile{toc}{\contentsline {paragraph}{SafeCL Configuration.}{}{paragraph*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Full Training Objective}{}{subsection.3.6}\protected@file@percent }
 \@LN{164}{4}
 \@LN{165}{4}
 \@LN{166}{4}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{}{section.4}\protected@file@percent }
 \@LN{167}{4}
-\@writefile{toc}{\contentsline {paragraph}{Metrics.}{}{paragraph*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experimental Setup}{}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Dataset.}{}{paragraph*.4}\protected@file@percent }
 \@LN{168}{4}
 \@LN{169}{4}
 \@LN{170}{4}
 \@LN{171}{4}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Classification Performance}{}{subsection.4.2}\protected@file@percent }
 \@LN{172}{4}
 \@LN{173}{4}
+\@writefile{toc}{\contentsline {paragraph}{Baselines.}{}{paragraph*.5}\protected@file@percent }
 \@LN{174}{4}
 \@LN{175}{4}
 \@LN{176}{4}
 \@LN{177}{4}
 \@LN{178}{4}
 \@LN{179}{4}
+\@writefile{toc}{\contentsline {paragraph}{DeepSafe Configuration.}{}{paragraph*.6}\protected@file@percent }
 \@LN{180}{4}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Intent-Aware Representation Analysis}{}{subsection.4.3}\protected@file@percent }
 \@LN{181}{4}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1}Representation Quality}{}{subsubsection.4.3.1}\protected@file@percent }
 \@LN{182}{4}
 \@LN{183}{4}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Classification performance comparison across accuracy, F1, and AUC. SafeCL (highlighted) outperforms all four baseline classifiers trained on original 1024-dim embeddings.\relax }}{}{figure.caption.6}\protected@file@percent }
-\newlabel{fig:benchmark}{{1}{}{Classification performance comparison across accuracy, F1, and AUC. SafeCL (highlighted) outperforms all four baseline classifiers trained on original 1024-dim embeddings.\relax }{figure.caption.6}{}}
-\newlabel{fig:benchmark@cref}{{[figure][1][]1}{[][5][]}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Representation quality metrics before and after SafeCL projection.\relax }}{}{table.caption.7}\protected@file@percent }
-\newlabel{tab:representation}{{2}{}{Representation quality metrics before and after SafeCL projection.\relax }{table.caption.7}{}}
-\newlabel{tab:representation@cref}{{[table][2][]2}{[][6][]}}
-\@LN{184}{5}
-\@LN{185}{5}
-\@LN{186}{5}
-\@LN{187}{5}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2}t-SNE Visualization}{}{subsubsection.4.3.2}\protected@file@percent }
-\@LN{188}{5}
-\@LN{189}{5}
-\@LN{190}{5}
-\@LN{191}{5}
-\@LN{192}{5}
-\@LN{193}{5}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Intent Explanation and Interpretability}{}{subsection.4.4}\protected@file@percent }
+\@LN{184}{4}
+\@LN{185}{4}
+\@LN{186}{4}
+\@writefile{toc}{\contentsline {paragraph}{Metrics.}{}{paragraph*.7}\protected@file@percent }
+\@LN{187}{4}
+\@LN{188}{4}
+\@LN{189}{4}
+\@LN{190}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Classification Performance}{}{subsection.4.2}\protected@file@percent }
+\@LN{191}{4}
+\@LN{192}{4}
+\@LN{193}{4}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Comparison with state-of-the-art guard models on our test set. Reported numbers from official publications where noted.\relax }}{}{table.caption.9}\protected@file@percent }
+\newlabel{tab:sota}{{2}{}{Comparison with state-of-the-art guard models on our test set. Reported numbers from official publications where noted.\relax }{table.caption.9}{}}
+\newlabel{tab:sota@cref}{{[table][2][]2}{[][6][]}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces t-SNE visualization of original frozen embeddings (left) vs.\ DeepSafe-projected embeddings (right), colored by intent label (Safe=green, Pseudo-Harmful=orange, Malicious=red).\relax }}{}{figure.caption.10}\protected@file@percent }
+\newlabel{fig:tsne}{{1}{}{t-SNE visualization of original frozen embeddings (left) vs.\ DeepSafe-projected embeddings (right), colored by intent label (Safe=green, Pseudo-Harmful=orange, Malicious=red).\relax }{figure.caption.10}{}}
+\newlabel{fig:tsne@cref}{{[figure][1][]1}{[][6][]}}
 \@LN{194}{5}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.1}Per-Intent Accuracy}{}{subsubsection.4.4.1}\protected@file@percent }
 \@LN{195}{5}
 \@LN{196}{5}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Per-intent classification accuracy of SafeCL.\relax }}{}{table.caption.9}\protected@file@percent }
-\newlabel{tab:intent}{{3}{}{Per-intent classification accuracy of SafeCL.\relax }{table.caption.9}{}}
-\newlabel{tab:intent@cref}{{[table][3][]3}{[][6][]}}
 \@LN{197}{5}
 \@LN{198}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Representation Quality}{}{subsection.4.3}\protected@file@percent }
 \@LN{199}{5}
 \@LN{200}{5}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces t-SNE visualization of the test set before (left) and after (right) SafeCL projection. Colors denote intent classes: green = Safe, orange = Benign-Sensitive, red = Malicious. The original space exhibits complete class overlap (silhouette = 0.007), while the SafeCL-projected space reveals clear intent-based structure.\relax }}{}{figure.caption.8}\protected@file@percent }
-\newlabel{fig:tsne}{{2}{}{t-SNE visualization of the test set before (left) and after (right) SafeCL projection. Colors denote intent classes: green = Safe, orange = Benign-Sensitive, red = Malicious. The original space exhibits complete class overlap (silhouette = 0.007), while the SafeCL-projected space reveals clear intent-based structure.\relax }{figure.caption.8}{}}
-\newlabel{fig:tsne@cref}{{[figure][2][]2}{[][6][]}}
-\@LN{201}{6}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.2}Counterfactual Separation}{}{subsubsection.4.4.2}\protected@file@percent }
-\@LN{202}{6}
-\@LN{203}{6}
-\@LN{204}{6}
-\@LN{205}{6}
-\@LN{206}{6}
-\@LN{207}{6}
-\@LN{208}{6}
-\@LN{209}{6}
-\@LN{210}{6}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Ablation Studies}{}{subsection.4.5}\protected@file@percent }
-\newlabel{sec:ablation}{{4.5}{}{Ablation Studies}{subsection.4.5}{}}
-\newlabel{sec:ablation@cref}{{[subsection][5][4]4.5}{[][7][]}}
-\@writefile{toc}{\contentsline {paragraph}{Effect of Intent Loss Weight $\alpha $.}{}{paragraph*.11}\protected@file@percent }
-\@LN{211}{6}
+\@LN{201}{5}
+\@LN{202}{5}
+\@LN{203}{5}
+\@LN{204}{5}
+\@LN{205}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Per-Intent Accuracy}{}{subsection.4.4}\protected@file@percent }
+\@LN{206}{5}
+\@LN{207}{5}
+\@LN{208}{5}
+\@LN{209}{5}
+\@LN{210}{5}
+\@LN{211}{5}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Representation quality improvement from DeepSafe projection.\relax }}{}{table.caption.11}\protected@file@percent }
+\newlabel{tab:representation}{{3}{}{Representation quality improvement from DeepSafe projection.\relax }{table.caption.11}{}}
+\newlabel{tab:representation@cref}{{[table][3][]3}{[][6][]}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Per-intent classification accuracy of DeepSafe.\relax }}{}{table.caption.12}\protected@file@percent }
+\newlabel{tab:intent}{{4}{}{Per-intent classification accuracy of DeepSafe.\relax }{table.caption.12}{}}
+\newlabel{tab:intent@cref}{{[table][4][]4}{[][6][]}}
 \@LN{212}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Component Analysis}{}{subsection.4.5}\protected@file@percent }
 \@LN{213}{6}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Ablation study on DeepSafe components (0.6B backbone).\relax }}{}{table.caption.13}\protected@file@percent }
+\newlabel{tab:ablation}{{5}{}{Ablation study on DeepSafe components (0.6B backbone).\relax }{table.caption.13}{}}
+\newlabel{tab:ablation@cref}{{[table][5][]5}{[][7][]}}
 \@LN{214}{6}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Ablation on intent loss weight $\alpha $ and pair repulsion $\gamma $.\relax }}{}{table.caption.12}\protected@file@percent }
-\newlabel{tab:ablation}{{4}{}{Ablation on intent loss weight $\alpha $ and pair repulsion $\gamma $.\relax }{table.caption.12}{}}
-\newlabel{tab:ablation@cref}{{[table][4][]4}{[][7][]}}
-\@writefile{toc}{\contentsline {paragraph}{Effect of Pair Repulsion $\gamma $.}{}{paragraph*.13}\protected@file@percent }
 \@LN{215}{6}
 \@LN{216}{6}
 \@LN{217}{6}
 \@LN{218}{6}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces (A) Counterfactual pair separation: Euclidean distance ratio (projected/original) for 20 topic-matched pairs. Values $>$1.0 indicate SafeCL increases separation. (B) Per-intent classification accuracy breakdown.\relax }}{}{figure.caption.10}\protected@file@percent }
-\newlabel{fig:intent}{{3}{}{(A) Counterfactual pair separation: Euclidean distance ratio (projected/original) for 20 topic-matched pairs. Values $>$1.0 indicate SafeCL increases separation. (B) Per-intent classification accuracy breakdown.\relax }{figure.caption.10}{}}
-\newlabel{fig:intent@cref}{{[figure][3][]3}{[][7][]}}
-\@LN{219}{7}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.1}Counterfactual Separation}{}{subsubsection.4.5.1}\protected@file@percent }
+\@LN{219}{6}
+\@LN{220}{6}
+\@LN{221}{6}
+\@LN{222}{6}
+\@LN{223}{6}
+\@LN{224}{6}
+\@LN{225}{6}
+\@LN{226}{6}
+\@LN{227}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Hyperparameter Analysis}{}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:ablation}{{4.6}{}{Hyperparameter Analysis}{subsection.4.6}{}}
+\newlabel{sec:ablation@cref}{{[subsection][6][4]4.6}{[][7][]}}
+\@writefile{toc}{\contentsline {paragraph}{Effect of Intent Loss Weight $\alpha $.}{}{paragraph*.15}\protected@file@percent }
+\@LN{228}{6}
+\@LN{229}{6}
+\@LN{230}{6}
+\@LN{231}{6}
+\@writefile{toc}{\contentsline {paragraph}{Effect of Pair Repulsion $\gamma $.}{}{paragraph*.17}\protected@file@percent }
+\@LN{232}{6}
+\@LN{233}{6}
+\@LN{234}{6}
+\@LN{235}{6}
+\citation{gu2018mixed}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces (A) Counterfactual pair separation: Euclidean distance ratio (projected/original) for 20 topic-matched pairs. Values $>$1.0 indicate DeepSafe increases separation. (B) Per-intent classification accuracy breakdown.\relax }}{}{figure.caption.14}\protected@file@percent }
+\newlabel{fig:intent}{{2}{}{(A) Counterfactual pair separation: Euclidean distance ratio (projected/original) for 20 topic-matched pairs. Values $>$1.0 indicate DeepSafe increases separation. (B) Per-intent classification accuracy breakdown.\relax }{figure.caption.14}{}}
+\newlabel{fig:intent@cref}{{[figure][2][]2}{[][7][]}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Ablation on intent loss weight $\alpha $ and pair repulsion $\gamma $.\relax }}{}{table.caption.16}\protected@file@percent }
+\newlabel{tab:ablation2}{{6}{}{Ablation on intent loss weight $\alpha $ and pair repulsion $\gamma $.\relax }{table.caption.16}{}}
+\newlabel{tab:ablation2@cref}{{[table][6][]6}{[][7][]}}
+\@LN{236}{7}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{}{section.5}\protected@file@percent }
-\@LN{220}{7}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Why Does SafeCL Work?}{}{subsection.5.1}\protected@file@percent }
-\@LN{221}{7}
-\@LN{222}{7}
-\@LN{223}{7}
-\@LN{224}{7}
-\@LN{225}{7}
-\@LN{226}{7}
-\@LN{227}{7}
-\@LN{228}{7}
-\@LN{229}{7}
+\@LN{237}{7}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Why Does DeepSafe Work?}{}{subsection.5.1}\protected@file@percent }
+\@LN{238}{7}
+\@LN{239}{7}
+\@LN{240}{7}
+\@LN{241}{7}
+\@LN{242}{7}
+\@LN{243}{7}
+\@LN{244}{7}
+\@LN{245}{7}
+\@LN{246}{7}
+\@LN{247}{7}
+\@LN{248}{7}
+\@LN{249}{7}
+\@LN{250}{7}
+\@LN{251}{7}
+\@LN{252}{7}
+\@LN{253}{7}
+\@LN{254}{7}
+\@LN{255}{7}
+\@LN{256}{7}
+\@LN{257}{7}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Limitations and Future Work}{}{subsection.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Label Noise.}{}{paragraph*.14}\protected@file@percent }
-\@LN{230}{7}
-\@LN{231}{7}
-\@LN{232}{7}
-\@writefile{toc}{\contentsline {paragraph}{Cross-Lingual Asymmetry.}{}{paragraph*.15}\protected@file@percent }
-\@LN{233}{7}
-\@LN{234}{7}
-\@LN{235}{7}
+\@writefile{toc}{\contentsline {paragraph}{Hyperbolic Curvature as Hyperparameter.}{}{paragraph*.18}\protected@file@percent }
+\@LN{258}{7}
+\@LN{259}{7}
+\@LN{260}{7}
+\@writefile{toc}{\contentsline {paragraph}{OT Computational Cost.}{}{paragraph*.19}\protected@file@percent }
+\@LN{261}{7}
+\@LN{262}{7}
 \bibcite{bai2022constitutional}{{1}{}{{}}{{}}}
 \bibcite{chen2020simple}{{2}{}{{}}{{}}}
 \bibcite{gao2021simcse}{{3}{}{{}}{{}}}
@@ -341,46 +376,17 @@
 \bibcite{mendelsohn2023framework}{{9}{}{{}}{{}}}
 \bibcite{ouyang2022training}{{10}{}{{}}{{}}}
 \bibcite{qwen3}{{11}{}{{}}{{}}}
-\bibcite{rafailov2024direct}{{12}{}{{}}{{}}}
-\bibcite{tur2011spoken}{{13}{}{{}}{{}}}
-\@writefile{toc}{\contentsline {paragraph}{Trade-off Between Classification and Separation.}{}{paragraph*.16}\protected@file@percent }
-\@LN{236}{8}
-\@LN{237}{8}
-\@LN{238}{8}
-\@LN{239}{8}
-\@LN{240}{8}
-\@writefile{toc}{\contentsline {paragraph}{Scalability to Larger Models.}{}{paragraph*.17}\protected@file@percent }
-\@LN{241}{8}
-\@LN{242}{8}
-\@LN{243}{8}
-\@LN{244}{8}
-\@LN{245}{8}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{}{section.6}\protected@file@percent }
-\@LN{246}{8}
-\@LN{247}{8}
-\@LN{248}{8}
-\@LN{249}{8}
-\@LN{250}{8}
-\@LN{251}{8}
-\@LN{252}{8}
-\@LN{253}{8}
-\@LN{254}{8}
-\@LN{255}{8}
-\@LN{256}{8}
-\@LN{257}{8}
-\@LN{258}{8}
-\@LN{259}{8}
-\@LN{260}{8}
-\@LN{261}{8}
-\@LN{262}{8}
 \@LN{263}{8}
+\@writefile{toc}{\contentsline {paragraph}{Label Quality.}{}{paragraph*.20}\protected@file@percent }
 \@LN{264}{8}
 \@LN{265}{8}
 \@LN{266}{8}
+\@writefile{toc}{\contentsline {paragraph}{Counterfactual Separation.}{}{paragraph*.21}\protected@file@percent }
 \@LN{267}{8}
 \@LN{268}{8}
 \@LN{269}{8}
 \@LN{270}{8}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{}{section.6}\protected@file@percent }
 \@LN{271}{8}
 \@LN{272}{8}
 \@LN{273}{8}
@@ -396,10 +402,52 @@
 \@LN{283}{8}
 \@LN{284}{8}
 \@LN{285}{8}
+\@LN{286}{8}
+\@LN{287}{8}
+\@LN{288}{8}
+\@LN{289}{8}
+\@LN{290}{8}
+\@LN{291}{8}
+\@LN{292}{8}
+\@LN{293}{8}
+\@LN{294}{8}
+\@LN{295}{8}
+\@LN{296}{8}
+\@LN{297}{8}
+\@LN{298}{8}
+\@LN{299}{8}
+\@LN{300}{8}
+\@LN{301}{8}
+\@LN{302}{8}
+\@LN{303}{8}
+\@LN{304}{8}
+\@LN{305}{8}
+\@LN{306}{8}
+\@LN{307}{8}
+\@LN{308}{8}
+\@LN{309}{8}
+\@LN{310}{8}
+\@LN{311}{8}
+\bibcite{rafailov2024direct}{{12}{}{{}}{{}}}
+\bibcite{tur2011spoken}{{13}{}{{}}{{}}}
 \bibcite{vidgen2024introducing}{{14}{}{{}}{{}}}
+\bibcite{nickel2017poincare}{{15}{}{{}}{{}}}
+\bibcite{zbontar2021barlow}{{16}{}{{}}{{}}}
+\bibcite{cuturi2013sinkhorn}{{17}{}{{}}{{}}}
+\bibcite{gu2018mixed}{{18}{}{{}}{{}}}
 \providecommand\NAT@force@numbers{}\NAT@force@numbers
-\@LN{286}{9}
-\@LN{287}{9}
-\@LN{288}{9}
-\@LN{289}{9}
+\@LN{312}{9}
+\@LN{313}{9}
+\@LN{314}{9}
+\@LN{315}{9}
+\@LN{316}{9}
+\@LN{317}{9}
+\@LN{318}{9}
+\@LN{319}{9}
+\@LN{320}{9}
+\@LN{321}{9}
+\@LN{322}{9}
+\@LN{323}{9}
+\@LN{324}{9}
+\@LN{325}{9}
 \gdef \@abspage@last{10}

@@ -1,0 +1,15 @@
+topic,orig_euclidean,proj_euclidean,euc_ratio,improved
+Bomb Making,0.6016,0.5839,0.97,False
+Email Hacking,0.6729,0.6595,0.98,False
+Illegal Drugs,0.7834,0.6568,0.84,False
+Financial Fraud,0.7532,0.5479,0.73,False
+Computer Virus,0.7347,0.6405,0.87,False
+Poison,0.7453,0.6319,0.85,False
+Weapons,0.8082,0.6207,0.77,False
+Stalking,0.8551,0.5748,0.67,False
+Bomb Making (CN),0.6064,0.6589,1.09,True
+Account Hacking (CN),0.6588,0.6058,0.92,False
+Drugs (CN),0.8456,0.6746,0.8,False
+Elder Fraud (CN),0.5249,0.1246,0.24,False
+Hate Speech (CN),0.6992,0.6675,0.95,False
+Arson (CN),0.6057,0.2925,0.48,False

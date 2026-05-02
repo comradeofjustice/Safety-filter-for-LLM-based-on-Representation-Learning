@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-05-02T13:36:06.004204",
+  "embed_model": "qwen3-embedding-8B",
+  "input_dim": 4096,
+  "output_dim": 256,
+  "hidden_dim": 512,
+  "lr": 0.001,
+  "batch_size": 128,
+  "epochs_trained": 20,
+  "best_val_loss": 29.67922019958496,
+  "train_time_s": 4694.71607375145,
+  "params": 4336384
+}

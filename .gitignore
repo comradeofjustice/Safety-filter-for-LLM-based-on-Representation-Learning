@@ -4,6 +4,7 @@ data/raw/
 data/interim/
 data/processed/
 *.parquet
+benchmark/*/_clone/
 
 # Pretrained weights
 pretrained/
@@ -19,6 +20,7 @@ models/qwen3-embedding-8B_8B-v2/
 *.npy
 *.pt
 *.pth
+*.pkl
 *.db
 
 # Log files

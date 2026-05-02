@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-05-02T12:33:38.561696",
+  "embed_model": "qwen3-embedding-0.6B",
+  "model_path": "models/deepsafe_v1/qwen3-embedding-0.6B/projection_head.pkl",
+  "classification": {
+    "original_lr": {
+      "accuracy": 0.8122956180510137,
+      "precision_macro": 0.8111463398992365,
+      "recall_macro": 0.8125388338223406,
+      "f1_macro": 0.8115769540544988,
+      "roc_auc": 0.8928480462231277
+    },
+    "deepsafe_lr": {
+      "accuracy": 0.843112522968638,
+      "precision_macro": 0.8419718958795559,
+      "recall_macro": 0.8426468141535526,
+      "f1_macro": 0.8422708774767762,
+      "roc_auc": 0.9177397029580845
+    },
+    "delta": {
+      "accuracy": 0.0308,
+      "f1_macro": 0.0307,
+      "roc_auc": 0.0249
+    }
+  },
+  "representation_quality": {
+    "original": {
+      "silhouette": 0.0072,
+      "separation_ratio": 0.1534
+    },
+    "projected": {
+      "silhouette": 0.3127,
+      "separation_ratio": 1.6028
+    },
+    "improvement": {
+      "silhouette_gain": 43.43,
+      "separation_gain": 10.45
+    }
+  },
+  "per_intent_accuracy": [
+    {
+      "intent": "safe",
+      "count": 25538,
+      "accuracy": 0.8603
+    },
+    {
+      "intent": "benign_sensitive",
+      "count": 7705,
+      "accuracy": 0.7957
+    },
+    {
+      "intent": "malicious",
+      "count": 30975,
+      "accuracy": 0.8407
+    }
+  ],
+  "counterfactuals": {
+    "n_improved": 1,
+    "n_total": 14,
+    "avg_euc_ratio": 0.7971428571428572
+  }
+}

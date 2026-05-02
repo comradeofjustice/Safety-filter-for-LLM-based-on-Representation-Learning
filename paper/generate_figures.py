@@ -103,7 +103,7 @@ def fig1_tsne():
         X_2d = tsne.fit_transform(StandardScaler().fit_transform(X))
 
         colors = [C_SAFE, C_BENIGN, C_MALICIOUS]
-        labels = ["Safe", "Benign-Sensitive", "Malicious"]
+        labels = ["Safe", "Pseudo-Harmful", "Malicious"]
         markers = ["o", "s", "D"]
         for i, c, m, lab in zip([0, 1, 2], colors, markers, labels):
             mask = y_sub == i
