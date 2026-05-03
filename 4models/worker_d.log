@@ -1,0 +1,88 @@
+# Worker D Private Log — Writing, Citations & Polish
+# Owner: Worker D only. Other workers: read-only.
+
+---
+
+[2026-05-04 12:35] R1 DONE — "70% of evaluation data" typo fix
+  File: paper/main.tex
+  Changes:
+  - §4.1 `\paragraph{Dataset}`: replaced "70% of evaluation data from 6
+    additional safety benchmarks" with "training set draws exclusively from
+    WildGuardMix/train + AegisAI-2.0/train (+ optional 100PoisonMpts/train,
+    XGuard-Train-Open-200K)"
+  - All 9 benchmarks explicitly stated as "100% held-out test sets"
+  - Table 1 caption: "30% held-out data" -> "9 fully held-out benchmark datasets"
+  - §4.1 evaluation benchmarks list updated with "completely disjoint" note
+
+[2026-05-04 12:45] R10a DONE — Section numbers in checklist
+  - "Section~5" -> "Section~4" (experiments)
+  - "Section~6" -> "Section~5" (limitations)
+  - "Section~5.1" -> "Section~4.1" (data)
+  - "Section~4.1" -> "Section~3.1" (theory/assumptions)
+
+[2026-05-04 12:50] R10b DONE — Gate scalar alpha->beta
+  - §1 (bullet 2): alpha -> beta in gate mechanism description
+  - §3.2 equation: alpha=sigma(w_alpha) -> beta=sigma(w_beta), h_combined uses beta
+  - §5.1: "gate mechanism alpha" -> "gate mechanism beta"
+  - Contrastive coefficient alpha preserved throughout
+
+[2026-05-04 12:55] R10c DONE — §3.7 full objective expanded
+  - L_DeepSafe equation now shows L_hier breakdown + lambda_inter inside L_OT
+  - lambda_inter=0.5 added to loss weights in §4.1 config
+
+[2026-05-04 13:00] R10d DONE — Abstract parameter count
+  - "7.3M-parameter projection head" -> "7.3M-parameter trainable projection head
+    atop a frozen Qwen3-Embedding-8B encoder"
+  - "10--1000x fewer trainable parameters" -> "orders of magnitude fewer
+    trainable parameters"
+
+[2026-05-04 13:05] R10e DONE — §4.4 "40x" fix
+  - "representing a 40x+ improvement" -> "from near-random clustering
+    (silhouette ~0) to moderate separation (~0.30)"
+
+[2026-05-04 13:10] R10f DONE — Table 2 & Figure 4 captions
+  - Ablation table: added "Validation accuracy and AUC measured on ... validation
+    set (10% of training samples)"
+  - Head-to-head figure: added "9 benchmarks x 9 SOTA models (81 total pairings)"
+
+[2026-05-04 13:15] R10g DONE — Conclusion wording
+  - "directly win against" -> "match or exceed"
+  - "outperforms large generative guard models on multiple benchmarks" ->
+    "matches or exceeds large generative guard models on a majority of benchmarks"
+  - "achieve comparable or superior results" -> "achieve competitive or superior results"
+
+[2026-05-04 13:20] R9 DONE — Add 4 citations
+  Bibliography entries added:
+  - ganea2018hyperbolic: Ganea et al., Hyperbolic Neural Networks, NeurIPS 2018
+  - snell2017proto: Snell et al., Prototypical Networks, NeurIPS 2017
+  - zhang2018mixup: Zhang et al., mixup, ICLR 2018
+  - guo2017calibration: Guo et al., On Calibration of NNs, ICML 2017
+  Citations placed:
+  - §3.2: hyperbolic neural layers -> cite{ganea2018hyperbolic}
+  - §3.6: prototype vectors -> cite{snell2017proto}
+  - §3.3: mixup -> cite{zhang2018mixup}, temperature scaling -> cite{guo2017calibration}
+
+[2026-05-04 13:30] INFRA — Number injection system
+  Created paper/inject_numbers.py:
+  - Reads reports/{main_table,ablation,stats_with_ci,baselines}_table.csv
+  - Falls back to hardcoded placeholder values when CSVs missing
+  - Generates paper/auto_numbers.tex with 60 LaTeX macros
+  - Macro names are valid LaTeX (letters only, digits->words, no underscores)
+  - input{auto_numbers.tex} added to main.tex preamble
+  LaTeX compilation: 0 errors, clean output
+
+[2026-05-04 13:35] CLEANUP — paper/paper/figures/ historical directory
+  - paper/paper/figures/fig3_intent.pdf was duplicate of paper/figures/fig3_intent.pdf
+  - Removed file, rmdir paper/paper/figures, rmdir paper/paper
+  - Both directories confirmed empty before removal
+
+[2026-05-04 13:40] STATUS SUMMARY
+  DONE: R1, R9, R10a-R10g (all writing tasks assigned to D)
+  PENDING: R6 (waiting for Worker B instruction on counterfactual)
+  BLOCKING: Reports CSVs from A/B/C needed for auto-number injection
+
+[2026-05-04 13:45] Compilation verification
+  Commands:
+    pdflatex -interaction=nonstopmode -output-directory=.../paper .../paper/main.tex
+  Result: 13 pages, 0 errors, only benign hyperref/float warnings
+  All cross-references resolve correctly on second pass

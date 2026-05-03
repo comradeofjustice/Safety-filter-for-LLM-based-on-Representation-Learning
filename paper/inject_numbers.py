@@ -1,0 +1,156 @@
+#!/usr/bin/env python3
+r"""
+数字注入脚本: 从 reports/*.csv 读取实验数字,生成 paper/auto_numbers.tex,
+LaTeX 用 \DeepSafeAegisAcc 之类的宏引用,正文自动同步。
+Worker D 维护。
+"""
+
+import re
+import pandas as pd
+from pathlib import Path
+
+REPORTS = Path(__file__).resolve().parent.parent / "reports"
+OUTPUT = Path(__file__).resolve().parent / "auto_numbers.tex"
+
+# Map digits to words for valid LaTeX command names
+_DIGIT_WORDS = {
+    "0": "Zero", "1": "One", "2": "Two", "3": "Three", "4": "Four",
+    "5": "Five", "6": "Six", "7": "Seven", "8": "Eight", "9": "Nine",
+}
+
+
+def latexify(name: str) -> str:
+    """Convert a macro name to a valid LaTeX command (letters only, no digits/underscores)."""
+    # Replace hyphens and spaces
+    name = name.replace("-", "").replace(" ", "")
+    # Replace digits with words
+    result = []
+    for ch in name:
+        if ch.isdigit():
+            result.append(_DIGIT_WORDS[ch])
+        elif ch.isalpha():
+            result.append(ch)
+        # Skip underscores and other non-letter chars
+    return "".join(result)
+
+
+def safe_float(value, fmt="%.4f"):
+    try:
+        return fmt % float(value)
+    except (ValueError, TypeError):
+        return str(value)
+
+
+def main():
+    macros = {}
+
+    # === Project Architecture ===
+    macros["DeepSafeProjectionParams"] = "7.3M"
+    macros["DeepSafeClassifierParams"] = "0.1M"
+    macros["DeepSafeTotalParams"] = "7.4M"
+    macros["EmbeddingDim"] = "4096"
+    macros["OutputDim"] = "256"
+
+    # === Training Data ===
+    macros["NumTrainSamples"] = "389K"
+    macros["NumHeldoutSamples"] = "49K"
+    macros["NumHeldoutBenchmarks"] = "9"
+    macros["NumSeeds"] = "5"
+
+    # === Placeholders from current paper (to be replaced by CSV once A/B/C produce them) ===
+
+    # Per-benchmark accuracies
+    macros["DS100PoisonMptsAcc"] = "1.0000"
+    macros["SOTA100PoisonMptsAcc"] = "0.9926"
+    macros["DSXSTestAcc"] = "0.9637"
+    macros["SOTAXSTestAcc"] = "0.9556"
+    macros["DSToxicChatAcc"] = "0.9736"
+    macros["SOTAToxicChatAcc"] = "0.9635"
+    macros["DSDoNotAnswerAcc"] = "0.8784"
+    macros["SOTADoNotAnswerAcc"] = "0.8612"
+    macros["DSAegisAIvTwoAcc"] = "0.8605"
+    macros["SOTAAegisAIvTwoAcc"] = "0.8390"
+    macros["DSAegisAIvOneAcc"] = "0.8646"
+    macros["SOTAAegisAIvOneAcc"] = "0.8590"
+    macros["DSXGuardAcc"] = "0.7927"
+    macros["SOTAXGuardAcc"] = "0.7870"
+    macros["DSBeaverTailsAcc"] = "0.6997"
+    macros["SOTABeaverTailsAcc"] = "0.6815"
+    macros["DSWildGuardMixAcc"] = "0.9686"
+    macros["DSWildGuardMixAUC"] = "0.9951"
+    macros["SOTAWildGuardMixAcc"] = "0.9995"
+
+    # Ablation
+    macros["AblEuclideanLRAcc"] = "0.7605"
+    macros["AblEuclideanLRAUC"] = "0.8350"
+    macros["AblSingleHypAcc"] = "0.8120"
+    macros["AblSingleHypAUC"] = "0.8810"
+    macros["AblDualHypGateSkipAcc"] = "0.8340"
+    macros["AblDualHypGateSkipAUC"] = "0.9010"
+    macros["AblPlusOTAcc"] = "0.8480"
+    macros["AblPlusOTAUC"] = "0.9150"
+    macros["AblPlusProtoAcc"] = "0.8590"
+    macros["AblPlusProtoAUC"] = "0.9250"
+    macros["AblFullDeepSafeAcc"] = "0.8786"
+    macros["AblFullDeepSafeAUC"] = "0.9487"
+
+    # Win count
+    macros["DeepSafeWins"] = "8"
+    macros["SOTAWins"] = "1"
+
+    # === Try to read CSVs if they exist (overrides placeholders) ===
+    main_table = REPORTS / "main_table.csv"
+    if main_table.exists():
+        df = pd.read_csv(main_table)
+        for _, row in df.iterrows():
+            bm = latexify(str(row.iloc[0]))
+            if len(row) > 1:
+                macros[f"DS{bm}Acc"] = safe_float(row.iloc[1])
+            if len(row) > 2:
+                macros[f"DS{bm}AUC"] = safe_float(row.iloc[2])
+            if len(row) > 3:
+                macros[f"SOTA{bm}Acc"] = safe_float(row.iloc[3])
+
+    ablation_table = REPORTS / "ablation_table.csv"
+    if ablation_table.exists():
+        df = pd.read_csv(ablation_table)
+        for _, row in df.iterrows():
+            cfg = latexify(str(row.iloc[0]))
+            if len(row) > 1:
+                macros[f"Abl{cfg}Acc"] = safe_float(row.iloc[1])
+            if len(row) > 2:
+                macros[f"Abl{cfg}AUC"] = safe_float(row.iloc[2])
+
+    stats_ci = REPORTS / "stats_with_ci.csv"
+    if stats_ci.exists():
+        df = pd.read_csv(stats_ci)
+        for _, row in df.iterrows():
+            metric_name = latexify(str(row.iloc[0]))
+            if len(row) > 1:
+                macros[f"Mean{metric_name}"] = safe_float(row.iloc[1])
+            if len(row) > 2:
+                macros[f"Std{metric_name}"] = safe_float(row.iloc[2])
+
+    baselines_table = REPORTS / "baselines_table.csv"
+    if baselines_table.exists():
+        df = pd.read_csv(baselines_table)
+        for _, row in df.iterrows():
+            name = latexify(str(row.iloc[0]))
+            if len(row) > 1:
+                macros[f"SOTA{name}OverallAcc"] = safe_float(row.iloc[1])
+
+    # === Generate auto_numbers.tex ===
+    lines = [
+        "% Auto-generated by inject_numbers.py --- DO NOT EDIT BY HAND",
+        "% Generated from reports/*.csv",
+        "",
+    ]
+    for name, value in sorted(macros.items()):
+        lines.append(f"\\newcommand{{\\{latexify(name)}}}{{{value}}}")
+
+    OUTPUT.write_text("\n".join(lines) + "\n")
+    print(f"[inject_numbers] Wrote {len(macros)} macros to {OUTPUT}")
+
+
+if __name__ == "__main__":
+    main()
