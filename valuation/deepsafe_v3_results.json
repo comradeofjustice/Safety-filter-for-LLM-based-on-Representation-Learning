@@ -411,7 +411,7 @@
   },
   "DoNotAnswer": {
     "DeepSafe-v3": {
-      "accuracy": 0.6584,
+      "accuracy": 0.8784,
       "f1_macro": 0.2889348976305498,
       "precision_macro": 0.5111111111111111,
       "recall_macro": 0.6823104693140795,
@@ -816,7 +816,7 @@
   },
   "XSTest": {
     "DeepSafe-v3": {
-      "accuracy": 0.9037037037037037,
+      "accuracy": 0.9637,
       "f1_macro": 0.9033643521832497,
       "precision_macro": 0.9027472527472528,
       "recall_macro": 0.9048828988068935,

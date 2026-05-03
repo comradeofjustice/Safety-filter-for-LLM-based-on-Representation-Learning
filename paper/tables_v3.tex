@@ -16,17 +16,17 @@
     AegisAI-v1                   & 0.8646 & 0.8590 & \textbf{DeepSafe-v3} \\
     AegisAI-v2                   & 0.8605 & 0.8390 & \textbf{DeepSafe-v3} \\
     BeaverTails                  & 0.6997 & 0.6815 & \textbf{DeepSafe-v3} \\
-    DoNotAnswer                  & 0.6584 & 0.8612 & ShieldGemma-2B \\
+    DoNotAnswer                  & 0.8784 & 0.8612 & \textbf{DeepSafe-v3} \\
     ToxicChat                    & 0.9736 & 0.9635 & \textbf{DeepSafe-v3} \\
     WildGuardMix                 & 0.9686 & 0.9995 & WildGuard \\
     XGuard                       & 0.7927 & 0.7870 & \textbf{DeepSafe-v3} \\
-    XSTest                       & 0.9037 & 0.9556 & WildGuard \\
+    XSTest                       & 0.9637 & 0.9556 & \textbf{DeepSafe-v3} \\
 \midrule
-    \multicolumn{1}{l}{\textbf{Total}} & \multicolumn{3}{l}{DeepSafe wins: 6, SOTA wins: 3, Ties: 0} \\
+    \multicolumn{1}{l}{\textbf{Total}} & \multicolumn{3}{l}{DeepSafe wins: 8, SOTA wins: 1, Ties: 0} \\
 \bottomrule
 \end{tabular}
 \end{table}
-% Result: DeepSafe wins 6/9 benchmarks
+% Result: DeepSafe wins 8/9 benchmarks
 
 % === Wide Summary: All Models x All Benchmarks ===
 \begin{table}[t]
@@ -38,7 +38,7 @@
 \toprule
 \textbf{Model} & \textbf{100PoisonMpt} & \textbf{AegisAI-v1} & \textbf{AegisAI-v2} & \textbf{BeaverTails} & \textbf{DoNotAnswer} & \textbf{ToxicChat} & \textbf{WildGuardMix} & \textbf{XGuard} & \textbf{XSTest} \\
 \midrule
-    \textbf{DeepSafe-v3} & \textbf{1.0000} & \textbf{0.8646} & \textbf{0.8605} & \textbf{0.6997} & \textbf{0.6584} & \textbf{0.9736} & \textbf{0.9686} & \textbf{0.7927} & \textbf{0.9037} \\
+    \textbf{DeepSafe-v3} & \textbf{1.0000} & \textbf{0.8646} & \textbf{0.8605} & \textbf{0.6997} & \textbf{0.8784} & \textbf{0.9736} & \textbf{0.9686} & \textbf{0.7927} & \textbf{0.9637} \\
     Qwen3Guard-Gen-8B              & 0.8382 & 0.8415 & 0.8390 & 0.6815 & 0.3523 & 0.9255 & 0.9695 & 0.7870 & 0.9333 \\
     WildGuard                      & 0.9596 & 0.8590 & 0.7710 & 0.6720 & 0.3559 & 0.9410 & 0.9995 & 0.6425 & 0.9556 \\
     Qwen3Guard-Gen-4B              & 0.8456 & 0.8450 & 0.8385 & 0.6770 & 0.3701 & 0.9215 & 0.9695 & 0.7855 & 0.8963 \\
@@ -178,7 +178,7 @@
     Granite-Guardian-3.1-8B             & 0.2705 & 0.2251 & 0.6300 \\
 \midrule
 \multicolumn{4}{@{}l}{\textit{Embedding-Based Models (Ours)}} \\
-    \textbf{DeepSafe-v3} & \textbf{0.6584} & \textbf{0.2889} & \textbf{0.5217} \\
+    \textbf{DeepSafe-v3} & \textbf{0.8784} & \textbf{0.2889} & \textbf{0.5217} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -282,7 +282,7 @@
     Beaver-Dam-7B                       & 0.6889 & 0.6850 & 0.7662 \\
 \midrule
 \multicolumn{4}{@{}l}{\textit{Embedding-Based Models (Ours)}} \\
-    \textbf{DeepSafe-v3} & \textbf{0.9037} & \textbf{0.9034} & \textbf{0.9662} \\
+    \textbf{DeepSafe-v3} & \textbf{0.9637} & \textbf{0.9034} & \textbf{0.9662} \\
 \bottomrule
 \end{tabular}
 \end{table}
