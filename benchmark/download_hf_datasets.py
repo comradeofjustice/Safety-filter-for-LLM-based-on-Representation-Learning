@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Download safety evaluation datasets from HuggingFace mirror and save as parquet.
+"""Download safety evaluation datasets from HF mirror / GitHub and save as parquet.
 
 Datasets:
   1. walledai/XSTest         — over-safety detection, 450 prompts (NAACL 2024)
@@ -8,28 +8,29 @@ Datasets:
   4. PKU-Alignment/BeaverTails — safety alignment, 330K+, 14 harm categories
   5. LibrAI/do-not-answer    — LLM refusal eval, 939 prompts, 61 harm types
 
-Uses HF_ENDPOINT=https://hf-mirror.com.  Falls back to GitHub raw for gated datasets.
+Sources: HF mirror (hf-mirror.com), GitHub raw (gated fallback), HF cache (offline).
 """
 
 import os
 import sys
+import io
 import time
+import json
 import logging
-import pandas as pd
-from datasets import load_dataset, get_dataset_config_names, get_dataset_split_names
+import glob
+import urllib.request
 
+import pandas as pd
+
+# ----- config -----
 BENCHMARK_DIR = "/root/autodl-tmp/llm-safety-classifier/benchmark"
 LOG_FILE = os.path.join(BENCHMARK_DIR, "download_log_03.log")
-
 os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
 
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
-    handlers=[
-        logging.FileHandler(LOG_FILE),
-        logging.StreamHandler(sys.stdout),
-    ],
+    handlers=[logging.FileHandler(LOG_FILE), logging.StreamHandler(sys.stdout)],
 )
 logger = logging.getLogger(__name__)
 
@@ -39,8 +40,9 @@ def fmt_time(seconds: float) -> str:
     return f"{m}m{s:02d}s"
 
 
-def save_parquet(df, output_dir, dataset_name, start_time, extra_info=None):
+def save_parquet(df, dataset_name, start_time, extra_info=None):
     """Save DataFrame as parquet and log result."""
+    output_dir = os.path.join(BENCHMARK_DIR, dataset_name)
     os.makedirs(output_dir, exist_ok=True)
     parquet_path = os.path.join(output_dir, "data.parquet")
     df.to_parquet(parquet_path, index=False)
@@ -56,7 +58,7 @@ def save_parquet(df, output_dir, dataset_name, start_time, extra_info=None):
         f"({fmt_time(elapsed)})"
     )
     if extra_info:
-        logger.info(f"  Extra: {extra_info}")
+        logger.info(f"  Note: {extra_info}")
 
     return {
         "dataset": dataset_name,
@@ -68,145 +70,190 @@ def save_parquet(df, output_dir, dataset_name, start_time, extra_info=None):
     }
 
 
-# ---------------------------------------------------------------------------
-# Per-dataset downloaders
-# ---------------------------------------------------------------------------
+def log_fail(dataset_name, start_time, reason):
+    elapsed = time.time() - start_time
+    logger.info(
+        f"DONE dataset={dataset_name} samples=0 fields=[] "
+        f"size_mb=0 time_s={elapsed:.0f} status=failed ({reason})"
+    )
+    return None
 
+
+# ---------------------------------------------------------------------------
+# 1. walledai/XSTest — gated on HF, use GitHub CSV fallback
+# ---------------------------------------------------------------------------
 def download_xstest():
-    """walledai/XSTest — gated on HF; use GitHub CSV fallback."""
     start_time = time.time()
-    logger.info("START dataset=XSTest source=github-fallback")
+    logger.info("START dataset=XSTest source=github-fallback "
+                "repo=paul-rottger/exaggerated-safety")
 
     url = ("https://raw.githubusercontent.com/paul-rottger/"
-           "exaggerated-safety/main/xstest_v2_prompts.csv")
+           "exaggerated-safety/main/xstest_prompts.csv")
+    try:
+        with urllib.request.urlopen(url, timeout=60) as f:
+            raw = f.read()
+        df = pd.read_csv(io.BytesIO(raw))
+        logger.info(f"  Downloaded CSV from GitHub: {len(df)} rows")
+    except Exception as e:
+        return log_fail("XSTest", start_time, f"github-csv:{e}")
+
+    return save_parquet(df, "XSTest", start_time,
+                        extra_info="GitHub fallback (HF gated)")
+
+
+# ---------------------------------------------------------------------------
+# 2. lmsys/toxic-chat — cached from previous run, use offline mode
+# ---------------------------------------------------------------------------
+def download_toxic_chat():
+    start_time = time.time()
+    logger.info("START dataset=ToxicChat source=huggingface-cache "
+                "path=lmsys/toxic-chat")
+
+    os.environ["HF_HUB_OFFLINE"] = "1"
+    try:
+        from datasets import load_dataset, get_dataset_split_names
+
+        configs = ["toxicchat0124", "toxicchat1123"]
+        all_dfs = []
+
+        for cfg in configs:
+            try:
+                splits = get_dataset_split_names("lmsys/toxic-chat", cfg)
+            except Exception:
+                splits = ["train", "test"]
+
+            for split in splits:
+                try:
+                    ds = load_dataset("lmsys/toxic-chat", cfg, split=split)
+                    df = ds.to_pandas()
+                    df["_config"] = cfg
+                    df["_split"] = split
+                    all_dfs.append(df)
+                    logger.info(f"  Loaded {cfg}/{split}: {len(df)} rows")
+                except Exception as e:
+                    logger.warning(f"  SKIP {cfg}/{split}: {e}")
+
+        if not all_dfs:
+            return log_fail("ToxicChat", start_time, "no-splits-loaded")
+
+        combined = pd.concat(all_dfs, ignore_index=True)
+        return save_parquet(combined, "ToxicChat", start_time,
+                            extra_info=f"configs={configs}")
+
+    except Exception as e:
+        return log_fail("ToxicChat", start_time, str(e)[:200])
+    finally:
+        os.environ["HF_HUB_OFFLINE"] = "0"
+
+
+# ---------------------------------------------------------------------------
+# 3. nvidia/Aegis-AI-Content-Safety-Dataset-2.0 — download JSONs via mirror
+# ---------------------------------------------------------------------------
+def download_aegis():
+    start_time = time.time()
+    logger.info("START dataset=AegisAI-Content-Safety-2.0 source=huggingface-mirror "
+                "path=nvidia/Aegis-AI-Content-Safety-Dataset-2.0")
+
+    from huggingface_hub import snapshot_download
 
     try:
-        df = pd.read_csv(url)
+        snapshot_dir = snapshot_download(
+            "nvidia/Aegis-AI-Content-Safety-Dataset-2.0",
+            repo_type="dataset",
+            allow_patterns=["*.json"],
+            max_workers=1,
+        )
+        logger.info(f"  Downloaded to: {snapshot_dir}")
+
+        all_dfs = []
+        json_files = sorted(glob.glob(f"{snapshot_dir}/*.json"))
+        for fp in json_files:
+            fn = os.path.basename(fp)
+            with open(fp, "r") as f:
+                data = json.load(f)
+            df = pd.DataFrame(data if isinstance(data, list) else [data])
+            df["_source_file"] = fn
+            all_dfs.append(df)
+            logger.info(f"  Loaded {fn}: {len(df)} rows")
+
+        combined = pd.concat(all_dfs, ignore_index=True)
+        return save_parquet(combined, "AegisAI-Content-Safety-2.0", start_time,
+                            extra_info=f"{len(json_files)} JSON files via snapshot_download")
+
     except Exception as e:
-        logger.warning(f"  GitHub fallback failed: {e}")
-        elapsed = time.time() - start_time
-        logger.info(f"DONE dataset=XSTest samples=0 fields=[] "
-                    f"size_mb=0 time_s={elapsed:.0f} status=failed")
-        return None
-
-    output_dir = os.path.join(BENCHMARK_DIR, "XSTest")
-    return save_parquet(df, output_dir, "XSTest", start_time,
-                        extra_info="GitHub fallback (gated on HF)")
+        return log_fail("AegisAI-Content-Safety-2.0", start_time, str(e)[:200])
 
 
-def download_toxic_chat():
-    """lmsys/toxic-chat — has configs: toxicchat0124, toxicchat1123."""
+# ---------------------------------------------------------------------------
+# 4. PKU-Alignment/BeaverTails — cached, use offline mode
+# ---------------------------------------------------------------------------
+def download_beavertails():
     start_time = time.time()
-    logger.info("START dataset=ToxicChat source=huggingface path=lmsys/toxic-chat")
+    logger.info("START dataset=BeaverTails source=huggingface-cache "
+                "path=PKU-Alignment/BeaverTails")
 
-    configs = ["toxicchat0124", "toxicchat1123"]
-    all_dfs = []
+    os.environ["HF_HUB_OFFLINE"] = "1"
+    try:
+        from datasets import load_dataset
 
-    for config in configs:
-        try:
-            # Get splits for this config
-            splits = get_dataset_split_names("lmsys/toxic-chat", config)
-            logger.info(f"  Config={config} splits={splits}")
-        except Exception as e:
-            logger.warning(f"  Could not list splits for config={config}: {e}")
-            splits = ["train"]
+        splits = ["330k_train", "330k_test", "30k_train", "30k_test"]
+        all_dfs = []
 
         for split in splits:
             try:
-                ds = load_dataset("lmsys/toxic-chat", config, split=split)
+                ds = load_dataset("PKU-Alignment/BeaverTails", split=split)
                 df = ds.to_pandas()
-                df["_config"] = config
                 df["_split"] = split
                 all_dfs.append(df)
-                logger.info(f"  Loaded config={config} split={split} -> {len(df)} rows")
+                logger.info(f"  Loaded {split}: {len(df)} rows")
             except Exception as e:
-                logger.warning(f"  SKIP config={config} split={split}: {e}")
+                logger.warning(f"  SKIP {split}: {e}")
 
-    if not all_dfs:
-        elapsed = time.time() - start_time
-        logger.info(f"DONE dataset=ToxicChat samples=0 fields=[] "
-                    f"size_mb=0 time_s={elapsed:.0f} status=failed")
-        return None
+        if not all_dfs:
+            return log_fail("BeaverTails", start_time, "no-splits-loaded")
 
-    combined = pd.concat(all_dfs, ignore_index=True)
-    output_dir = os.path.join(BENCHMARK_DIR, "ToxicChat")
-    return save_parquet(combined, output_dir, "ToxicChat", start_time)
+        combined = pd.concat(all_dfs, ignore_index=True)
+        return save_parquet(combined, "BeaverTails", start_time)
 
-
-def download_aegis():
-    """nvidia/Aegis-AI-Content-Safety-Dataset-2.0 — 3 splits."""
-    start_time = time.time()
-    logger.info("START dataset=AegisAI-Content-Safety-2.0 source=huggingface "
-                "path=nvidia/Aegis-AI-Content-Safety-Dataset-2.0")
-
-    splits = get_dataset_split_names("nvidia/Aegis-AI-Content-Safety-Dataset-2.0")
-    logger.info(f"  Splits: {splits}")
-    all_dfs = []
-
-    for split in splits:
-        ds = load_dataset("nvidia/Aegis-AI-Content-Safety-Dataset-2.0", split=split)
-        df = ds.to_pandas()
-        df["_split"] = split
-        all_dfs.append(df)
-        logger.info(f"  Loaded split={split} -> {len(df)} rows")
-
-    combined = pd.concat(all_dfs, ignore_index=True)
-    output_dir = os.path.join(BENCHMARK_DIR, "AegisAI-Content-Safety-2.0")
-    return save_parquet(combined, output_dir, "AegisAI-Content-Safety-2.0", start_time)
+    except Exception as e:
+        return log_fail("BeaverTails", start_time, str(e)[:200])
+    finally:
+        os.environ["HF_HUB_OFFLINE"] = "0"
 
 
-def download_beavertails():
-    """PKU-Alignment/BeaverTails — 4 splits: 330k_train/test, 30k_train/test."""
-    start_time = time.time()
-    logger.info("START dataset=BeaverTails source=huggingface "
-                "path=PKU-Alignment/BeaverTails")
-
-    splits = get_dataset_split_names("PKU-Alignment/BeaverTails")
-    logger.info(f"  Splits: {splits}")
-    all_dfs = []
-
-    for split in splits:
-        ds = load_dataset("PKU-Alignment/BeaverTails", split=split)
-        df = ds.to_pandas()
-        df["_split"] = split
-        all_dfs.append(df)
-        logger.info(f"  Loaded split={split} -> {len(df)} rows")
-
-    combined = pd.concat(all_dfs, ignore_index=True)
-    output_dir = os.path.join(BENCHMARK_DIR, "BeaverTails")
-    return save_parquet(combined, output_dir, "BeaverTails", start_time)
-
-
+# ---------------------------------------------------------------------------
+# 5. LibrAI/do-not-answer — cached, use offline mode
+# ---------------------------------------------------------------------------
 def download_do_not_answer():
-    """LibrAI/do-not-answer — 1 split (train), 939 prompts."""
     start_time = time.time()
-    logger.info("START dataset=DoNotAnswer source=huggingface "
+    logger.info("START dataset=DoNotAnswer source=huggingface-cache "
                 "path=LibrAI/do-not-answer")
 
-    splits = get_dataset_split_names("LibrAI/do-not-answer")
-    logger.info(f"  Splits: {splits}")
-    all_dfs = []
+    os.environ["HF_HUB_OFFLINE"] = "1"
+    try:
+        from datasets import load_dataset
 
-    for split in splits:
-        ds = load_dataset("LibrAI/do-not-answer", split=split)
+        ds = load_dataset("LibrAI/do-not-answer", split="train")
         df = ds.to_pandas()
-        df["_split"] = split
-        all_dfs.append(df)
-        logger.info(f"  Loaded split={split} -> {len(df)} rows")
+        df["_split"] = "train"
+        logger.info(f"  Loaded train: {len(df)} rows")
 
-    combined = pd.concat(all_dfs, ignore_index=True)
-    output_dir = os.path.join(BENCHMARK_DIR, "DoNotAnswer")
-    return save_parquet(combined, output_dir, "DoNotAnswer", start_time)
+        return save_parquet(df, "DoNotAnswer", start_time)
+
+    except Exception as e:
+        return log_fail("DoNotAnswer", start_time, str(e)[:200])
+    finally:
+        os.environ["HF_HUB_OFFLINE"] = "0"
 
 
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
-
 def main():
     logger.info("=" * 60)
     logger.info("HF Mirror Safety Dataset Download — download_log_03")
     logger.info(f"HF_ENDPOINT={os.environ['HF_ENDPOINT']}")
+    logger.info(f"Output dir: {BENCHMARK_DIR}")
     logger.info("=" * 60)
 
     downloaders = [
@@ -220,9 +267,9 @@ def main():
     results = []
     overall_start = time.time()
 
-    for name, download_fn in downloaders:
+    for name, fn in downloaders:
         logger.info(f"\n{'─' * 55}")
-        result = download_fn()
+        result = fn()
         if result is None:
             results.append({
                 "dataset": name, "samples": 0, "fields": [],

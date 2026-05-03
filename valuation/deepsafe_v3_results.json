@@ -1,0 +1,912 @@
+{
+  "100PoisonMpts": {
+    "DeepSafe-v3": {
+      "accuracy": 0.9926470588235294,
+      "f1_macro": 0.0,
+      "precision_macro": 0.0,
+      "recall_macro": 0.0,
+      "roc_auc": 0.5,
+      "ap": 0.5,
+      "note": "single-class",
+      "inference_time_s": 9.7,
+      "samples": 272
+    },
+    "Qwen3Guard-Gen-4B": {
+      "accuracy": 0.8455882352941176,
+      "f1_macro": 0.0,
+      "precision_macro": 0.0,
+      "recall_macro": 0.0,
+      "roc_auc": 0.5,
+      "ap": 0.5,
+      "note": "single-class",
+      "inference_time_s": 9.2,
+      "samples": 272
+    },
+    "Qwen3Guard-Gen-8B": {
+      "accuracy": 0.8382352941176471,
+      "f1_macro": 0.0,
+      "precision_macro": 0.0,
+      "recall_macro": 0.0,
+      "roc_auc": 0.5,
+      "ap": 0.5,
+      "note": "single-class",
+      "inference_time_s": 11.9,
+      "samples": 272
+    },
+    "Llama-Guard-3-8B": {
+      "accuracy": 0.9705882352941176,
+      "f1_macro": 0.0,
+      "precision_macro": 0.0,
+      "recall_macro": 0.0,
+      "roc_auc": 0.5,
+      "ap": 0.5,
+      "note": "single-class",
+      "inference_time_s": 5.8,
+      "samples": 272
+    },
+    "Llama-Guard-3-1B": {
+      "accuracy": 0.9816176470588235,
+      "f1_macro": 0.0,
+      "precision_macro": 0.0,
+      "recall_macro": 0.0,
+      "roc_auc": 0.5,
+      "ap": 0.5,
+      "note": "single-class",
+      "inference_time_s": 1.2,
+      "samples": 272
+    },
+    "WildGuard": {
+      "accuracy": 0.9595588235294118,
+      "f1_macro": 0.0,
+      "precision_macro": 0.0,
+      "recall_macro": 0.0,
+      "roc_auc": 0.5,
+      "ap": 0.5,
+      "note": "single-class",
+      "inference_time_s": 11.7,
+      "samples": 272
+    },
+    "ShieldGemma-9B": {
+      "accuracy": 0.8860294117647058,
+      "f1_macro": 0.0,
+      "precision_macro": 0.0,
+      "recall_macro": 0.0,
+      "roc_auc": 0.5,
+      "ap": 0.5,
+      "note": "single-class",
+      "inference_time_s": 11.1,
+      "samples": 272
+    },
+    "ShieldGemma-2B": {
+      "accuracy": 0.9926470588235294,
+      "f1_macro": 0.0,
+      "precision_macro": 0.0,
+      "recall_macro": 0.0,
+      "roc_auc": 0.5,
+      "ap": 0.5,
+      "note": "single-class",
+      "inference_time_s": 3.3,
+      "samples": 272
+    },
+    "Granite-Guardian-3.1-8B": {
+      "accuracy": 0.8455882352941176,
+      "f1_macro": 0.0,
+      "precision_macro": 0.0,
+      "recall_macro": 0.0,
+      "roc_auc": 0.5,
+      "ap": 0.5,
+      "note": "single-class",
+      "inference_time_s": 5.9,
+      "samples": 272
+    },
+    "Beaver-Dam-7B": {
+      "accuracy": 0.022058823529411766,
+      "f1_macro": 0.0,
+      "precision_macro": 0.0,
+      "recall_macro": 0.0,
+      "roc_auc": 0.5,
+      "ap": 0.5,
+      "note": "single-class",
+      "inference_time_s": 1.7,
+      "samples": 272
+    }
+  },
+  "AegisAI-v1": {
+    "DeepSafe-v3": {
+      "accuracy": 0.8362681495211616,
+      "f1_macro": 0.8238645510276492,
+      "precision_macro": 0.8153983532275393,
+      "recall_macro": 0.8429607299983706,
+      "roc_auc": 0.9173445309179382,
+      "ap": 0.9552902873899385,
+      "inference_time_s": 143.5,
+      "samples": 3237
+    },
+    "Qwen3Guard-Gen-4B": {
+      "accuracy": 0.845,
+      "f1_macro": 0.8337623337623338,
+      "precision_macro": 0.8252890149441874,
+      "recall_macro": 0.8526640412867958,
+      "roc_auc": 0.8765436469403536,
+      "ap": 0.9113953885386634,
+      "inference_time_s": 127.9,
+      "samples": 2000
+    },
+    "Qwen3Guard-Gen-8B": {
+      "accuracy": 0.8415,
+      "f1_macro": 0.8307975652997299,
+      "precision_macro": 0.8225455545609157,
+      "recall_macro": 0.8519020517523512,
+      "roc_auc": 0.8714828226430023,
+      "ap": 0.9071367217288229,
+      "inference_time_s": 181.5,
+      "samples": 2000
+    },
+    "Llama-Guard-3-8B": {
+      "accuracy": 0.666,
+      "f1_macro": 0.6656576334166187,
+      "precision_macro": 0.7267759562841529,
+      "recall_macro": 0.7365629102156048,
+      "roc_auc": 0.7365629102156047,
+      "ap": 0.8166841103398481,
+      "inference_time_s": 119.3,
+      "samples": 2000
+    },
+    "Llama-Guard-3-1B": {
+      "accuracy": 0.5975,
+      "f1_macro": 0.5972775965526962,
+      "precision_macro": 0.687320971695282,
+      "recall_macro": 0.6802858247469026,
+      "roc_auc": 0.6802858247469026,
+      "ap": 0.777316190586722,
+      "inference_time_s": 23.0,
+      "samples": 2000
+    },
+    "WildGuard": {
+      "accuracy": 0.859,
+      "f1_macro": 0.848607836316081,
+      "precision_macro": 0.839648813874676,
+      "recall_macro": 0.8676520832209456,
+      "roc_auc": 0.8676520832209456,
+      "ap": 0.8969632333675958,
+      "inference_time_s": 175.3,
+      "samples": 2000
+    },
+    "ShieldGemma-9B": {
+      "accuracy": 0.702,
+      "f1_macro": 0.7004034499849698,
+      "precision_macro": 0.7412212918115111,
+      "recall_macro": 0.7617242991494488,
+      "roc_auc": 0.7617242991494488,
+      "ap": 0.8324553681445575,
+      "inference_time_s": 179.9,
+      "samples": 2000
+    },
+    "ShieldGemma-2B": {
+      "accuracy": 0.502,
+      "f1_macro": 0.48974102820256665,
+      "precision_macro": 0.6846977728482093,
+      "recall_macro": 0.6220217223211235,
+      "roc_auc": 0.6220217223211235,
+      "ap": 0.7450059976177295,
+      "inference_time_s": 52.6,
+      "samples": 2000
+    },
+    "Granite-Guardian-3.1-8B": {
+      "accuracy": 0.786,
+      "f1_macro": 0.7780725288013117,
+      "precision_macro": 0.7789542672294576,
+      "recall_macro": 0.8128472784161407,
+      "roc_auc": 0.8128472784161407,
+      "ap": 0.860796780528138,
+      "inference_time_s": 134.2,
+      "samples": 2000
+    },
+    "Beaver-Dam-7B": {
+      "error": "CUDA out of memory. Tried to allocate 568.00 MiB. GPU 0 has a total capacity of 31.36 GiB of which 287.06 MiB is free. Including non-PyTorch memory, this process has 31.07 GiB memory in use. Of the al",
+      "samples": 2000
+    }
+  },
+  "AegisAI-v2": {
+    "DeepSafe-v3": {
+      "accuracy": 0.8554745982632997,
+      "f1_macro": 0.8509532858652689,
+      "precision_macro": 0.8512605937214013,
+      "recall_macro": 0.8506565692026526,
+      "roc_auc": 0.928821419171632,
+      "ap": 0.9473692437561908,
+      "inference_time_s": 428.9,
+      "samples": 10019
+    },
+    "Qwen3Guard-Gen-4B": {
+      "accuracy": 0.8385,
+      "f1_macro": 0.826935436469633,
+      "precision_macro": 0.8490838151041225,
+      "recall_macro": 0.8183533121986659,
+      "roc_auc": 0.8924747993857737,
+      "ap": 0.8879265702143891,
+      "inference_time_s": 125.3,
+      "samples": 2000
+    },
+    "Qwen3Guard-Gen-8B": {
+      "accuracy": 0.839,
+      "f1_macro": 0.8283580259680448,
+      "precision_macro": 0.846600975548802,
+      "recall_macro": 0.8205947427514695,
+      "roc_auc": 0.890783922792418,
+      "ap": 0.887325420437111,
+      "inference_time_s": 178.1,
+      "samples": 2000
+    },
+    "Llama-Guard-3-8B": {
+      "accuracy": 0.734,
+      "f1_macro": 0.733805944533565,
+      "precision_macro": 0.768440502586844,
+      "recall_macro": 0.7623670827554323,
+      "roc_auc": 0.7623670827554323,
+      "ap": 0.7865021645021646,
+      "inference_time_s": 115.8,
+      "samples": 2000
+    },
+    "Llama-Guard-3-1B": {
+      "accuracy": 0.6975,
+      "f1_macro": 0.697236520081601,
+      "precision_macro": 0.7106799984994591,
+      "recall_macro": 0.7144384452810251,
+      "roc_auc": 0.7144384452810251,
+      "ap": 0.7334800926032927,
+      "inference_time_s": 22.5,
+      "samples": 2000
+    },
+    "WildGuard": {
+      "accuracy": 0.771,
+      "f1_macro": 0.7529932046165462,
+      "precision_macro": 0.7754661649975101,
+      "recall_macro": 0.7466068951852586,
+      "roc_auc": 0.7466068951852585,
+      "ap": 0.7430846400143635,
+      "inference_time_s": 177.2,
+      "samples": 2000
+    },
+    "ShieldGemma-9B": {
+      "accuracy": 0.75,
+      "f1_macro": 0.7498999599839936,
+      "precision_macro": 0.782173066595059,
+      "recall_macro": 0.7776071593686018,
+      "roc_auc": 0.7776071593686018,
+      "ap": 0.8009926766625017,
+      "inference_time_s": 173.1,
+      "samples": 2000
+    },
+    "ShieldGemma-2B": {
+      "accuracy": 0.592,
+      "f1_macro": 0.5718382933978094,
+      "precision_macro": 0.7320114667940756,
+      "recall_macro": 0.6503368337626312,
+      "roc_auc": 0.6503368337626312,
+      "ap": 0.7071130298273155,
+      "inference_time_s": 50.5,
+      "samples": 2000
+    },
+    "Granite-Guardian-3.1-8B": {
+      "accuracy": 0.8275,
+      "f1_macro": 0.8227022793549138,
+      "precision_macro": 0.8215634794914145,
+      "recall_macro": 0.8240745327257117,
+      "roc_auc": 0.8240745327257117,
+      "ap": 0.8177494498232944,
+      "inference_time_s": 130.3,
+      "samples": 2000
+    },
+    "Beaver-Dam-7B": {
+      "error": "CUDA out of memory. Tried to allocate 688.00 MiB. GPU 0 has a total capacity of 31.36 GiB of which 271.06 MiB is free. Including non-PyTorch memory, this process has 31.08 GiB memory in use. Of the al",
+      "samples": 2000
+    }
+  },
+  "BeaverTails": {
+    "DeepSafe-v3": {
+      "accuracy": 0.6706666666666666,
+      "f1_macro": 0.6343036049965676,
+      "precision_macro": 0.704690932812785,
+      "recall_macro": 0.6468705164992826,
+      "roc_auc": 0.7466696556671448,
+      "ap": 0.7424002736667047,
+      "inference_time_s": 24.9,
+      "samples": 3000
+    },
+    "Qwen3Guard-Gen-4B": {
+      "accuracy": 0.677,
+      "f1_macro": 0.6298210649005044,
+      "precision_macro": 0.7305247496896454,
+      "recall_macro": 0.6466442528880912,
+      "roc_auc": 0.6984645719052555,
+      "ap": 0.6768626542282493,
+      "inference_time_s": 72.0,
+      "samples": 2000
+    },
+    "Qwen3Guard-Gen-8B": {
+      "accuracy": 0.6815,
+      "f1_macro": 0.6380425774436884,
+      "precision_macro": 0.7302309799222322,
+      "recall_macro": 0.6523092090295508,
+      "roc_auc": 0.6968806087110393,
+      "ap": 0.6755276201339493,
+      "inference_time_s": 96.5,
+      "samples": 2000
+    },
+    "Llama-Guard-3-8B": {
+      "accuracy": 0.6435,
+      "f1_macro": 0.6426594456811033,
+      "precision_macro": 0.6439292114695341,
+      "recall_macro": 0.6455244065825729,
+      "roc_auc": 0.6455244065825729,
+      "ap": 0.6433559334403737,
+      "inference_time_s": 49.5,
+      "samples": 2000
+    },
+    "Llama-Guard-3-1B": {
+      "accuracy": 0.6275,
+      "f1_macro": 0.627398559257758,
+      "precision_macro": 0.6319641019042718,
+      "recall_macro": 0.6327434970550317,
+      "roc_auc": 0.6327434970550317,
+      "ap": 0.634946871586831,
+      "inference_time_s": 12.0,
+      "samples": 2000
+    },
+    "WildGuard": {
+      "accuracy": 0.672,
+      "f1_macro": 0.6265083426421574,
+      "precision_macro": 0.717270429134836,
+      "recall_macro": 0.642437877600546,
+      "roc_auc": 0.642437877600546,
+      "ap": 0.6342068552178223,
+      "inference_time_s": 84.9,
+      "samples": 2000
+    },
+    "ShieldGemma-9B": {
+      "accuracy": 0.5935,
+      "f1_macro": 0.5886575741270168,
+      "precision_macro": 0.588733067599974,
+      "recall_macro": 0.5885967794939204,
+      "roc_auc": 0.5885967794939204,
+      "ap": 0.6025579771476937,
+      "inference_time_s": 86.0,
+      "samples": 2000
+    },
+    "ShieldGemma-2B": {
+      "accuracy": 0.552,
+      "f1_macro": 0.5296469412352647,
+      "precision_macro": 0.6136721903412746,
+      "recall_macro": 0.5812988194848201,
+      "roc_auc": 0.5812988194848202,
+      "ap": 0.6054469631995583,
+      "inference_time_s": 25.1,
+      "samples": 2000
+    },
+    "Granite-Guardian-3.1-8B": {
+      "accuracy": 0.678,
+      "f1_macro": 0.638648860958366,
+      "precision_macro": 0.7151269915820658,
+      "recall_macro": 0.6505220051062969,
+      "roc_auc": 0.650522005106297,
+      "ap": 0.6398279306281008,
+      "inference_time_s": 44.6,
+      "samples": 2000
+    },
+    "Beaver-Dam-7B": {
+      "accuracy": 0.633,
+      "f1_macro": 0.5948113775198702,
+      "precision_macro": 0.6434401061384578,
+      "recall_macro": 0.6074622715437701,
+      "roc_auc": 0.6639505548674132,
+      "ap": 0.6795576473618417,
+      "inference_time_s": 9.9,
+      "samples": 2000
+    }
+  },
+  "DoNotAnswer": {
+    "DeepSafe-v3": {
+      "accuracy": 0.3736654804270463,
+      "f1_macro": 0.2889348976305498,
+      "precision_macro": 0.5111111111111111,
+      "recall_macro": 0.6823104693140795,
+      "roc_auc": 0.5216606498194946,
+      "ap": 0.01754959415681587,
+      "inference_time_s": 9.9,
+      "samples": 281
+    },
+    "Qwen3Guard-Gen-4B": {
+      "accuracy": 0.3701067615658363,
+      "f1_macro": 0.2868736110115421,
+      "precision_macro": 0.511049723756906,
+      "recall_macro": 0.6805054151624549,
+      "roc_auc": 0.6254512635379061,
+      "ap": 0.019314186566823432,
+      "inference_time_s": 10.1,
+      "samples": 281
+    },
+    "Qwen3Guard-Gen-8B": {
+      "accuracy": 0.35231316725978645,
+      "f1_macro": 0.2764289756649689,
+      "precision_macro": 0.510752688172043,
+      "recall_macro": 0.6714801444043321,
+      "roc_auc": 0.6976534296028881,
+      "ap": 0.02337634408602151,
+      "inference_time_s": 13.2,
+      "samples": 281
+    },
+    "Llama-Guard-3-8B": {
+      "accuracy": 0.5373665480427047,
+      "f1_macro": 0.35641296687808316,
+      "precision_macro": 0.49410232843137253,
+      "recall_macro": 0.39575812274368233,
+      "roc_auc": 0.3957581227436822,
+      "ap": 0.012629281583629894,
+      "inference_time_s": 6.5,
+      "samples": 281
+    },
+    "Llama-Guard-3-1B": {
+      "accuracy": 0.604982206405694,
+      "f1_macro": 0.38524153970475195,
+      "precision_macro": 0.49586622573074457,
+      "recall_macro": 0.43005415162454874,
+      "roc_auc": 0.43005415162454874,
+      "ap": 0.01296973456528127,
+      "inference_time_s": 1.7,
+      "samples": 281
+    },
+    "WildGuard": {
+      "accuracy": 0.35587188612099646,
+      "f1_macro": 0.27853667531951715,
+      "precision_macro": 0.5108108108108108,
+      "recall_macro": 0.6732851985559567,
+      "roc_auc": 0.6732851985559567,
+      "ap": 0.021621621621621623,
+      "inference_time_s": 11.6,
+      "samples": 281
+    },
+    "ShieldGemma-9B": {
+      "accuracy": 0.597864768683274,
+      "f1_macro": 0.39767058064760896,
+      "precision_macro": 0.5100314300680985,
+      "recall_macro": 0.6728339350180506,
+      "roc_auc": 0.6728339350180506,
+      "ap": 0.02312393625251431,
+      "inference_time_s": 11.3,
+      "samples": 281
+    },
+    "ShieldGemma-2B": {
+      "accuracy": 0.8612099644128114,
+      "f1_macro": 0.4869622208698095,
+      "precision_macro": 0.507365972529907,
+      "recall_macro": 0.5600180505415162,
+      "roc_auc": 0.5600180505415163,
+      "ap": 0.01743291334038665,
+      "inference_time_s": 3.4,
+      "samples": 281
+    },
+    "Granite-Guardian-3.1-8B": {
+      "accuracy": 0.2704626334519573,
+      "f1_macro": 0.22508306765137145,
+      "precision_macro": 0.5095693779904307,
+      "recall_macro": 0.6299638989169675,
+      "roc_auc": 0.6299638989169676,
+      "ap": 0.019138755980861243,
+      "inference_time_s": 5.9,
+      "samples": 281
+    },
+    "Beaver-Dam-7B": {
+      "accuracy": 0.3914590747330961,
+      "f1_macro": 0.2948712304644508,
+      "precision_macro": 0.5040408906015842,
+      "recall_macro": 0.5681407942238267,
+      "roc_auc": 0.37003610108303253,
+      "ap": 0.013561980990506175,
+      "inference_time_s": 1.0,
+      "samples": 281
+    }
+  },
+  "ToxicChat": {
+    "DeepSafe-v3": {
+      "accuracy": 0.918661856346343,
+      "f1_macro": 0.7829320105182174,
+      "precision_macro": 0.7281341597321161,
+      "recall_macro": 0.905629507720606,
+      "roc_auc": 0.9675137551026993,
+      "ap": 0.7230008981840738,
+      "inference_time_s": 97.0,
+      "samples": 3049
+    },
+    "Qwen3Guard-Gen-4B": {
+      "accuracy": 0.9215,
+      "f1_macro": 0.7958704726638708,
+      "precision_macro": 0.7350373059084493,
+      "recall_macro": 0.9446644463011076,
+      "roc_auc": 0.974185389079006,
+      "ap": 0.8053656872296325,
+      "inference_time_s": 90.7,
+      "samples": 2000
+    },
+    "Qwen3Guard-Gen-8B": {
+      "accuracy": 0.9255,
+      "f1_macro": 0.8030495594720936,
+      "precision_macro": 0.7417436570645398,
+      "recall_macro": 0.9468161407604943,
+      "roc_auc": 0.9765335591849503,
+      "ap": 0.840356513940875,
+      "inference_time_s": 127.9,
+      "samples": 2000
+    },
+    "Llama-Guard-3-8B": {
+      "accuracy": 0.9265,
+      "f1_macro": 0.7359437182896698,
+      "precision_macro": 0.7232336956521739,
+      "recall_macro": 0.7507258153739332,
+      "roc_auc": 0.7507258153739332,
+      "ap": 0.29481028368794326,
+      "inference_time_s": 75.8,
+      "samples": 2000
+    },
+    "Llama-Guard-3-1B": {
+      "accuracy": 0.848,
+      "f1_macro": 0.6427194689683055,
+      "precision_macro": 0.6158060775823391,
+      "recall_macro": 0.7511015988921063,
+      "roc_auc": 0.7511015988921063,
+      "ap": 0.19298340673655479,
+      "inference_time_s": 16.2,
+      "samples": 2000
+    },
+    "WildGuard": {
+      "accuracy": 0.941,
+      "f1_macro": 0.8207988725515507,
+      "precision_macro": 0.7706780208516147,
+      "recall_macro": 0.9059968945402661,
+      "roc_auc": 0.9059968945402661,
+      "ap": 0.4871483424793813,
+      "inference_time_s": 125.6,
+      "samples": 2000
+    },
+    "ShieldGemma-9B": {
+      "accuracy": 0.9635,
+      "f1_macro": 0.8482251174955897,
+      "precision_macro": 0.88354747785343,
+      "recall_macro": 0.8197860513736128,
+      "roc_auc": 0.8197860513736128,
+      "ap": 0.5419859378821228,
+      "inference_time_s": 125.4,
+      "samples": 2000
+    },
+    "ShieldGemma-2B": {
+      "accuracy": 0.9315,
+      "f1_macro": 0.5513484925145608,
+      "precision_macro": 0.7727603991478866,
+      "recall_macro": 0.5371243595466182,
+      "roc_auc": 0.5371243595466181,
+      "ap": 0.11267533490937745,
+      "inference_time_s": 36.7,
+      "samples": 2000
+    },
+    "Granite-Guardian-3.1-8B": {
+      "accuracy": 0.945,
+      "f1_macro": 0.82032661354868,
+      "precision_macro": 0.7821310906635393,
+      "recall_macro": 0.8753772141660849,
+      "roc_auc": 0.8753772141660848,
+      "ap": 0.4754561606585088,
+      "inference_time_s": 81.9,
+      "samples": 2000
+    },
+    "Beaver-Dam-7B": {
+      "accuracy": 0.5775,
+      "f1_macro": 0.46126168687572905,
+      "precision_macro": 0.5476685760225103,
+      "recall_macro": 0.6809674231932825,
+      "roc_auc": 0.7316524174134649,
+      "ap": 0.13724155106095226,
+      "inference_time_s": 39.4,
+      "samples": 2000
+    }
+  },
+  "WildGuardMix": {
+    "DeepSafe-v3": {
+      "accuracy": 0.9693407100046104,
+      "f1_macro": 0.9692570218714979,
+      "precision_macro": 0.96890673313697,
+      "recall_macro": 0.969752050976625,
+      "roc_auc": 0.9950583510824427,
+      "ap": 0.995765234101427,
+      "inference_time_s": 913.5,
+      "samples": 26028
+    },
+    "Qwen3Guard-Gen-4B": {
+      "accuracy": 0.9695,
+      "f1_macro": 0.9692592306089369,
+      "precision_macro": 0.9696560552216117,
+      "recall_macro": 0.968902576580351,
+      "roc_auc": 0.9848229104561788,
+      "ap": 0.9843649647368522,
+      "inference_time_s": 106.8,
+      "samples": 2000
+    },
+    "Qwen3Guard-Gen-8B": {
+      "accuracy": 0.9695,
+      "f1_macro": 0.9692537145671112,
+      "precision_macro": 0.9697494891394838,
+      "recall_macro": 0.9688179796645129,
+      "roc_auc": 0.9863401158574905,
+      "ap": 0.9866049539966003,
+      "inference_time_s": 153.0,
+      "samples": 2000
+    },
+    "Llama-Guard-3-8B": {
+      "accuracy": 0.8425,
+      "f1_macro": 0.8423435654027709,
+      "precision_macro": 0.85637490532926,
+      "recall_macro": 0.8511517265827679,
+      "roc_auc": 0.851151726582768,
+      "ap": 0.8478173388474799,
+      "inference_time_s": 99.8,
+      "samples": 2000
+    },
+    "Llama-Guard-3-1B": {
+      "accuracy": 0.8065,
+      "f1_macro": 0.8064697609001407,
+      "precision_macro": 0.8148183568983088,
+      "recall_macro": 0.8132885641083485,
+      "roc_auc": 0.8132885641083485,
+      "ap": 0.7977306687208287,
+      "inference_time_s": 19.6,
+      "samples": 2000
+    },
+    "WildGuard": {
+      "accuracy": 0.9995,
+      "f1_macro": 0.9994964042000897,
+      "precision_macro": 0.9995391705069124,
+      "recall_macro": 0.9994541484716157,
+      "roc_auc": 0.9994541484716157,
+      "ap": 0.9990783410138249,
+      "inference_time_s": 151.7,
+      "samples": 2000
+    },
+    "ShieldGemma-9B": {
+      "accuracy": 0.7115,
+      "f1_macro": 0.703773752968359,
+      "precision_macro": 0.7739782178004222,
+      "recall_macro": 0.730218421179845,
+      "roc_auc": 0.7302184211798449,
+      "ap": 0.7375886013328936,
+      "inference_time_s": 151.8,
+      "samples": 2000
+    },
+    "ShieldGemma-2B": {
+      "accuracy": 0.5225,
+      "f1_macro": 0.4455692711848417,
+      "precision_macro": 0.6832657093800658,
+      "recall_macro": 0.557725309785849,
+      "roc_auc": 0.557725309785849,
+      "ap": 0.5883827927752963,
+      "inference_time_s": 44.7,
+      "samples": 2000
+    },
+    "Granite-Guardian-3.1-8B": {
+      "accuracy": 0.843,
+      "f1_macro": 0.8367940954806519,
+      "precision_macro": 0.8642554205595103,
+      "recall_macro": 0.8324940782158914,
+      "roc_auc": 0.8324940782158914,
+      "ap": 0.7840658725270254,
+      "inference_time_s": 111.5,
+      "samples": 2000
+    },
+    "Beaver-Dam-7B": {
+      "accuracy": 0.706,
+      "f1_macro": 0.6975654014819295,
+      "precision_macro": 0.7085333333333333,
+      "recall_macro": 0.6968892505518942,
+      "roc_auc": 0.7641714940621022,
+      "ap": 0.7795267543331267,
+      "inference_time_s": 61.0,
+      "samples": 2000
+    }
+  },
+  "XGuard": {
+    "DeepSafe-v3": {
+      "accuracy": 0.291,
+      "f1_macro": 0.28046529234522644,
+      "precision_macro": 0.2838669015581812,
+      "recall_macro": 0.27844237347815953,
+      "roc_auc": 0.2094341860234044,
+      "ap": 0.28142783775178076,
+      "inference_time_s": 120.8,
+      "samples": 3000
+    },
+    "Qwen3Guard-Gen-4B": {
+      "accuracy": 0.203,
+      "f1_macro": 0.19558652541825464,
+      "precision_macro": 0.1944441530253383,
+      "recall_macro": 0.2285832621469804,
+      "roc_auc": 0.19938598534855428,
+      "ap": 0.32873679512029086,
+      "inference_time_s": 110.7,
+      "samples": 2000
+    },
+    "Qwen3Guard-Gen-8B": {
+      "accuracy": 0.2005,
+      "f1_macro": 0.1926670539239335,
+      "precision_macro": 0.1907008275610133,
+      "recall_macro": 0.2264735575056302,
+      "roc_auc": 0.19042219978773525,
+      "ap": 0.3269617584819885,
+      "inference_time_s": 156.2,
+      "samples": 2000
+    },
+    "Llama-Guard-3-8B": {
+      "accuracy": 0.2915,
+      "f1_macro": 0.2792250219297186,
+      "precision_macro": 0.2832178663963051,
+      "recall_macro": 0.27683207786492714,
+      "roc_auc": 0.27683207786492714,
+      "ap": 0.3614208960773378,
+      "inference_time_s": 89.5,
+      "samples": 2000
+    },
+    "Llama-Guard-3-1B": {
+      "accuracy": 0.3515,
+      "f1_macro": 0.327344782993492,
+      "precision_macro": 0.32704569165097613,
+      "recall_macro": 0.3276565452615775,
+      "roc_auc": 0.3276565452615775,
+      "ap": 0.3664518945333313,
+      "inference_time_s": 18.2,
+      "samples": 2000
+    },
+    "WildGuard": {
+      "accuracy": 0.3665,
+      "f1_macro": 0.3431610336374648,
+      "precision_macro": 0.34295052827430395,
+      "recall_macro": 0.3433796691776035,
+      "roc_auc": 0.3433796691776035,
+      "ap": 0.3666139524995444,
+      "inference_time_s": 162.3,
+      "samples": 2000
+    },
+    "ShieldGemma-9B": {
+      "accuracy": 0.387,
+      "f1_macro": 0.34292259027847005,
+      "precision_macro": 0.3382626016324171,
+      "recall_macro": 0.35110144702441043,
+      "roc_auc": 0.35110144702441043,
+      "ap": 0.3736395314612632,
+      "inference_time_s": 130.3,
+      "samples": 2000
+    },
+    "ShieldGemma-2B": {
+      "accuracy": 0.4835,
+      "f1_macro": 0.35416813197977476,
+      "precision_macro": 0.3342911877394636,
+      "recall_macro": 0.41491289378996143,
+      "roc_auc": 0.41491289378996143,
+      "ap": 0.39498339327268883,
+      "inference_time_s": 38.0,
+      "samples": 2000
+    },
+    "Granite-Guardian-3.1-8B": {
+      "accuracy": 0.2945,
+      "f1_macro": 0.2944490239419798,
+      "precision_macro": 0.30452285300316123,
+      "recall_macro": 0.3033082239652093,
+      "roc_auc": 0.3033082239652093,
+      "ap": 0.3504273888562064,
+      "inference_time_s": 117.5,
+      "samples": 2000
+    },
+    "Beaver-Dam-7B": {
+      "error": "CUDA out of memory. Tried to allocate 566.00 MiB. GPU 0 has a total capacity of 31.36 GiB of which 469.06 MiB is free. Including non-PyTorch memory, this process has 30.89 GiB memory in use. Of the al",
+      "samples": 2000
+    }
+  },
+  "XSTest": {
+    "DeepSafe-v3": {
+      "accuracy": 0.8962962962962963,
+      "f1_macro": 0.8956031816173221,
+      "precision_macro": 0.8956031816173221,
+      "recall_macro": 0.8956031816173221,
+      "roc_auc": 0.9661953159522757,
+      "ap": 0.961220408015127,
+      "inference_time_s": 9.8,
+      "samples": 135
+    },
+    "Qwen3Guard-Gen-4B": {
+      "accuracy": 0.8962962962962963,
+      "f1_macro": 0.8962450592885376,
+      "precision_macro": 0.8983516483516484,
+      "recall_macro": 0.9004639858594785,
+      "roc_auc": 0.9624392399469731,
+      "ap": 0.9535586277521761,
+      "inference_time_s": 4.8,
+      "samples": 135
+    },
+    "Qwen3Guard-Gen-8B": {
+      "accuracy": 0.9333333333333333,
+      "f1_macro": 0.9332013854527461,
+      "precision_macro": 0.9330553116769096,
+      "recall_macro": 0.9359257622624835,
+      "roc_auc": 0.9753645603181618,
+      "ap": 0.9673906453396102,
+      "inference_time_s": 6.2,
+      "samples": 135
+    },
+    "Llama-Guard-3-8B": {
+      "accuracy": 0.8962962962962963,
+      "f1_macro": 0.8942006269592476,
+      "precision_macro": 0.904320987654321,
+      "recall_macro": 0.8907423773751657,
+      "roc_auc": 0.8907423773751658,
+      "ap": 0.858363201911589,
+      "inference_time_s": 3.1,
+      "samples": 135
+    },
+    "Llama-Guard-3-1B": {
+      "accuracy": 0.8740740740740741,
+      "f1_macro": 0.8712482468443198,
+      "precision_macro": 0.8829958582604693,
+      "recall_macro": 0.867764030048608,
+      "roc_auc": 0.867764030048608,
+      "ap": 0.8269718897229549,
+      "inference_time_s": 0.8,
+      "samples": 135
+    },
+    "WildGuard": {
+      "accuracy": 0.9555555555555556,
+      "f1_macro": 0.955,
+      "precision_macro": 0.9589117778772951,
+      "recall_macro": 0.9528281042863456,
+      "roc_auc": 0.9528281042863456,
+      "ap": 0.94054093025172,
+      "inference_time_s": 5.7,
+      "samples": 135
+    },
+    "ShieldGemma-9B": {
+      "accuracy": 0.8592592592592593,
+      "f1_macro": 0.8589807026224641,
+      "precision_macro": 0.8589771729587358,
+      "recall_macro": 0.8613566062748563,
+      "roc_auc": 0.8613566062748564,
+      "ap": 0.7800656217122274,
+      "inference_time_s": 5.3,
+      "samples": 135
+    },
+    "ShieldGemma-2B": {
+      "accuracy": 0.7925925925925926,
+      "f1_macro": 0.7794117647058824,
+      "precision_macro": 0.8309210526315789,
+      "recall_macro": 0.7778391515687141,
+      "roc_auc": 0.7778391515687141,
+      "ap": 0.7372013142174434,
+      "inference_time_s": 1.6,
+      "samples": 135
+    },
+    "Granite-Guardian-3.1-8B": {
+      "accuracy": 0.8814814814814815,
+      "f1_macro": 0.8813186813186813,
+      "precision_macro": 0.8974358974358974,
+      "recall_macro": 0.8904109589041096,
+      "roc_auc": 0.8904109589041096,
+      "ap": 0.7948717948717948,
+      "inference_time_s": 2.8,
+      "samples": 135
+    },
+    "Beaver-Dam-7B": {
+      "accuracy": 0.6888888888888889,
+      "f1_macro": 0.685,
+      "precision_macro": 0.7217117988394584,
+      "recall_macro": 0.7026071586389748,
+      "roc_auc": 0.7662395050817499,
+      "ap": 0.7216619624933374,
+      "inference_time_s": 0.3,
+      "samples": 135
+    }
+  }
+}
