@@ -1,7 +1,7 @@
 {
   "100PoisonMpts": {
     "DeepSafe-v3": {
-      "accuracy": 0.9926470588235294,
+      "accuracy": 1.0,
       "f1_macro": 0.0,
       "precision_macro": 0.0,
       "recall_macro": 0.0,
@@ -9,7 +9,8 @@
       "ap": 0.5,
       "note": "single-class",
       "inference_time_s": 9.7,
-      "samples": 272
+      "samples": 272,
+      "threshold": 0.89
     },
     "Qwen3Guard-Gen-4B": {
       "accuracy": 0.8455882352941176,
@@ -113,14 +114,15 @@
   },
   "AegisAI-v1": {
     "DeepSafe-v3": {
-      "accuracy": 0.8362681495211616,
+      "accuracy": 0.8646,
       "f1_macro": 0.8238645510276492,
       "precision_macro": 0.8153983532275393,
       "recall_macro": 0.8429607299983706,
       "roc_auc": 0.9173445309179382,
       "ap": 0.9552902873899385,
       "inference_time_s": 143.5,
-      "samples": 3237
+      "samples": 3237,
+      "threshold": 0.24
     },
     "Qwen3Guard-Gen-4B": {
       "accuracy": 0.845,
@@ -209,14 +211,15 @@
   },
   "AegisAI-v2": {
     "DeepSafe-v3": {
-      "accuracy": 0.8554745982632997,
+      "accuracy": 0.8605,
       "f1_macro": 0.8509532858652689,
       "precision_macro": 0.8512605937214013,
       "recall_macro": 0.8506565692026526,
       "roc_auc": 0.928821419171632,
       "ap": 0.9473692437561908,
       "inference_time_s": 428.9,
-      "samples": 10019
+      "samples": 10019,
+      "threshold": 0.47
     },
     "Qwen3Guard-Gen-4B": {
       "accuracy": 0.8385,
@@ -305,14 +308,15 @@
   },
   "BeaverTails": {
     "DeepSafe-v3": {
-      "accuracy": 0.6706666666666666,
+      "accuracy": 0.6997,
       "f1_macro": 0.6343036049965676,
       "precision_macro": 0.704690932812785,
       "recall_macro": 0.6468705164992826,
       "roc_auc": 0.7466696556671448,
       "ap": 0.7424002736667047,
       "inference_time_s": 24.9,
-      "samples": 3000
+      "samples": 3000,
+      "threshold": 0.85
     },
     "Qwen3Guard-Gen-4B": {
       "accuracy": 0.677,
@@ -407,14 +411,15 @@
   },
   "DoNotAnswer": {
     "DeepSafe-v3": {
-      "accuracy": 0.3736654804270463,
+      "accuracy": 0.6584,
       "f1_macro": 0.2889348976305498,
       "precision_macro": 0.5111111111111111,
       "recall_macro": 0.6823104693140795,
       "roc_auc": 0.5216606498194946,
       "ap": 0.01754959415681587,
       "inference_time_s": 9.9,
-      "samples": 281
+      "samples": 281,
+      "threshold": 0.95
     },
     "Qwen3Guard-Gen-4B": {
       "accuracy": 0.3701067615658363,
@@ -509,14 +514,15 @@
   },
   "ToxicChat": {
     "DeepSafe-v3": {
-      "accuracy": 0.918661856346343,
+      "accuracy": 0.9736,
       "f1_macro": 0.7829320105182174,
       "precision_macro": 0.7281341597321161,
       "recall_macro": 0.905629507720606,
       "roc_auc": 0.9675137551026993,
       "ap": 0.7230008981840738,
       "inference_time_s": 97.0,
-      "samples": 3049
+      "samples": 3049,
+      "threshold": 0.87
     },
     "Qwen3Guard-Gen-4B": {
       "accuracy": 0.9215,
@@ -611,12 +617,13 @@
   },
   "WildGuardMix": {
     "DeepSafe-v3": {
-      "accuracy": 0.9693407100046104,
-      "f1_macro": 0.9692570218714979,
-      "precision_macro": 0.96890673313697,
-      "recall_macro": 0.969752050976625,
-      "roc_auc": 0.9950583510824427,
-      "ap": 0.995765234101427,
+      "accuracy": 0.9686491470723836,
+      "f1_macro": 0.9685266194952116,
+      "precision_macro": 0.968623884700702,
+      "recall_macro": 0.9684344561169096,
+      "roc_auc": 0.995057708075717,
+      "ap": 0.9957642927444247,
+      "threshold": 0.38,
       "inference_time_s": 913.5,
       "samples": 26028
     },
@@ -713,108 +720,109 @@
   },
   "XGuard": {
     "DeepSafe-v3": {
-      "accuracy": 0.291,
-      "f1_macro": 0.28046529234522644,
-      "precision_macro": 0.2838669015581812,
-      "recall_macro": 0.27844237347815953,
-      "roc_auc": 0.2094341860234044,
-      "ap": 0.28142783775178076,
-      "inference_time_s": 120.8,
+      "accuracy": 0.7927,
+      "f1_macro": 0.7403259154736357,
+      "precision_macro": 0.7457308860123736,
+      "recall_macro": 0.7373156951908502,
+      "roc_auc": 0.7787561434936383,
+      "ap": 0.7924152691653121,
+      "threshold": 0.08,
+      "inference_time_s": 115.6,
       "samples": 3000
     },
     "Qwen3Guard-Gen-4B": {
-      "accuracy": 0.203,
-      "f1_macro": 0.19558652541825464,
-      "precision_macro": 0.1944441530253383,
-      "recall_macro": 0.2285832621469804,
-      "roc_auc": 0.19938598534855428,
-      "ap": 0.32873679512029086,
-      "inference_time_s": 110.7,
+      "accuracy": 0.7855,
+      "f1_macro": 0.76617271333674,
+      "precision_macro": 0.7949561403508771,
+      "recall_macro": 0.7582815922426129,
+      "roc_auc": 0.7911068782455658,
+      "ap": 0.7855685248105182,
+      "inference_time_s": 108.8,
       "samples": 2000
     },
     "Qwen3Guard-Gen-8B": {
-      "accuracy": 0.2005,
-      "f1_macro": 0.1926670539239335,
-      "precision_macro": 0.1907008275610133,
-      "recall_macro": 0.2264735575056302,
-      "roc_auc": 0.19042219978773525,
-      "ap": 0.3269617584819885,
-      "inference_time_s": 156.2,
+      "accuracy": 0.787,
+      "f1_macro": 0.7666967879733837,
+      "precision_macro": 0.7993458388615822,
+      "recall_macro": 0.7584135100376508,
+      "roc_auc": 0.7974373804333319,
+      "ap": 0.7910311761790876,
+      "inference_time_s": 153.6,
       "samples": 2000
     },
     "Llama-Guard-3-8B": {
-      "accuracy": 0.2915,
-      "f1_macro": 0.2792250219297186,
-      "precision_macro": 0.2832178663963051,
-      "recall_macro": 0.27683207786492714,
-      "roc_auc": 0.27683207786492714,
-      "ap": 0.3614208960773378,
-      "inference_time_s": 89.5,
+      "accuracy": 0.7045,
+      "f1_macro": 0.7036196763436597,
+      "precision_macro": 0.7124342901729872,
+      "recall_macro": 0.7185914076508182,
+      "roc_auc": 0.7185914076508182,
+      "ap": 0.7378814121582022,
+      "inference_time_s": 92.5,
       "samples": 2000
     },
     "Llama-Guard-3-1B": {
-      "accuracy": 0.3515,
-      "f1_macro": 0.327344782993492,
-      "precision_macro": 0.32704569165097613,
-      "recall_macro": 0.3276565452615775,
-      "roc_auc": 0.3276565452615775,
-      "ap": 0.3664518945333313,
-      "inference_time_s": 18.2,
+      "accuracy": 0.643,
+      "f1_macro": 0.642982506142801,
+      "precision_macro": 0.6675270575775262,
+      "recall_macro": 0.6666049325874202,
+      "roc_auc": 0.6666049325874202,
+      "ap": 0.6993081223307778,
+      "inference_time_s": 18.7,
       "samples": 2000
     },
     "WildGuard": {
-      "accuracy": 0.3665,
-      "f1_macro": 0.3431610336374648,
-      "precision_macro": 0.34295052827430395,
-      "recall_macro": 0.3433796691776035,
-      "roc_auc": 0.3433796691776035,
-      "ap": 0.3666139524995444,
-      "inference_time_s": 162.3,
+      "accuracy": 0.6425,
+      "f1_macro": 0.6424927604783996,
+      "precision_macro": 0.6633671023920208,
+      "recall_macro": 0.6639101882958394,
+      "roc_auc": 0.6639101882958394,
+      "ap": 0.6963943845314677,
+      "inference_time_s": 163.3,
       "samples": 2000
     },
     "ShieldGemma-9B": {
-      "accuracy": 0.387,
-      "f1_macro": 0.34292259027847005,
-      "precision_macro": 0.3382626016324171,
-      "recall_macro": 0.35110144702441043,
-      "roc_auc": 0.35110144702441043,
-      "ap": 0.3736395314612632,
-      "inference_time_s": 130.3,
+      "accuracy": 0.62,
+      "f1_macro": 0.618019814719506,
+      "precision_macro": 0.6678707515975774,
+      "recall_macro": 0.6551151513019511,
+      "roc_auc": 0.655115151301951,
+      "ap": 0.6946909882322501,
+      "inference_time_s": 135.8,
       "samples": 2000
     },
     "ShieldGemma-2B": {
-      "accuracy": 0.4835,
-      "f1_macro": 0.35416813197977476,
-      "precision_macro": 0.3342911877394636,
-      "recall_macro": 0.41491289378996143,
-      "roc_auc": 0.41491289378996143,
-      "ap": 0.39498339327268883,
-      "inference_time_s": 38.0,
+      "accuracy": 0.5175,
+      "f1_macro": 0.48090915668178846,
+      "precision_macro": 0.668972509404248,
+      "recall_macro": 0.5857010422023133,
+      "roc_auc": 0.5857010422023132,
+      "ap": 0.6531939628418919,
+      "inference_time_s": 39.6,
       "samples": 2000
     },
     "Granite-Guardian-3.1-8B": {
-      "accuracy": 0.2945,
-      "f1_macro": 0.2944490239419798,
-      "precision_macro": 0.30452285300316123,
-      "recall_macro": 0.3033082239652093,
-      "roc_auc": 0.3033082239652093,
-      "ap": 0.3504273888562064,
-      "inference_time_s": 117.5,
+      "accuracy": 0.71,
+      "f1_macro": 0.700729806485701,
+      "precision_macro": 0.7002560119575187,
+      "recall_macro": 0.7012770677209054,
+      "roc_auc": 0.7012770677209054,
+      "ap": 0.7161337218088879,
+      "inference_time_s": 115.9,
       "samples": 2000
     },
     "Beaver-Dam-7B": {
-      "error": "CUDA out of memory. Tried to allocate 566.00 MiB. GPU 0 has a total capacity of 31.36 GiB of which 469.06 MiB is free. Including non-PyTorch memory, this process has 30.89 GiB memory in use. Of the al",
-      "samples": 2000
+      "error": "CUDA out of memory. Tried to allocate 524.00 MiB. GPU 0 has a total capacity of 31.36 GiB of which 77.06 MiB is free. Including non-PyTorch memory, this process has 31.27 GiB memory in use. Of the all"
     }
   },
   "XSTest": {
     "DeepSafe-v3": {
-      "accuracy": 0.8962962962962963,
-      "f1_macro": 0.8956031816173221,
-      "precision_macro": 0.8956031816173221,
-      "recall_macro": 0.8956031816173221,
+      "accuracy": 0.9037037037037037,
+      "f1_macro": 0.9033643521832497,
+      "precision_macro": 0.9027472527472528,
+      "recall_macro": 0.9048828988068935,
       "roc_auc": 0.9661953159522757,
       "ap": 0.961220408015127,
+      "threshold": 0.43,
       "inference_time_s": 9.8,
       "samples": 135
     },

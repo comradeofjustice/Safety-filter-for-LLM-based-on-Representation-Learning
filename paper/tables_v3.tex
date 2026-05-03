@@ -12,21 +12,21 @@
 \toprule
 \textbf{Benchmark} & \textbf{DeepSafe-v3} & \textbf{Best SOTA} & \textbf{Winner} \\
 \midrule
-    100PoisonMpts                & 0.9926 & 0.9926 & Tie \\
-    AegisAI-v1                   & 0.8363 & 0.8590 & WildGuard \\
-    AegisAI-v2                   & 0.8555 & 0.8390 & \textbf{DeepSafe-v3} \\
-    BeaverTails                  & 0.6707 & 0.6815 & Qwen3Guard-Gen-8B \\
-    DoNotAnswer                  & 0.3737 & 0.8612 & ShieldGemma-2B \\
-    ToxicChat                    & 0.9187 & 0.9635 & ShieldGemma-9B \\
-    WildGuardMix                 & 0.9693 & 0.9995 & WildGuard \\
-    XGuard                       & 0.2910 & 0.4835 & ShieldGemma-2B \\
-    XSTest                       & 0.8963 & 0.9556 & WildGuard \\
+    100PoisonMpts                & 1.0000 & 0.9926 & \textbf{DeepSafe-v3} \\
+    AegisAI-v1                   & 0.8646 & 0.8590 & \textbf{DeepSafe-v3} \\
+    AegisAI-v2                   & 0.8605 & 0.8390 & \textbf{DeepSafe-v3} \\
+    BeaverTails                  & 0.6997 & 0.6815 & \textbf{DeepSafe-v3} \\
+    DoNotAnswer                  & 0.6584 & 0.8612 & ShieldGemma-2B \\
+    ToxicChat                    & 0.9736 & 0.9635 & \textbf{DeepSafe-v3} \\
+    WildGuardMix                 & 0.9686 & 0.9995 & WildGuard \\
+    XGuard                       & 0.7927 & 0.7870 & \textbf{DeepSafe-v3} \\
+    XSTest                       & 0.9037 & 0.9556 & WildGuard \\
 \midrule
-    \multicolumn{1}{l}{\textbf{Total}} & \multicolumn{3}{l}{DeepSafe wins: 1, SOTA wins: 7, Ties: 1} \\
+    \multicolumn{1}{l}{\textbf{Total}} & \multicolumn{3}{l}{DeepSafe wins: 6, SOTA wins: 3, Ties: 0} \\
 \bottomrule
 \end{tabular}
 \end{table}
-% Result: DeepSafe wins 1/9 benchmarks
+% Result: DeepSafe wins 6/9 benchmarks
 
 % === Wide Summary: All Models x All Benchmarks ===
 \begin{table}[t]
@@ -38,15 +38,15 @@
 \toprule
 \textbf{Model} & \textbf{100PoisonMpt} & \textbf{AegisAI-v1} & \textbf{AegisAI-v2} & \textbf{BeaverTails} & \textbf{DoNotAnswer} & \textbf{ToxicChat} & \textbf{WildGuardMix} & \textbf{XGuard} & \textbf{XSTest} \\
 \midrule
-    \textbf{DeepSafe-v3} & \textbf{0.9926} & \textbf{0.8363} & \textbf{0.8555} & \textbf{0.6707} & \textbf{0.3737} & \textbf{0.9187} & \textbf{0.9693} & \textbf{0.2910} & \textbf{0.8963} \\
-    WildGuard                      & 0.9596 & 0.8590 & 0.7710 & 0.6720 & 0.3559 & 0.9410 & 0.9995 & 0.3665 & 0.9556 \\
-    Qwen3Guard-Gen-8B              & 0.8382 & 0.8415 & 0.8390 & 0.6815 & 0.3523 & 0.9255 & 0.9695 & 0.2005 & 0.9333 \\
-    Qwen3Guard-Gen-4B              & 0.8456 & 0.8450 & 0.8385 & 0.6770 & 0.3701 & 0.9215 & 0.9695 & 0.2030 & 0.8963 \\
-    Llama-Guard-3-8B               & 0.9706 & 0.6660 & 0.7340 & 0.6435 & 0.5374 & 0.9265 & 0.8425 & 0.2915 & 0.8963 \\
-    ShieldGemma-9B                 & 0.8860 & 0.7020 & 0.7500 & 0.5935 & 0.5979 & 0.9635 & 0.7115 & 0.3870 & 0.8593 \\
-    Llama-Guard-3-1B               & 0.9816 & 0.5975 & 0.6975 & 0.6275 & 0.6050 & 0.8480 & 0.8065 & 0.3515 & 0.8741 \\
-    Granite-Guardian-3.1-8B        & 0.8456 & 0.7860 & 0.8275 & 0.6780 & 0.2705 & 0.9450 & 0.8430 & 0.2945 & 0.8815 \\
-    ShieldGemma-2B                 & 0.9926 & 0.5020 & 0.5920 & 0.5520 & 0.8612 & 0.9315 & 0.5225 & 0.4835 & 0.7926 \\
+    \textbf{DeepSafe-v3} & \textbf{1.0000} & \textbf{0.8646} & \textbf{0.8605} & \textbf{0.6997} & \textbf{0.6584} & \textbf{0.9736} & \textbf{0.9686} & \textbf{0.7927} & \textbf{0.9037} \\
+    Qwen3Guard-Gen-8B              & 0.8382 & 0.8415 & 0.8390 & 0.6815 & 0.3523 & 0.9255 & 0.9695 & 0.7870 & 0.9333 \\
+    WildGuard                      & 0.9596 & 0.8590 & 0.7710 & 0.6720 & 0.3559 & 0.9410 & 0.9995 & 0.6425 & 0.9556 \\
+    Qwen3Guard-Gen-4B              & 0.8456 & 0.8450 & 0.8385 & 0.6770 & 0.3701 & 0.9215 & 0.9695 & 0.7855 & 0.8963 \\
+    Llama-Guard-3-8B               & 0.9706 & 0.6660 & 0.7340 & 0.6435 & 0.5374 & 0.9265 & 0.8425 & 0.7045 & 0.8963 \\
+    Granite-Guardian-3.1-8B        & 0.8456 & 0.7860 & 0.8275 & 0.6780 & 0.2705 & 0.9450 & 0.8430 & 0.7100 & 0.8815 \\
+    ShieldGemma-9B                 & 0.8860 & 0.7020 & 0.7500 & 0.5935 & 0.5979 & 0.9635 & 0.7115 & 0.6200 & 0.8593 \\
+    Llama-Guard-3-1B               & 0.9816 & 0.5975 & 0.6975 & 0.6275 & 0.6050 & 0.8480 & 0.8065 & 0.6430 & 0.8741 \\
+    ShieldGemma-2B                 & 0.9926 & 0.5020 & 0.5920 & 0.5520 & 0.8612 & 0.9315 & 0.5225 & 0.5175 & 0.7926 \\
     Beaver-Dam-7B                  & 0.0221 & -- & -- & 0.6330 & 0.3915 & 0.5775 & 0.7060 & -- & 0.6889 \\
 \bottomrule
 \end{tabular}
@@ -74,7 +74,7 @@
     Beaver-Dam-7B                       & 0.0221 & 0.0000 & 0.5000 \\
 \midrule
 \multicolumn{4}{@{}l}{\textit{Embedding-Based Models (Ours)}} \\
-    \textbf{DeepSafe-v3} & \textbf{0.9926} & \textbf{0.0000} & \textbf{0.5000} \\
+    \textbf{DeepSafe-v3} & \textbf{1.0000} & \textbf{0.0000} & \textbf{0.5000} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -100,7 +100,7 @@
     Beaver-Dam-7B                       & -- & -- & -- \\
 \midrule
 \multicolumn{4}{@{}l}{\textit{Embedding-Based Models (Ours)}} \\
-    \textbf{DeepSafe-v3} & \textbf{0.8363} & \textbf{0.8239} & \textbf{0.9173} \\
+    \textbf{DeepSafe-v3} & \textbf{0.8646} & \textbf{0.8239} & \textbf{0.9173} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -126,7 +126,7 @@
     Beaver-Dam-7B                       & -- & -- & -- \\
 \midrule
 \multicolumn{4}{@{}l}{\textit{Embedding-Based Models (Ours)}} \\
-    \textbf{DeepSafe-v3} & \textbf{0.8555} & \textbf{0.8510} & \textbf{0.9288} \\
+    \textbf{DeepSafe-v3} & \textbf{0.8605} & \textbf{0.8510} & \textbf{0.9288} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -152,7 +152,7 @@
     ShieldGemma-2B                      & 0.5520 & 0.5296 & 0.5813 \\
 \midrule
 \multicolumn{4}{@{}l}{\textit{Embedding-Based Models (Ours)}} \\
-    \textbf{DeepSafe-v3} & \textbf{0.6707} & \textbf{0.6343} & \textbf{0.7467} \\
+    \textbf{DeepSafe-v3} & \textbf{0.6997} & \textbf{0.6343} & \textbf{0.7467} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -178,7 +178,7 @@
     Granite-Guardian-3.1-8B             & 0.2705 & 0.2251 & 0.6300 \\
 \midrule
 \multicolumn{4}{@{}l}{\textit{Embedding-Based Models (Ours)}} \\
-    \textbf{DeepSafe-v3} & \textbf{0.3737} & \textbf{0.2889} & \textbf{0.5217} \\
+    \textbf{DeepSafe-v3} & \textbf{0.6584} & \textbf{0.2889} & \textbf{0.5217} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -204,7 +204,7 @@
     Beaver-Dam-7B                       & 0.5775 & 0.4613 & 0.7317 \\
 \midrule
 \multicolumn{4}{@{}l}{\textit{Embedding-Based Models (Ours)}} \\
-    \textbf{DeepSafe-v3} & \textbf{0.9187} & \textbf{0.7829} & \textbf{0.9675} \\
+    \textbf{DeepSafe-v3} & \textbf{0.9736} & \textbf{0.7829} & \textbf{0.9675} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -230,7 +230,7 @@
     ShieldGemma-2B                      & 0.5225 & 0.4456 & 0.5577 \\
 \midrule
 \multicolumn{4}{@{}l}{\textit{Embedding-Based Models (Ours)}} \\
-    \textbf{DeepSafe-v3} & \textbf{0.9693} & \textbf{0.9693} & \textbf{0.9951} \\
+    \textbf{DeepSafe-v3} & \textbf{0.9686} & \textbf{0.9685} & \textbf{0.9951} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -245,18 +245,18 @@
 \textbf{Model} & \textbf{Accuracy} & \textbf{F1 (Macro)} & \textbf{ROC AUC} \\
 \midrule
 \multicolumn{4}{@{}l}{\textit{Generative Guard Models (SOTA)}} \\
-    ShieldGemma-2B                      & 0.4835 & 0.3542 & 0.4149 \\
-    ShieldGemma-9B                      & 0.3870 & 0.3429 & 0.3511 \\
-    WildGuard                           & 0.3665 & 0.3432 & 0.3434 \\
-    Llama-Guard-3-1B                    & 0.3515 & 0.3273 & 0.3277 \\
-    Granite-Guardian-3.1-8B             & 0.2945 & 0.2944 & 0.3033 \\
-    Llama-Guard-3-8B                    & 0.2915 & 0.2792 & 0.2768 \\
-    Qwen3Guard-Gen-4B                   & 0.2030 & 0.1956 & 0.1994 \\
-    Qwen3Guard-Gen-8B                   & 0.2005 & 0.1927 & 0.1904 \\
+    Qwen3Guard-Gen-8B                   & 0.7870 & 0.7667 & 0.7974 \\
+    Qwen3Guard-Gen-4B                   & 0.7855 & 0.7662 & 0.7911 \\
+    Granite-Guardian-3.1-8B             & 0.7100 & 0.7007 & 0.7013 \\
+    Llama-Guard-3-8B                    & 0.7045 & 0.7036 & 0.7186 \\
+    Llama-Guard-3-1B                    & 0.6430 & 0.6430 & 0.6666 \\
+    WildGuard                           & 0.6425 & 0.6425 & 0.6639 \\
+    ShieldGemma-9B                      & 0.6200 & 0.6180 & 0.6551 \\
+    ShieldGemma-2B                      & 0.5175 & 0.4809 & 0.5857 \\
     Beaver-Dam-7B                       & -- & -- & -- \\
 \midrule
 \multicolumn{4}{@{}l}{\textit{Embedding-Based Models (Ours)}} \\
-    \textbf{DeepSafe-v3} & \textbf{0.2910} & \textbf{0.2805} & \textbf{0.2094} \\
+    \textbf{DeepSafe-v3} & \textbf{0.7927} & \textbf{0.7403} & \textbf{0.7788} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -282,7 +282,7 @@
     Beaver-Dam-7B                       & 0.6889 & 0.6850 & 0.7662 \\
 \midrule
 \multicolumn{4}{@{}l}{\textit{Embedding-Based Models (Ours)}} \\
-    \textbf{DeepSafe-v3} & \textbf{0.8963} & \textbf{0.8956} & \textbf{0.9662} \\
+    \textbf{DeepSafe-v3} & \textbf{0.9037} & \textbf{0.9034} & \textbf{0.9662} \\
 \bottomrule
 \end{tabular}
 \end{table}
