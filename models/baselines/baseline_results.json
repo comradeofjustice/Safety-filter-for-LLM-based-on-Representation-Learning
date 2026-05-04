@@ -1,0 +1,17 @@
+{
+  "lr_4096d": {
+    "accuracy": 0.8556,
+    "f1_macro": 0.855,
+    "roc_auc": 0.9299
+  },
+  "mlp_4096_512_2": {
+    "accuracy": 0.871,
+    "f1_macro": 0.8703,
+    "roc_auc": 0.9442
+  },
+  "euclidean_projection_nn": {
+    "accuracy": 0.8617,
+    "f1_macro": 0.8607,
+    "roc_auc": 0.8887
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "64": {
+    "euclidean": {
+      "accuracy": 0.8583,
+      "f1_macro": 0.8575070036765808,
+      "roc_auc": 0.93483005611365
+    },
+    "hyperbolic": {
+      "accuracy": 0.8575,
+      "f1_macro": 0.8566655512731916,
+      "roc_auc": 0.9340017397096213
+    },
+    "euclidean_val_acc": 0.8642666935920715,
+    "hyperbolic_val_acc": 0.8650000095367432,
+    "euclidean_params": 1327809,
+    "hyperbolic_params": 1623809,
+    "euclidean_time_s": 17.9424569606781,
+    "hyperbolic_time_s": 62.03856039047241
+  },
+  "128": {
+    "euclidean": {
+      "accuracy": 0.85925,
+      "f1_macro": 0.8585559336126269,
+      "roc_auc": 0.9336529197950609
+    },
+    "hyperbolic": {
+      "accuracy": 0.85585,
+      "f1_macro": 0.8549086031269401,
+      "roc_auc": 0.9325346199032912
+    },
+    "euclidean_val_acc": 0.8632000088691711,
+    "hyperbolic_val_acc": 0.8630000352859497,
+    "euclidean_params": 1606529,
+    "hyperbolic_params": 1623809,
+    "euclidean_time_s": 16.47709035873413,
+    "hyperbolic_time_s": 58.42471766471863
+  },
+  "256": {
+    "euclidean": {
+      "accuracy": 0.86035,
+      "f1_macro": 0.859478547429292,
+      "roc_auc": 0.9357342552473313
+    },
+    "hyperbolic": {
+      "accuracy": 0.8611,
+      "f1_macro": 0.8600601856055308,
+      "roc_auc": 0.9344480497760903
+    },
+    "euclidean_val_acc": 0.8655999898910522,
+    "hyperbolic_val_acc": 0.8636666536331177,
+    "euclidean_params": 2163969,
+    "hyperbolic_params": 1623809,
+    "euclidean_time_s": 13.836170196533203,
+    "hyperbolic_time_s": 58.13620448112488
+  },
+  "512": {
+    "euclidean": {
+      "accuracy": 0.85905,
+      "f1_macro": 0.8586293229227946,
+      "roc_auc": 0.9344179242367657
+    },
+    "hyperbolic": {
+      "accuracy": 0.85595,
+      "f1_macro": 0.8552045841494881,
+      "roc_auc": 0.9323470803660382
+    },
+    "euclidean_val_acc": 0.8648666739463806,
+    "hyperbolic_val_acc": 0.8600000143051147,
+    "euclidean_params": 3278849,
+    "hyperbolic_params": 1623809,
+    "euclidean_time_s": 15.53854751586914,
+    "hyperbolic_time_s": 62.53044056892395
+  }
+}

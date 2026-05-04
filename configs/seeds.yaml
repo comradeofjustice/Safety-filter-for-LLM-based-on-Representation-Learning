@@ -1,0 +1,6 @@
+# configs/seeds.yaml - Random seeds for multi-seed evaluation
+# Used by all training and evaluation scripts
+
+seeds: [42, 0, 1, 2, 3]
+default_seed: 42
+n_seeds: 5
