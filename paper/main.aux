@@ -16,16 +16,12 @@
 \gdef\HyperFirstAtBeginDocument#1{#1}
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
-\citation{vidgen2024introducing}
+\citation{han2024wildguard}
 \citation{inan2023llama}
 \citation{zou2023representation}
 \citation{arditi2024refusal}
+\citation{lee2024mechanistic}
 \citation{qwen3}
-\citation{nickel2017poincare,ganea2018hyperbolic}
-\citation{snell2017proto}
-\citation{cuturi2013sinkhorn}
-\citation{zhang2018mixup}
-\citation{guo2017calibration}
 \@LN{0}{0}
 \@LN{1}{0}
 \@LN{2}{0}
@@ -48,7 +44,6 @@
 \@LN{19}{0}
 \@LN{20}{0}
 \@LN{21}{0}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{}{section.1}\protected@file@percent }
 \@LN{22}{0}
 \@LN{23}{0}
 \@LN{24}{0}
@@ -58,6 +53,9 @@
 \@LN{28}{0}
 \@LN{29}{0}
 \@LN{30}{0}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{}{Introduction}{section.1}{}}
+\newlabel{sec:intro@cref}{{[section][1][]1}{[][1][]}}
 \@LN{31}{0}
 \@LN{32}{0}
 \@LN{33}{0}
@@ -80,7 +78,11 @@
 \@LN{50}{0}
 \@LN{51}{0}
 \@LN{52}{0}
-\citation{vidgen2024introducing}
+\@LN{53}{0}
+\citation{nickel2017poincare,ganea2018hyperbolic}
+\citation{zhang2018mixup}
+\citation{guo2017calibration}
+\citation{han2024wildguard}
 \citation{inan2023llama}
 \citation{markov2023holistic}
 \citation{ouyang2022training}
@@ -92,9 +94,6 @@
 \citation{gao2021simcse}
 \citation{kaushik2020learning}
 \citation{vidgen2024introducing}
-\citation{qwen3}
-\citation{nickel2017poincare}
-\@LN{53}{1}
 \@LN{54}{1}
 \@LN{55}{1}
 \@LN{56}{1}
@@ -105,9 +104,7 @@
 \@LN{61}{1}
 \@LN{62}{1}
 \@LN{63}{1}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{}{section.2}\protected@file@percent }
 \@LN{64}{1}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Post-Hoc Safety Classification}{}{subsection.2.1}\protected@file@percent }
 \@LN{65}{1}
 \@LN{66}{1}
 \@LN{67}{1}
@@ -116,7 +113,6 @@
 \@LN{70}{1}
 \@LN{71}{1}
 \@LN{72}{1}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Representation Engineering for Safety}{}{subsection.2.2}\protected@file@percent }
 \@LN{73}{1}
 \@LN{74}{1}
 \@LN{75}{1}
@@ -124,139 +120,146 @@
 \@LN{77}{1}
 \@LN{78}{1}
 \@LN{79}{1}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Contrastive Learning and Counterfactuals}{}{subsection.2.3}\protected@file@percent }
 \@LN{80}{1}
 \@LN{81}{1}
 \@LN{82}{1}
 \@LN{83}{1}
 \@LN{84}{1}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{}{section.3}\protected@file@percent }
 \@LN{85}{1}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{}{subsection.3.1}\protected@file@percent }
 \@LN{86}{1}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{}{section.2}\protected@file@percent }
 \@LN{87}{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Post-Hoc Safety Classification}{}{subsection.2.1}\protected@file@percent }
 \@LN{88}{1}
 \@LN{89}{1}
 \@LN{90}{1}
 \@LN{91}{1}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Projection Head Architecture}{}{subsection.3.2}\protected@file@percent }
 \@LN{92}{1}
-\@writefile{toc}{\contentsline {paragraph}{Dual Hyperbolic Neural Projection.}{}{paragraph*.1}\protected@file@percent }
 \@LN{93}{1}
 \@LN{94}{1}
 \@LN{95}{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Representation Engineering for Safety}{}{subsection.2.2}\protected@file@percent }
 \@LN{96}{1}
 \@LN{97}{1}
+\@LN{98}{1}
+\@LN{99}{1}
+\@LN{100}{1}
+\@LN{101}{1}
+\@LN{102}{1}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Contrastive Learning and Counterfactuals}{}{subsection.2.3}\protected@file@percent }
+\@LN{103}{1}
+\@LN{104}{1}
+\@LN{105}{1}
+\citation{qwen3}
+\citation{nickel2017poincare}
 \citation{ganea2018hyperbolic}
-\citation{zhang2018mixup}
-\citation{guo2017calibration}
-\citation{zbontar2021barlow}
-\citation{cuturi2013sinkhorn}
-\@LN{98}{2}
-\@LN{99}{2}
-\@LN{100}{2}
-\@LN{101}{2}
-\@LN{102}{2}
-\@LN{103}{2}
-\@LN{104}{2}
-\@LN{105}{2}
-\@writefile{toc}{\contentsline {paragraph}{Learnable Gate Mechanism.}{}{paragraph*.2}\protected@file@percent }
 \@LN{106}{2}
 \@LN{107}{2}
 \@LN{108}{2}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{}{section.3}\protected@file@percent }
 \@LN{109}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{}{subsection.3.1}\protected@file@percent }
 \@LN{110}{2}
 \@LN{111}{2}
 \@LN{112}{2}
 \@LN{113}{2}
 \@LN{114}{2}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Neural Classifier}{}{subsection.3.3}\protected@file@percent }
 \@LN{115}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Projection Head Architecture}{}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:proj}{{3.2}{}{Projection Head Architecture}{subsection.3.2}{}}
+\newlabel{sec:proj@cref}{{[subsection][2][3]3.2}{[][3][]}}
 \@LN{116}{2}
+\@writefile{toc}{\contentsline {paragraph}{Dual Hyperbolic Neural Projection.}{}{paragraph*.1}\protected@file@percent }
 \@LN{117}{2}
 \@LN{118}{2}
 \@LN{119}{2}
 \@LN{120}{2}
-\@writefile{toc}{\contentsline {paragraph}{Spectral Decorrelation.}{}{paragraph*.3}\protected@file@percent }
 \@LN{121}{2}
 \@LN{122}{2}
+\@LN{123}{2}
+\@LN{124}{2}
+\@LN{125}{2}
+\@LN{126}{2}
+\@LN{127}{2}
+\@LN{128}{2}
+\@LN{129}{2}
+\@writefile{toc}{\contentsline {paragraph}{Learnable Gate Mechanism.}{}{paragraph*.2}\protected@file@percent }
+\@LN{130}{2}
+\@LN{131}{2}
+\@LN{132}{2}
+\@LN{133}{2}
+\@LN{134}{2}
+\@LN{135}{2}
+\@LN{136}{2}
+\@LN{137}{2}
+\citation{zhang2018mixup}
+\citation{guo2017calibration}
+\citation{zbontar2021barlow}
+\citation{cuturi2013sinkhorn}
+\citation{feydy2019interpolating}
 \citation{khosla2020supervised}
 \citation{snell2017proto}
-\citation{qwen3}
-\@LN{123}{3}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Optimal Transport Class Regularization}{}{subsection.3.4}\protected@file@percent }
-\@LN{124}{3}
-\@LN{125}{3}
-\@LN{126}{3}
-\@LN{127}{3}
-\@LN{128}{3}
-\@LN{129}{3}
-\@LN{130}{3}
-\@LN{131}{3}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Hierarchical Contrastive Loss}{}{subsection.3.5}\protected@file@percent }
-\@LN{132}{3}
-\@LN{133}{3}
-\@LN{134}{3}
-\@LN{135}{3}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Learnable Prototype Anchors}{}{subsection.3.6}\protected@file@percent }
-\@LN{136}{3}
-\@LN{137}{3}
 \@LN{138}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Neural Classifier}{}{subsection.3.3}\protected@file@percent }
 \@LN{139}{3}
 \@LN{140}{3}
 \@LN{141}{3}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Full Training Objective}{}{subsection.3.7}\protected@file@percent }
 \@LN{142}{3}
 \@LN{143}{3}
 \@LN{144}{3}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Spectral Decorrelation.}{}{paragraph*.3}\protected@file@percent }
 \@LN{145}{3}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experimental Setup}{}{subsection.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Dataset.}{}{paragraph*.4}\protected@file@percent }
 \@LN{146}{3}
 \@LN{147}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Optimal Transport Class Regularization}{}{subsection.3.4}\protected@file@percent }
 \@LN{148}{3}
 \@LN{149}{3}
 \@LN{150}{3}
 \@LN{151}{3}
 \@LN{152}{3}
 \@LN{153}{3}
-\@writefile{toc}{\contentsline {paragraph}{Evaluation Benchmarks.}{}{paragraph*.5}\protected@file@percent }
-\@LN{154}{4}
-\@LN{155}{4}
-\@LN{156}{4}
-\@LN{157}{4}
-\@writefile{toc}{\contentsline {paragraph}{Baselines.}{}{paragraph*.6}\protected@file@percent }
-\@LN{158}{4}
-\@LN{159}{4}
-\@LN{160}{4}
-\@LN{161}{4}
-\@LN{162}{4}
-\@LN{163}{4}
-\@LN{164}{4}
+\@LN{154}{3}
+\@LN{155}{3}
+\@LN{156}{3}
+\@LN{157}{3}
+\@LN{158}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Hierarchical Contrastive Loss}{}{subsection.3.5}\protected@file@percent }
+\@LN{159}{3}
+\@LN{160}{3}
+\@LN{161}{3}
+\@LN{162}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Learnable Prototype Anchors}{}{subsection.3.6}\protected@file@percent }
+\@LN{163}{3}
+\@LN{164}{3}
 \@LN{165}{4}
-\@writefile{toc}{\contentsline {paragraph}{DeepSafe Configuration.}{}{paragraph*.7}\protected@file@percent }
 \@LN{166}{4}
 \@LN{167}{4}
 \@LN{168}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Counterfactual Pair Repulsion}{}{subsection.3.7}\protected@file@percent }
+\newlabel{sec:cf_loss}{{3.7}{}{Counterfactual Pair Repulsion}{subsection.3.7}{}}
+\newlabel{sec:cf_loss@cref}{{[subsection][7][3]3.7}{[][5][]}}
 \@LN{169}{4}
 \@LN{170}{4}
 \@LN{171}{4}
 \@LN{172}{4}
 \@LN{173}{4}
-\@writefile{toc}{\contentsline {paragraph}{Metrics.}{}{paragraph*.8}\protected@file@percent }
 \@LN{174}{4}
 \@LN{175}{4}
 \@LN{176}{4}
 \@LN{177}{4}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Main Results: DeepSafe vs. State-of-the-Art}{}{subsection.4.2}\protected@file@percent }
 \@LN{178}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8}Full Training Objective}{}{subsection.3.8}\protected@file@percent }
 \@LN{179}{4}
 \@LN{180}{4}
 \@LN{181}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.9}Theoretical Properties}{}{subsection.3.9}\protected@file@percent }
+\newlabel{sec:theory}{{3.9}{}{Theoretical Properties}{subsection.3.9}{}}
+\newlabel{sec:theory@cref}{{[subsection][9][3]3.9}{[][5][]}}
 \@LN{182}{4}
 \@LN{183}{4}
 \@LN{184}{4}
+\@writefile{toc}{\contentsline {paragraph}{Setup.}{}{paragraph*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scope of Proposition\nobreakspace  {}1.}{}{paragraph*.5}\protected@file@percent }
 \@LN{185}{4}
 \@LN{186}{4}
 \@LN{187}{4}
@@ -264,22 +267,24 @@
 \@LN{189}{4}
 \@LN{190}{4}
 \@LN{191}{4}
+\newlabel{prop:hyp-dim}{{1}{}{Hyperbolic dimension advantage for safety taxonomies}{proposition.1}{}}
+\newlabel{prop:hyp-dim@cref}{{[proposition][1][]1}{[][5][]}}
 \@LN{192}{4}
 \@LN{193}{4}
-\@LN{194}{4}
-\@LN{195}{4}
-\@LN{196}{4}
-\@LN{197}{4}
-\@LN{198}{4}
-\@LN{199}{4}
-\@LN{200}{4}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces DeepSafe vs. Best SOTA: Per-Benchmark Summary on 9 fully held-out benchmark datasets (training data drawn exclusively from WildGuardMix/train and AegisAI-2.0/train). DeepSafe wins on 8 of 9 benchmarks, establishing calibrated embedding-based classification as a competitive alternative to generative guard models.\relax }}{}{table.caption.9}\protected@file@percent }
-\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{tab:sota_summary}{{1}{}{DeepSafe vs. Best SOTA: Per-Benchmark Summary on 9 fully held-out benchmark datasets (training data drawn exclusively from WildGuardMix/train and AegisAI-2.0/train). DeepSafe wins on 8 of 9 benchmarks, establishing calibrated embedding-based classification as a competitive alternative to generative guard models.\relax }{table.caption.9}{}}
-\newlabel{tab:sota_summary@cref}{{[table][1][]1}{[][6][]}}
+\citation{qwen3}
+\@LN{194}{5}
+\@LN{195}{5}
+\@LN{196}{5}
+\@LN{197}{5}
+\@LN{198}{5}
+\@LN{199}{5}
+\@LN{200}{5}
+\@writefile{toc}{\contentsline {paragraph}{From OT regularization to generalization.}{}{paragraph*.6}\protected@file@percent }
 \@LN{201}{5}
 \@LN{202}{5}
 \@LN{203}{5}
+\newlabel{prop:ot-margin}{{2}{}{OT--margin--generalization chain}{proposition.2}{}}
+\newlabel{prop:ot-margin@cref}{{[proposition][2][]2}{[][6][]}}
 \@LN{204}{5}
 \@LN{205}{5}
 \@LN{206}{5}
@@ -291,98 +296,80 @@
 \@LN{212}{5}
 \@LN{213}{5}
 \@LN{214}{5}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{}{section.4}\protected@file@percent }
+\newlabel{sec:exp}{{4}{}{Experiments}{section.4}{}}
+\newlabel{sec:exp@cref}{{[section][4][]4}{[][6][]}}
 \@LN{215}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experimental Setup}{}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Dataset.}{}{paragraph*.7}\protected@file@percent }
 \@LN{216}{5}
 \@LN{217}{5}
 \@LN{218}{5}
-\@LN{219}{5}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Why DeepSafe Works: Component Analysis}{}{subsection.4.3}\protected@file@percent }
-\@LN{220}{5}
-\@LN{221}{5}
-\@LN{222}{5}
-\@LN{223}{5}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Ablation study on DeepSafe components. Validation accuracy and AUC are measured on a held-out split of the training data (AegisAI-2.0 validation set, 10\% of training samples).\relax }}{}{table.caption.10}\protected@file@percent }
-\newlabel{tab:ablation}{{2}{}{Ablation study on DeepSafe components. Validation accuracy and AUC are measured on a held-out split of the training data (AegisAI-2.0 validation set, 10\% of training samples).\relax }{table.caption.10}{}}
-\newlabel{tab:ablation@cref}{{[table][2][]2}{[][6][]}}
-\@LN{224}{5}
-\@LN{225}{5}
-\@LN{226}{5}
-\@LN{227}{5}
-\@LN{228}{5}
-\citation{gu2018mixed}
+\@LN{219}{6}
+\@LN{220}{6}
+\@LN{221}{6}
+\@LN{222}{6}
+\@LN{223}{6}
+\@LN{224}{6}
+\@LN{225}{6}
+\@LN{226}{6}
+\@writefile{toc}{\contentsline {paragraph}{Evaluation Benchmarks.}{}{paragraph*.8}\protected@file@percent }
+\@LN{227}{6}
+\@LN{228}{6}
 \@LN{229}{6}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Representation Quality}{}{subsection.4.4}\protected@file@percent }
 \@LN{230}{6}
+\@writefile{toc}{\contentsline {paragraph}{Baselines.}{}{paragraph*.9}\protected@file@percent }
 \@LN{231}{6}
 \@LN{232}{6}
 \@LN{233}{6}
 \@LN{234}{6}
 \@LN{235}{6}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Per-Benchmark Analysis}{}{subsection.4.5}\protected@file@percent }
 \@LN{236}{6}
 \@LN{237}{6}
 \@LN{238}{6}
+\@writefile{toc}{\contentsline {paragraph}{DeepSafe Configuration.}{}{paragraph*.10}\protected@file@percent }
 \@LN{239}{6}
 \@LN{240}{6}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Inference Efficiency}{}{subsection.4.6}\protected@file@percent }
 \@LN{241}{6}
 \@LN{242}{6}
 \@LN{243}{6}
 \@LN{244}{6}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{}{section.5}\protected@file@percent }
 \@LN{245}{6}
 \@LN{246}{6}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces End-to-end inference footprint comparison. DeepSafe (607M) is the smallest model in this 10-model comparison, $\sim $40\% smaller than the smallest generative guard (Llama-Guard-3-1B) and $\sim $15$\times $ smaller than the largest (ShieldGemma-9B).\relax }}{}{table.caption.11}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:param_footprint}{{1}{}{End-to-end inference footprint comparison. DeepSafe (607M) is the smallest model in this 10-model comparison, $\sim $40\% smaller than the smallest generative guard (Llama-Guard-3-1B) and $\sim $15$\times $ smaller than the largest (ShieldGemma-9B).\relax }{table.caption.11}{}}
+\newlabel{tab:param_footprint@cref}{{[table][1][]1}{[][7][]}}
+\@writefile{toc}{\contentsline {paragraph}{Metrics.}{}{paragraph*.12}\protected@file@percent }
 \@LN{247}{6}
 \@LN{248}{6}
 \@LN{249}{6}
-\@LN{250}{6}
-\@LN{251}{6}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Limitations and Future Work}{}{subsection.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Embedding Dependency.}{}{paragraph*.11}\protected@file@percent }
-\@LN{252}{6}
-\@LN{253}{6}
-\@LN{254}{6}
-\@writefile{toc}{\contentsline {paragraph}{Hyperbolic Curvature.}{}{paragraph*.12}\protected@file@percent }
-\@LN{255}{6}
-\@LN{256}{6}
-\@LN{257}{6}
-\@writefile{toc}{\contentsline {paragraph}{Counterfactual Data.}{}{paragraph*.13}\protected@file@percent }
-\@LN{258}{6}
-\@LN{259}{6}
-\@LN{260}{6}
-\@writefile{toc}{\contentsline {paragraph}{Evaluation Scope.}{}{paragraph*.14}\protected@file@percent }
-\@LN{261}{6}
-\@LN{262}{6}
-\@LN{263}{6}
-\@LN{264}{6}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{}{section.6}\protected@file@percent }
-\@LN{265}{6}
-\@LN{266}{6}
-\@LN{267}{6}
-\@LN{268}{6}
-\@LN{269}{6}
-\@LN{270}{6}
-\@LN{271}{6}
-\bibcite{bai2022constitutional}{{1}{}{{}}{{}}}
-\bibcite{chen2020simple}{{2}{}{{}}{{}}}
-\bibcite{gao2021simcse}{{3}{}{{}}{{}}}
-\bibcite{inan2023llama}{{4}{}{{}}{{}}}
-\bibcite{izacard2022unsupervised}{{5}{}{{}}{{}}}
-\bibcite{kaushik2020learning}{{6}{}{{}}{{}}}
-\bibcite{khosla2020supervised}{{7}{}{{}}{{}}}
-\bibcite{markov2023holistic}{{8}{}{{}}{{}}}
-\bibcite{mendelsohn2023framework}{{9}{}{{}}{{}}}
-\bibcite{ouyang2022training}{{10}{}{{}}{{}}}
-\bibcite{qwen3}{{11}{}{{}}{{}}}
-\bibcite{rafailov2024direct}{{12}{}{{}}{{}}}
-\bibcite{tur2011spoken}{{13}{}{{}}{{}}}
-\bibcite{vidgen2024introducing}{{14}{}{{}}{{}}}
-\bibcite{nickel2017poincare}{{15}{}{{}}{{}}}
-\bibcite{zbontar2021barlow}{{16}{}{{}}{{}}}
-\bibcite{cuturi2013sinkhorn}{{17}{}{{}}{{}}}
-\bibcite{ganea2018hyperbolic}{{18}{}{{}}{{}}}
-\bibcite{snell2017proto}{{19}{}{{}}{{}}}
-\bibcite{zhang2018mixup}{{20}{}{{}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces DeepSafe vs. Best SOTA: Per-Benchmark Summary on 9 fully held-out benchmark datasets. DeepSafe wins on 8 of 9 benchmarks.\relax }}{}{table.caption.13}\protected@file@percent }
+\newlabel{tab:sota_summary}{{2}{}{DeepSafe vs. Best SOTA: Per-Benchmark Summary on 9 fully held-out benchmark datasets. DeepSafe wins on 8 of 9 benchmarks.\relax }{table.caption.13}{}}
+\newlabel{tab:sota_summary@cref}{{[table][2][]2}{[][8][]}}
+\@LN{250}{7}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Main Results: DeepSafe vs. State-of-the-Art}{}{subsection.4.2}\protected@file@percent }
+\@LN{251}{7}
+\@LN{252}{7}
+\@LN{253}{7}
+\@LN{254}{7}
+\@LN{255}{7}
+\@LN{256}{7}
+\@LN{257}{7}
+\@LN{258}{7}
+\@LN{259}{7}
+\@LN{260}{7}
+\@LN{261}{7}
+\@LN{262}{7}
+\@LN{263}{7}
+\@LN{264}{7}
+\@LN{265}{7}
+\@LN{266}{7}
+\@LN{267}{7}
+\@LN{268}{7}
+\@LN{269}{7}
+\@LN{270}{7}
+\@LN{271}{7}
 \@LN{272}{7}
 \@LN{273}{7}
 \@LN{274}{7}
@@ -401,221 +388,460 @@
 \@LN{287}{7}
 \@LN{288}{7}
 \@LN{289}{7}
-\@LN{290}{7}
-\@LN{291}{7}
-\@LN{292}{7}
-\@LN{293}{7}
-\@LN{294}{7}
-\@LN{295}{7}
-\@LN{296}{7}
-\@LN{297}{7}
-\@LN{298}{7}
-\@LN{299}{7}
-\@LN{300}{7}
-\@LN{301}{7}
-\@LN{302}{7}
-\@LN{303}{7}
-\@LN{304}{7}
-\@LN{305}{7}
-\@LN{306}{7}
-\@LN{307}{7}
-\@LN{308}{7}
-\@LN{309}{7}
-\@LN{310}{7}
-\@LN{311}{7}
-\@LN{312}{7}
-\@LN{313}{7}
-\@LN{314}{7}
-\@LN{315}{7}
-\@LN{316}{7}
-\@LN{317}{7}
-\@LN{318}{7}
-\@LN{319}{7}
-\@LN{320}{7}
-\@LN{321}{7}
-\@LN{322}{7}
-\@LN{323}{7}
-\@LN{324}{7}
-\@LN{325}{7}
-\bibcite{guo2017calibration}{{21}{}{{}}{{}}}
-\bibcite{gu2018mixed}{{22}{}{{}}{{}}}
-\bibcite{zou2023representation}{{23}{}{{}}{{}}}
-\bibcite{arditi2024refusal}{{24}{}{{}}{{}}}
+\@LN{290}{8}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Why DeepSafe Works: Component Analysis}{}{subsection.4.3}\protected@file@percent }
+\@LN{291}{8}
+\@LN{292}{8}
+\@LN{293}{8}
+\@LN{294}{8}
+\@LN{295}{8}
+\@LN{296}{8}
+\@LN{297}{8}
+\@LN{298}{8}
+\@LN{299}{8}
+\@LN{300}{8}
+\@LN{301}{8}
+\@LN{302}{8}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Ablation study on DeepSafe components. Validation accuracy and AUC are measured on a held-out validation split.\relax }}{}{table.caption.14}\protected@file@percent }
+\newlabel{tab:ablation}{{3}{}{Ablation study on DeepSafe components. Validation accuracy and AUC are measured on a held-out validation split.\relax }{table.caption.14}{}}
+\newlabel{tab:ablation@cref}{{[table][3][]3}{[][9][]}}
+\@LN{303}{8}
+\@LN{304}{8}
+\@LN{305}{8}
+\@LN{306}{8}
+\@LN{307}{8}
+\@LN{308}{8}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Representation Quality}{}{subsection.4.4}\protected@file@percent }
+\@LN{309}{8}
+\@LN{310}{8}
+\@LN{311}{8}
+\@LN{312}{8}
+\@LN{313}{8}
+\@LN{314}{8}
+\@LN{315}{8}
+\@LN{316}{8}
+\@LN{317}{8}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Per-Benchmark Analysis}{}{subsection.4.5}\protected@file@percent }
+\@LN{318}{8}
+\@LN{319}{8}
+\@LN{320}{8}
+\@LN{321}{8}
+\@LN{322}{8}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Inference Efficiency}{}{subsection.4.6}\protected@file@percent }
+\@LN{323}{8}
+\@LN{324}{8}
+\@LN{325}{8}
 \@LN{326}{8}
 \@LN{327}{8}
 \@LN{328}{8}
 \@LN{329}{8}
-\@LN{330}{8}
-\@LN{331}{8}
-\@LN{332}{8}
-\@LN{333}{8}
-\@LN{334}{8}
-\@LN{335}{8}
-\@LN{336}{8}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Appendix: Supplementary Figures and Analysis}{}{section.7}\protected@file@percent }
-\@LN{337}{8}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Baseline Comparison}{}{subsection.7.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Simple classification baselines (LR, MLP, Euclidean projection head) vs.\ DeepSafe across all 9 held-out benchmarks. All baselines use the same frozen Qwen3-Embedding-8B encoder but without hyperbolic projection or DeepSafe training objectives.\relax }}{}{figure.caption.15}\protected@file@percent }
-\newlabel{fig:baselines}{{1}{}{Simple classification baselines (LR, MLP, Euclidean projection head) vs.\ DeepSafe across all 9 held-out benchmarks. All baselines use the same frozen Qwen3-Embedding-8B encoder but without hyperbolic projection or DeepSafe training objectives.\relax }{figure.caption.15}{}}
-\newlabel{fig:baselines@cref}{{[figure][1][]1}{[][9][]}}
+\citation{gu2018mixed}
+\@LN{330}{9}
+\@LN{331}{9}
+\@LN{332}{9}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{}{Discussion}{section.5}{}}
+\newlabel{sec:discussion@cref}{{[section][5][]5}{[][10][]}}
+\@LN{333}{9}
+\@LN{334}{9}
+\@LN{335}{9}
+\@LN{336}{9}
+\@LN{337}{9}
 \@LN{338}{9}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Per-Benchmark Accuracy and Model Comparison}{}{subsection.7.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Accuracy comparison across all 9 held-out benchmarks. DeepSafe (blue, solid) consistently achieves top accuracy. Error bars indicate $\pm 1$ standard deviation across 5 random seeds.\relax }}{}{figure.caption.16}\protected@file@percent }
-\newlabel{fig:benchmark_accuracy}{{2}{}{Accuracy comparison across all 9 held-out benchmarks. DeepSafe (blue, solid) consistently achieves top accuracy. Error bars indicate $\pm 1$ standard deviation across 5 random seeds.\relax }{figure.caption.16}{}}
-\newlabel{fig:benchmark_accuracy@cref}{{[figure][2][]2}{[][9][]}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Performance radar chart: DeepSafe vs.\nobreakspace  {}5 SOTA models across 9 benchmarks. DeepSafe (solid blue line with shaded 95\% confidence interval) demonstrates consistent performance across diverse safety domains.\relax }}{}{figure.caption.17}\protected@file@percent }
-\newlabel{fig:radar}{{3}{}{Performance radar chart: DeepSafe vs.~5 SOTA models across 9 benchmarks. DeepSafe (solid blue line with shaded 95\% confidence interval) demonstrates consistent performance across diverse safety domains.\relax }{figure.caption.17}{}}
-\newlabel{fig:radar@cref}{{[figure][3][]3}{[][10][]}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Head-to-head comparison across 9 benchmarks $\times $ 9 SOTA models (81 unique pairings). Cell $(i,j)$ shows the fraction of benchmarks where row model $i$ achieves higher accuracy than column model $j$. Red = high win rate, Blue = low. DeepSafe row highlighted with black border.\relax }}{}{figure.caption.18}\protected@file@percent }
-\newlabel{fig:head_to_head}{{4}{}{Head-to-head comparison across 9 benchmarks $\times $ 9 SOTA models (81 unique pairings). Cell $(i,j)$ shows the fraction of benchmarks where row model $i$ achieves higher accuracy than column model $j$. Red = high win rate, Blue = low. DeepSafe row highlighted with black border.\relax }{figure.caption.18}{}}
-\newlabel{fig:head_to_head@cref}{{[figure][4][]4}{[][11][]}}
-\@LN{339}{12}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Throughput vs.\ Accuracy}{}{subsection.7.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Throughput vs.\ accuracy: DeepSafe achieves strong accuracy with competitive throughput (samples/second), benefiting from batched embedding-based inference. Diamond marker = DeepSafe with $\pm 1\sigma $ error bar.\relax }}{}{figure.caption.19}\protected@file@percent }
-\newlabel{fig:speed_vs_accuracy}{{5}{}{Throughput vs.\ accuracy: DeepSafe achieves strong accuracy with competitive throughput (samples/second), benefiting from batched embedding-based inference. Diamond marker = DeepSafe with $\pm 1\sigma $ error bar.\relax }{figure.caption.19}{}}
-\newlabel{fig:speed_vs_accuracy@cref}{{[figure][5][]5}{[][12][]}}
-\@LN{340}{13}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Ablation: Hyperbolic vs.\ Euclidean}{}{subsection.7.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Ablation: Euclidean vs.\ Hyperbolic projection heads at four hidden dimensions (64, 128, 256, 512), trained with BCE loss only (no DeepSafe loss components). The difference is within $\pm 0.003$, confirming that hyperbolic geometry alone provides no advantage. The benefit emerges only when combined with the full DeepSafe loss (hierarchical contrastive + OT + prototype + decorrelation + counterfactual).\relax }}{}{figure.caption.20}\protected@file@percent }
-\newlabel{fig:ablation}{{6}{}{Ablation: Euclidean vs.\ Hyperbolic projection heads at four hidden dimensions (64, 128, 256, 512), trained with BCE loss only (no DeepSafe loss components). The difference is within $\pm 0.003$, confirming that hyperbolic geometry alone provides no advantage. The benefit emerges only when combined with the full DeepSafe loss (hierarchical contrastive + OT + prototype + decorrelation + counterfactual).\relax }{figure.caption.20}{}}
-\newlabel{fig:ablation@cref}{{[figure][6][]6}{[][13][]}}
-\@LN{341}{14}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.5}Representation Space Visualization}{}{subsection.7.5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces t-SNE visualization of original frozen embeddings (left, silhouette $\approx 0.012$) vs.\ DeepSafe-projected embeddings (right, silhouette $\approx 0.346$). The projection head learns to structurally separate safe from unsafe content in the embedding space.\relax }}{}{figure.caption.21}\protected@file@percent }
-\newlabel{fig:tsne}{{7}{}{t-SNE visualization of original frozen embeddings (left, silhouette $\approx 0.012$) vs.\ DeepSafe-projected embeddings (right, silhouette $\approx 0.346$). The projection head learns to structurally separate safe from unsafe content in the embedding space.\relax }{figure.caption.21}{}}
-\newlabel{fig:tsne@cref}{{[figure][7][]7}{[][14][]}}
-\@LN{342}{14}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.6}Trivial Baseline Sanity Check}{}{subsection.7.6}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Trivial baselines (predict-all-safe, majority class) vs.\ DeepSafe. On benchmarks with severe class imbalance (e.g., DoNotAnswer, 98.6\% safe), naive strategies achieve high accuracy but zero MCC, highlighting the need for macro-averaged metrics alongside accuracy.\relax }}{}{figure.caption.22}\protected@file@percent }
-\newlabel{fig:trivial_baselines}{{8}{}{Trivial baselines (predict-all-safe, majority class) vs.\ DeepSafe. On benchmarks with severe class imbalance (e.g., DoNotAnswer, 98.6\% safe), naive strategies achieve high accuracy but zero MCC, highlighting the need for macro-averaged metrics alongside accuracy.\relax }{figure.caption.22}{}}
-\newlabel{fig:trivial_baselines@cref}{{[figure][8][]8}{[][15][]}}
-\@LN{343}{14}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.7}Extended Analysis}{}{subsection.7.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Per-Benchmark Details.}{}{paragraph*.23}\protected@file@percent }
-\@LN{344}{14}
-\@LN{345}{14}
-\@LN{346}{14}
-\@LN{347}{14}
-\@LN{348}{14}
-\@writefile{toc}{\contentsline {paragraph}{Inference Efficiency Details.}{}{paragraph*.24}\protected@file@percent }
-\@LN{349}{15}
-\@LN{350}{15}
-\@LN{351}{15}
-\@LN{352}{15}
-\@LN{353}{15}
-\@LN{354}{15}
-\@LN{355}{15}
-\@LN{356}{15}
-\@LN{357}{15}
-\@LN{358}{15}
-\@LN{359}{15}
-\@LN{360}{15}
-\@LN{361}{15}
-\@LN{362}{15}
-\@LN{363}{15}
-\@LN{364}{15}
-\@LN{365}{15}
-\@LN{366}{15}
-\@LN{367}{15}
-\@LN{368}{15}
-\@LN{369}{15}
-\@LN{370}{15}
-\@LN{371}{15}
-\@LN{372}{15}
-\@LN{373}{15}
-\@LN{374}{15}
-\@LN{375}{15}
-\@LN{376}{15}
-\@LN{377}{15}
-\@LN{378}{15}
-\@LN{379}{15}
-\@LN{380}{15}
-\@LN{381}{15}
-\@LN{382}{15}
-\@LN{383}{15}
-\@LN{384}{15}
-\@LN{385}{15}
-\@LN{386}{15}
-\@LN{387}{15}
-\@LN{388}{15}
-\@LN{389}{15}
-\@LN{390}{15}
-\@LN{391}{16}
-\@LN{392}{16}
-\@LN{393}{16}
-\@LN{394}{16}
-\@LN{395}{16}
-\@LN{396}{16}
-\@LN{397}{16}
-\@LN{398}{16}
-\@LN{399}{16}
-\@LN{400}{16}
-\@LN{401}{16}
-\@LN{402}{16}
-\@LN{403}{16}
-\@LN{404}{16}
-\@LN{405}{16}
-\@LN{406}{16}
-\@LN{407}{16}
-\@LN{408}{16}
-\@LN{409}{16}
-\@LN{410}{16}
-\@LN{411}{16}
-\@LN{412}{16}
-\@LN{413}{16}
-\@LN{414}{16}
-\@LN{415}{16}
-\@LN{416}{16}
-\@LN{417}{16}
-\@LN{418}{16}
-\@LN{419}{16}
-\@LN{420}{16}
-\@LN{421}{16}
-\@LN{422}{16}
-\@LN{423}{16}
-\@LN{424}{16}
-\@LN{425}{16}
-\@LN{426}{16}
-\@LN{427}{16}
-\@LN{428}{16}
-\@LN{429}{16}
-\@LN{430}{16}
-\@LN{431}{16}
-\@LN{432}{16}
+\@LN{339}{9}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}What is and isn't the source of gain}{}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:source}{{5.1}{}{What is and isn't the source of gain}{subsection.5.1}{}}
+\newlabel{sec:source@cref}{{[subsection][1][5]5.1}{[][10][]}}
+\@LN{340}{9}
+\@LN{341}{9}
+\@LN{342}{9}
+\@LN{343}{9}
+\@LN{344}{9}
+\@LN{345}{9}
+\@LN{346}{9}
+\@LN{347}{9}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Limitations}{}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Encoder dependency.}{}{paragraph*.15}\protected@file@percent }
+\@LN{348}{9}
+\@LN{349}{9}
+\@LN{350}{9}
+\@LN{351}{9}
+\@LN{352}{9}
+\@LN{353}{9}
+\@writefile{toc}{\contentsline {paragraph}{Geometry is not the lever.}{}{paragraph*.16}\protected@file@percent }
+\@LN{354}{9}
+\@LN{355}{9}
+\@LN{356}{9}
+\@LN{357}{9}
+\@writefile{toc}{\contentsline {paragraph}{Embedding Dependency.}{}{paragraph*.17}\protected@file@percent }
+\@LN{358}{9}
+\@LN{359}{9}
+\@LN{360}{9}
+\@writefile{toc}{\contentsline {paragraph}{Hyperbolic Curvature.}{}{paragraph*.18}\protected@file@percent }
+\@LN{361}{9}
+\@LN{362}{9}
+\@LN{363}{9}
+\@writefile{toc}{\contentsline {paragraph}{Counterfactual Data.}{}{paragraph*.19}\protected@file@percent }
+\@LN{364}{9}
+\@LN{365}{9}
+\@LN{366}{9}
+\@LN{367}{9}
+\@LN{368}{9}
+\@writefile{toc}{\contentsline {paragraph}{Evaluation Scope.}{}{paragraph*.20}\protected@file@percent }
+\@LN{369}{9}
+\@LN{370}{9}
+\@LN{371}{9}
+\bibcite{han2024wildguard}{{1}{}{{}}{{}}}
+\bibcite{inan2023llama}{{2}{}{{}}{{}}}
+\bibcite{zou2023representation}{{3}{}{{}}{{}}}
+\bibcite{arditi2024refusal}{{4}{}{{}}{{}}}
+\bibcite{lee2024mechanistic}{{5}{}{{}}{{}}}
+\bibcite{qwen3}{{6}{}{{}}{{}}}
+\bibcite{nickel2017poincare}{{7}{}{{}}{{}}}
+\bibcite{ganea2018hyperbolic}{{8}{}{{}}{{}}}
+\bibcite{snell2017proto}{{9}{}{{}}{{}}}
+\bibcite{cuturi2013sinkhorn}{{10}{}{{}}{{}}}
+\bibcite{zhang2018mixup}{{11}{}{{}}{{}}}
+\@LN{372}{10}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Broader Impacts}{}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:broader}{{5.3}{}{Broader Impacts}{subsection.5.3}{}}
+\newlabel{sec:broader@cref}{{[subsection][3][5]5.3}{[][10][]}}
+\@LN{373}{10}
+\@LN{374}{10}
+\@LN{375}{10}
+\@LN{376}{10}
+\@LN{377}{10}
+\@LN{378}{10}
+\@LN{379}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{}{section.6}\protected@file@percent }
+\@LN{380}{10}
+\@LN{381}{10}
+\@LN{382}{10}
+\@LN{383}{10}
+\@LN{384}{10}
+\@LN{385}{10}
+\@LN{386}{10}
+\@LN{387}{10}
+\@LN{388}{10}
+\@LN{389}{10}
+\@LN{390}{10}
+\@LN{391}{10}
+\@LN{392}{10}
+\@LN{393}{10}
+\@LN{394}{10}
+\@LN{395}{10}
+\@LN{396}{10}
+\@LN{397}{10}
+\@LN{398}{10}
+\@LN{399}{10}
+\@LN{400}{10}
+\@LN{401}{10}
+\@LN{402}{10}
+\@LN{403}{10}
+\@LN{404}{10}
+\@LN{405}{10}
+\@LN{406}{10}
+\@LN{407}{10}
+\@LN{408}{10}
+\@LN{409}{10}
+\@LN{410}{10}
+\@LN{411}{10}
+\@LN{412}{10}
+\@LN{413}{10}
+\@LN{414}{10}
+\@LN{415}{10}
+\@LN{416}{10}
+\@LN{417}{10}
+\@LN{418}{10}
+\@LN{419}{10}
+\@LN{420}{10}
+\@LN{421}{10}
+\bibcite{guo2017calibration}{{12}{}{{}}{{}}}
+\bibcite{markov2023holistic}{{13}{}{{}}{{}}}
+\bibcite{ouyang2022training}{{14}{}{{}}{{}}}
+\bibcite{rafailov2024direct}{{15}{}{{}}{{}}}
+\bibcite{bai2022constitutional}{{16}{}{{}}{{}}}
+\bibcite{vidgen2024introducing}{{17}{}{{}}{{}}}
+\bibcite{khosla2020supervised}{{18}{}{{}}{{}}}
+\bibcite{gao2021simcse}{{19}{}{{}}{{}}}
+\bibcite{kaushik2020learning}{{20}{}{{}}{{}}}
+\bibcite{zbontar2021barlow}{{21}{}{{}}{{}}}
+\bibcite{gu2018mixed}{{22}{}{{}}{{}}}
+\bibcite{bourgain1985lipschitz}{{23}{}{{}}{{}}}
+\bibcite{linial1995geometry}{{24}{}{{}}{{}}}
+\bibcite{sarkar2011low}{{25}{}{{}}{{}}}
+\bibcite{sala2018representation}{{26}{}{{}}{{}}}
+\bibcite{genevay2018learning}{{27}{}{{}}{{}}}
+\bibcite{feydy2019interpolating}{{28}{}{{}}{{}}}
+\bibcite{bartlett2002rademacher}{{29}{}{{}}{{}}}
+\bibcite{koltchinskii2002empirical}{{30}{}{{}}{{}}}
+\citation{linial1995geometry,bourgain1985lipschitz}
+\citation{sarkar2011low}
+\@LN{422}{11}
+\@LN{423}{11}
+\@LN{424}{11}
+\@LN{425}{11}
+\@LN{426}{11}
+\@LN{427}{11}
+\@LN{428}{11}
+\@LN{429}{11}
+\@LN{430}{11}
+\@LN{431}{11}
+\@LN{432}{11}
+\@LN{433}{11}
+\@LN{434}{11}
+\@LN{435}{11}
+\@LN{436}{11}
+\@LN{437}{11}
+\@LN{438}{11}
+\@LN{439}{11}
+\@LN{440}{11}
+\@LN{441}{11}
+\@LN{442}{11}
+\@LN{443}{11}
+\@LN{444}{11}
+\@LN{445}{11}
+\@LN{446}{11}
+\@LN{447}{11}
+\@LN{448}{11}
+\@LN{449}{11}
+\@LN{450}{11}
+\@LN{451}{11}
+\@LN{452}{11}
+\@LN{453}{11}
+\@LN{454}{11}
+\@LN{455}{11}
+\@LN{456}{11}
+\@LN{457}{11}
+\@LN{458}{11}
+\@LN{459}{11}
+\@LN{460}{11}
+\@LN{461}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Proofs}{}{section.7}\protected@file@percent }
+\newlabel{app:proofs}{{7}{}{Proofs}{section.7}{}}
+\newlabel{app:proofs@cref}{{[section][7][]7}{[][12][]}}
+\@LN{462}{11}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Proof of Proposition\nobreakspace  {}\ref  {prop:hyp-dim}}{}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Part (a): Euclidean lower bound.}{}{paragraph*.21}\protected@file@percent }
+\@LN{463}{11}
+\@LN{464}{11}
+\@LN{465}{11}
+\@LN{466}{11}
+\citation{sala2018representation}
+\citation{genevay2018learning,feydy2019interpolating}
+\citation{bartlett2002rademacher,koltchinskii2002empirical}
+\citation{bartlett2002rademacher}
+\@writefile{toc}{\contentsline {paragraph}{Part (b): Hyperbolic upper bound.}{}{paragraph*.22}\protected@file@percent }
+\@LN{467}{12}
+\@LN{468}{12}
+\@LN{469}{12}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Proof of Proposition\nobreakspace  {}\ref  {prop:ot-margin}}{}{subsection.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Part (i): from Sinkhorn divergence to margin.}{}{paragraph*.23}\protected@file@percent }
+\@LN{470}{12}
+\@LN{471}{12}
+\@LN{472}{12}
+\@LN{473}{12}
+\@LN{474}{12}
+\@LN{475}{12}
+\@writefile{toc}{\contentsline {paragraph}{Part (ii): from margin to generalization.}{}{paragraph*.24}\protected@file@percent }
+\@LN{476}{12}
+\@LN{477}{12}
+\@LN{478}{12}
+\@LN{479}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Appendix: Supplementary Figures and Analysis}{}{section.8}\protected@file@percent }
+\@LN{480}{13}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Baseline Comparison}{}{subsection.8.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Simple classification baselines (LR, MLP, Euclidean projection head) vs.\ DeepSafe across all 9 held-out benchmarks. All baselines use the same frozen Qwen3-Embedding-0.6B encoder but without hyperbolic projection or DeepSafe training objectives.\relax }}{}{figure.caption.25}\protected@file@percent }
+\newlabel{fig:baselines}{{1}{}{Simple classification baselines (LR, MLP, Euclidean projection head) vs.\ DeepSafe across all 9 held-out benchmarks. All baselines use the same frozen Qwen3-Embedding-0.6B encoder but without hyperbolic projection or DeepSafe training objectives.\relax }{figure.caption.25}{}}
+\newlabel{fig:baselines@cref}{{[figure][1][]1}{[][13][]}}
+\@LN{481}{13}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Per-Benchmark Accuracy and Model Comparison}{}{subsection.8.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Accuracy comparison across all 9 held-out benchmarks. DeepSafe (blue, solid) consistently achieves top accuracy. Error bars indicate $\pm 1$ standard deviation across 5 random seeds.\relax }}{}{figure.caption.26}\protected@file@percent }
+\newlabel{fig:benchmark_accuracy}{{2}{}{Accuracy comparison across all 9 held-out benchmarks. DeepSafe (blue, solid) consistently achieves top accuracy. Error bars indicate $\pm 1$ standard deviation across 5 random seeds.\relax }{figure.caption.26}{}}
+\newlabel{fig:benchmark_accuracy@cref}{{[figure][2][]2}{[][14][]}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Performance radar chart: DeepSafe vs.\nobreakspace  {}5 SOTA models across 9 benchmarks. DeepSafe (solid blue line with shaded 95\% confidence interval) demonstrates consistent performance across diverse safety domains.\relax }}{}{figure.caption.27}\protected@file@percent }
+\newlabel{fig:radar}{{3}{}{Performance radar chart: DeepSafe vs.~5 SOTA models across 9 benchmarks. DeepSafe (solid blue line with shaded 95\% confidence interval) demonstrates consistent performance across diverse safety domains.\relax }{figure.caption.27}{}}
+\newlabel{fig:radar@cref}{{[figure][3][]3}{[][14][]}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Head-to-head comparison across 9 benchmarks $\times $ 9 SOTA models (81 unique pairings). Cell $(i,j)$ shows the fraction of benchmarks where row model $i$ achieves higher accuracy than column model $j$. Red = high win rate, Blue = low. DeepSafe row highlighted with black border.\relax }}{}{figure.caption.28}\protected@file@percent }
+\newlabel{fig:head_to_head}{{4}{}{Head-to-head comparison across 9 benchmarks $\times $ 9 SOTA models (81 unique pairings). Cell $(i,j)$ shows the fraction of benchmarks where row model $i$ achieves higher accuracy than column model $j$. Red = high win rate, Blue = low. DeepSafe row highlighted with black border.\relax }{figure.caption.28}{}}
+\newlabel{fig:head_to_head@cref}{{[figure][4][]4}{[][15][]}}
+\@LN{482}{16}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3}Throughput vs.\ Accuracy}{}{subsection.8.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Throughput vs.\ accuracy: DeepSafe achieves strong accuracy with competitive throughput (samples/second), benefiting from batched embedding-based inference. Diamond marker = DeepSafe with $\pm 1\sigma $ error bar.\relax }}{}{figure.caption.29}\protected@file@percent }
+\newlabel{fig:speed_vs_accuracy}{{5}{}{Throughput vs.\ accuracy: DeepSafe achieves strong accuracy with competitive throughput (samples/second), benefiting from batched embedding-based inference. Diamond marker = DeepSafe with $\pm 1\sigma $ error bar.\relax }{figure.caption.29}{}}
+\newlabel{fig:speed_vs_accuracy@cref}{{[figure][5][]5}{[][16][]}}
+\@LN{483}{17}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.4}Ablation: Hyperbolic vs.\ Euclidean}{}{subsection.8.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Ablation: Euclidean vs.\ Hyperbolic projection heads at four hidden dimensions (64, 128, 256, 512), trained with BCE loss only (no DeepSafe loss components). Hyperbolic geometry alone provides no consistent advantage over Euclidean projection. The benefit emerges only when combined with the full DeepSafe loss.\relax }}{}{figure.caption.30}\protected@file@percent }
+\newlabel{fig:ablation}{{6}{}{Ablation: Euclidean vs.\ Hyperbolic projection heads at four hidden dimensions (64, 128, 256, 512), trained with BCE loss only (no DeepSafe loss components). Hyperbolic geometry alone provides no consistent advantage over Euclidean projection. The benefit emerges only when combined with the full DeepSafe loss.\relax }{figure.caption.30}{}}
+\newlabel{fig:ablation@cref}{{[figure][6][]6}{[][17][]}}
+\@LN{484}{18}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.5}Representation Space Visualization}{}{subsection.8.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces t-SNE visualization of original frozen embeddings (left, 2D silhouette $\approx 0.01$) vs.\ DeepSafe-projected embeddings (right, 2D silhouette $\approx 0.35$). The projection head learns to structurally separate safe from unsafe content; see \S  \ref  {sec:exp} for full 256-dimensional silhouette scores.\relax }}{}{figure.caption.31}\protected@file@percent }
+\newlabel{fig:tsne}{{7}{}{t-SNE visualization of original frozen embeddings (left, 2D silhouette $\approx 0.01$) vs.\ DeepSafe-projected embeddings (right, 2D silhouette $\approx 0.35$). The projection head learns to structurally separate safe from unsafe content; see \S \ref {sec:exp} for full 256-dimensional silhouette scores.\relax }{figure.caption.31}{}}
+\newlabel{fig:tsne@cref}{{[figure][7][]7}{[][18][]}}
+\@LN{485}{18}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.6}Trivial Baseline Sanity Check}{}{subsection.8.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Trivial baselines (predict-all-safe, majority class) vs.\ DeepSafe. On benchmarks with severe class imbalance (e.g., DoNotAnswer, 98.6\% safe), naive strategies achieve high accuracy but zero MCC, highlighting the need for macro-averaged metrics alongside accuracy.\relax }}{}{figure.caption.32}\protected@file@percent }
+\newlabel{fig:trivial_baselines}{{8}{}{Trivial baselines (predict-all-safe, majority class) vs.\ DeepSafe. On benchmarks with severe class imbalance (e.g., DoNotAnswer, 98.6\% safe), naive strategies achieve high accuracy but zero MCC, highlighting the need for macro-averaged metrics alongside accuracy.\relax }{figure.caption.32}{}}
+\newlabel{fig:trivial_baselines@cref}{{[figure][8][]8}{[][19][]}}
+\@LN{486}{18}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.7}Extended Analysis}{}{subsection.8.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Per-Benchmark Details.}{}{paragraph*.33}\protected@file@percent }
+\@LN{487}{18}
+\@LN{488}{18}
+\@LN{489}{18}
+\@LN{490}{18}
+\@LN{491}{18}
+\@writefile{toc}{\contentsline {paragraph}{Inference Efficiency Details.}{}{paragraph*.34}\protected@file@percent }
+\@LN{492}{19}
+\@LN{493}{19}
+\@LN{494}{19}
+\@LN{495}{19}
+\@LN{496}{19}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.8}Training--Evaluation Overlap Audit}{}{subsection.8.8}\protected@file@percent }
+\newlabel{app:overlap}{{8.8}{}{Training--Evaluation Overlap Audit}{subsection.8.8}{}}
+\newlabel{app:overlap@cref}{{[subsection][8][8]8.8}{[][20][]}}
+\@LN{497}{19}
+\@LN{498}{19}
+\@LN{499}{19}
+\@LN{500}{19}
+\@LN{501}{19}
+\@LN{502}{19}
+\@LN{503}{19}
+\@LN{504}{19}
+\@LN{505}{19}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.9}Counterfactual Pair Ablation}{}{subsection.8.9}\protected@file@percent }
+\newlabel{app:cf_ablation}{{8.9}{}{Counterfactual Pair Ablation}{subsection.8.9}{}}
+\newlabel{app:cf_ablation@cref}{{[subsection][9][8]8.9}{[][20][]}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Counterfactual loss ablation on held-out validation set (single seed, $t=0.5$). $\gamma =0.5$, margin $m_{\text  {cf}}=-0.3$, 4,993 pairs.\relax }}{}{table.caption.35}\protected@file@percent }
+\newlabel{tab:ablation_cf}{{4}{}{Counterfactual loss ablation on held-out validation set (single seed, $t=0.5$). $\gamma =0.5$, margin $m_{\text {cf}}=-0.3$, 4,993 pairs.\relax }{table.caption.35}{}}
+\newlabel{tab:ablation_cf@cref}{{[table][4][]4}{[][20][]}}
+\@LN{506}{19}
+\@LN{507}{19}
+\@LN{508}{19}
+\@LN{509}{19}
+\@LN{510}{19}
+\@LN{511}{19}
+\@LN{512}{19}
+\@LN{513}{19}
+\@LN{514}{19}
+\@LN{515}{19}
+\@LN{516}{19}
+\@LN{517}{19}
+\@LN{518}{19}
+\@LN{519}{19}
+\@LN{520}{19}
+\@LN{521}{19}
+\@LN{522}{19}
+\@LN{523}{19}
+\@LN{524}{19}
+\@LN{525}{19}
+\@LN{526}{19}
+\@LN{527}{19}
+\@LN{528}{19}
+\@LN{529}{20}
+\@LN{530}{20}
+\@LN{531}{20}
+\@LN{532}{20}
+\@LN{533}{20}
+\@LN{534}{20}
+\@LN{535}{20}
+\@LN{536}{20}
+\@LN{537}{20}
+\@LN{538}{20}
+\@LN{539}{20}
+\@LN{540}{20}
+\@LN{541}{20}
+\@LN{542}{20}
+\@LN{543}{20}
+\@LN{544}{20}
+\@LN{545}{20}
+\@LN{546}{20}
+\@LN{547}{20}
+\@LN{548}{20}
+\@LN{549}{20}
+\@LN{550}{20}
+\@LN{551}{20}
+\@LN{552}{20}
+\@LN{553}{20}
+\@LN{554}{20}
+\@LN{555}{20}
+\@LN{556}{20}
+\@LN{557}{20}
+\@LN{558}{20}
+\@LN{559}{20}
+\@LN{560}{20}
+\@LN{561}{20}
+\@LN{562}{20}
+\@LN{563}{20}
+\@LN{564}{20}
+\@LN{565}{20}
+\@LN{566}{20}
+\@LN{567}{20}
+\@LN{568}{20}
+\@LN{569}{20}
+\@LN{570}{20}
+\@LN{571}{20}
+\@LN{572}{20}
+\@LN{573}{21}
+\@LN{574}{21}
+\@LN{575}{21}
+\@LN{576}{21}
+\@LN{577}{21}
+\@LN{578}{21}
+\@LN{579}{21}
+\@LN{580}{21}
+\@LN{581}{21}
+\@LN{582}{21}
+\@LN{583}{21}
+\@LN{584}{21}
+\@LN{585}{21}
+\@LN{586}{21}
+\@LN{587}{21}
+\@LN{588}{21}
+\@LN{589}{21}
+\@LN{590}{21}
+\@LN{591}{21}
+\@LN{592}{21}
+\@LN{593}{21}
+\@LN{594}{21}
+\@LN{595}{21}
+\@LN{596}{21}
+\@LN{597}{21}
+\@LN{598}{21}
+\@LN{599}{21}
+\@LN{600}{21}
+\@LN{601}{21}
+\@LN{602}{21}
+\@LN{603}{21}
+\@LN{604}{21}
+\@LN{605}{21}
+\@LN{606}{21}
+\@LN{607}{21}
+\@LN{608}{21}
+\@LN{609}{21}
+\@LN{610}{21}
+\@LN{611}{21}
+\@LN{612}{21}
+\@LN{613}{21}
+\@LN{614}{21}
+\@LN{615}{21}
 \providecommand\NAT@force@numbers{}\NAT@force@numbers
-\@LN{433}{17}
-\@LN{434}{17}
-\@LN{435}{17}
-\@LN{436}{17}
-\@LN{437}{17}
-\@LN{438}{17}
-\@LN{439}{17}
-\@LN{440}{17}
-\@LN{441}{17}
-\@LN{442}{17}
-\@LN{443}{17}
-\@LN{444}{17}
-\@LN{445}{17}
-\@LN{446}{17}
-\@LN{447}{17}
-\@LN{448}{17}
-\@LN{449}{17}
-\@LN{450}{17}
-\@LN{451}{17}
-\@LN{452}{17}
-\@LN{453}{17}
-\@LN{454}{17}
-\@LN{455}{17}
-\@LN{456}{17}
-\@LN{457}{17}
-\@LN{458}{17}
-\@LN{459}{17}
-\@LN{460}{17}
-\@LN{461}{17}
-\@LN{462}{17}
-\@LN{463}{17}
-\@LN{464}{17}
-\@LN{465}{17}
-\@LN{466}{17}
-\@LN{467}{17}
-\gdef \@abspage@last{18}
+\@LN{616}{22}
+\@LN{617}{22}
+\@LN{618}{22}
+\@LN{619}{22}
+\@LN{620}{22}
+\@LN{621}{22}
+\@LN{622}{22}
+\@LN{623}{22}
+\@LN{624}{22}
+\@LN{625}{22}
+\@LN{626}{22}
+\@LN{627}{22}
+\@LN{628}{22}
+\@LN{629}{22}
+\@LN{630}{22}
+\@LN{631}{22}
+\gdef \@abspage@last{23}
