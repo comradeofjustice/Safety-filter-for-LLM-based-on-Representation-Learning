@@ -67,16 +67,16 @@ def compute_silhouette_2d(emb_2d, labels):
 def main():
     print("Generating side-by-side t-SNE comparison...")
 
-    # Load embeddings
-    raw = np.load(PROJ / "embeddings" / "qwen3-embedding-8B" / "test.npy")
-    raw_labels = np.load(PROJ / "embeddings" / "qwen3-embedding-8B" / "test_labels.npy")
+    # Load embeddings (mmap to avoid OOM)
+    raw = np.load(PROJ / "embeddings" / "qwen3-embedding-8B" / "test.npy", mmap_mode="r")
+    raw_labels = np.load(PROJ / "embeddings" / "qwen3-embedding-8B" / "test_labels.npy", mmap_mode="r")
 
     # Subsample
-    n_max = 3000
+    n_max = 2500
     rng = np.random.RandomState(42)
     idx = rng.choice(len(raw), min(n_max, len(raw)), replace=False)
-    raw_sample = raw[idx]
-    raw_labels_sample = raw_labels[idx]
+    raw_sample = np.array(raw[idx], dtype=np.float32)
+    raw_labels_sample = np.array(raw_labels[idx])
 
     # Project through DeepSafe head on CPU
     print("  Projecting embeddings through DeepSafe projection head (CPU)...")
@@ -88,11 +88,11 @@ def main():
 
     # t-SNE on both
     print("  Computing t-SNE for raw embeddings...")
-    tsne_raw = TSNE(n_components=2, perplexity=30, random_state=42, n_jobs=6)
+    tsne_raw = TSNE(n_components=2, perplexity=30, random_state=42, n_jobs=1)
     raw_2d = tsne_raw.fit_transform(raw_sample)
 
     print("  Computing t-SNE for projected embeddings...")
-    tsne_proj = TSNE(n_components=2, perplexity=30, random_state=42, n_jobs=6)
+    tsne_proj = TSNE(n_components=2, perplexity=30, random_state=42, n_jobs=1)
     proj_2d = tsne_proj.fit_transform(projected)
 
     # Silhouette scores
@@ -106,7 +106,7 @@ def main():
     labels = {0: "Safe", 1: "Unsafe"}
 
     for ax, emb_2d, title, sil in [
-        (ax1, raw_2d, "Original Frozen Embeddings\n(Qwen3-Embedding-8B)", sil_raw),
+        (ax1, raw_2d, "Original Frozen Embeddings\n(Qwen3-Embedding-0.6B)", sil_raw),
         (ax2, proj_2d, "DeepSafe-v3 Projected Embeddings\n(Hyperbolic + Neural Classifier)", sil_proj),
     ]:
         for label_val in sorted(np.unique(raw_labels_sample)):

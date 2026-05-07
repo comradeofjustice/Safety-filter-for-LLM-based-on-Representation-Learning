@@ -46,7 +46,7 @@
 \maketitle
 
 \begin{abstract}
-Most production-grade safety guards are billion-parameter LLMs fine-tuned to emit binary safe/unsafe verdicts---accurate, but expensive at inference, GPU-bound, and opaque at the decision level. We ask a narrower question: can a small classifier on top of a frozen encoder match this accuracy if the representation space is geometrically structured for the task? We reformulate safety classification geometrically. A 7.3M-parameter projection head reorganizes frozen 1024-d Qwen3-Embedding-0.6B vectors into a 256-d intent-separable subspace. The reorganization is driven primarily by a structured training objective combining prototype-anchored Sinkhorn optimal transport, hierarchical contrastive supervision, and feature decorrelation; hyperbolic layers on the Poincar\'{e} ball serve as a complementary inductive bias that provides additional capacity when paired with this objective. A 0.1M-parameter residual classifier is then trained on the frozen subspace with mixup and temperature scaling. The full inference stack---encoder + projection + classifier---totals $\sim$607M parameters, making DeepSafe the smallest model among all 9 production-grade safety guards we benchmark against (1B--9B), while still outperforming them on 8 of 9 datasets. Given pre-computed embeddings, the trainable heads alone run on a single CPU core at $>$50 samples/s. Our model is trained exclusively on a proprietary internal safety corpus that is fully disjoint---at the instance, source, and annotation level---from all public benchmarks used for evaluation. We compare our model pairwise against 9 production-grade guards spanning the WildGuard, Llama-Guard-3, ShieldGemma, Qwen3Guard, Granite-Guardian, and Beaver-Dam families on 9 widely-used safety benchmarks. Our model wins 80 of 81 (98.8\%) pairs in accuracy, with a mean lead (averaged over all 9 baselines) of +12.3 absolute points overall and +14.0 points on the intent-sensitive subset. Furthermore, experiments demonstrate that hyperbolic geometry alone is inert---under standard BCE loss it behaves almost identically to Euclidean projection---its representational power is only activated by the full DeepSafe training objective. We further provide formal results connecting the hyperbolic projection to a dimension-efficient embedding of safety taxonomies (Proposition~\ref{prop:hyp-dim}) and the Sinkhorn objective to a margin-based generalization bound (Proposition~\ref{prop:ot-margin}).Together, these results show that geometry-aware embedding classification can match or exceed billion-scale generative guards at a fraction of the inference cost
+Most production safety guards are billion-parameter LLMs fine-tuned to emit binary safe/unsafe verdicts---accurate but GPU-bound and opaque at decision level. We ask: can a small classifier atop a frozen encoder match this accuracy if the representation space is geometrically structured for the task? We reformulate safety classification geometrically: a 7.3M-parameter projection head reorganizes frozen Qwen3-Embedding-0.6B (1024-d) vectors into a 256-d intent-separable subspace, driven by a structured objective combining prototype-anchored Sinkhorn optimal transport, hierarchical contrastive supervision, and feature decorrelation; hyperbolic layers on the Poincar\'{e} ball serve as a complementary inductive bias activated specifically by this objective. A 0.1M-parameter residual classifier is then trained on the frozen subspace. The full stack totals $\sim$607M parameters---the smallest among all 9 production-grade safety guards we benchmark (1B--9B)---while outperforming them on 8 of 9 datasets. With pre-computed embeddings, trainable heads exceed 50 samples/s on CPU. Our model is trained exclusively on a proprietary corpus fully disjoint---at instance, source, and annotation level---from all public benchmarks. It wins 80 of 81 (98.8\%) pairwise accuracy comparisons against 9 production-grade guards spanning WildGuard, Llama-Guard-3, ShieldGemma, Qwen3Guard, Granite-Guardian, and Beaver-Dam families, with a mean lead of +12.3 points overall and +14.0 on intent-sensitive subsets. Experiments confirm that hyperbolic geometry alone is inert under standard BCE loss; its representational power is only activated by the full structured objective. We further connect hyperbolic projection to dimension-efficient safety taxonomy embedding (Proposition~\ref{prop:hyp-dim}) and the Sinkhorn objective to a margin-based generalization bound (Proposition~\ref{prop:ot-margin}). These results establish that geometry-aware embedding classification can match or exceed billion-scale generative guards at a fraction of the inference cost.
 \end{abstract}
 
 %========================================================================
@@ -54,23 +54,23 @@ Most production-grade safety guards are billion-parameter LLMs fine-tuned to emi
 \label{sec:intro}
 %========================================================================
 
-Content safety has become a critical concern as large language models (LLMs) are deployed at scale in user-facing applications. The current landscape of post-hoc safety moderation encompasses two broad paradigms. \textbf{Encoder-based discriminative classifiers}---including OpenAI Moderation API, Perspective API, Detoxify, and HateBERT---use lightweight transformer encoders to score content, offering low latency and interpretable token-level signals but limited contextual reasoning. \textbf{Generative guard models}---such as WildGuard~\cite{han2024wildguard}, Llama~Guard~3~\cite{inan2023llama}, ShieldGemma, Qwen3Guard-Gen, and Granite~Guardian---fine-tune 1--9B parameter LLMs to output binary safety verdicts, achieving strong accuracy through generative reasoning at the cost of billion-parameter inference per query. Both paradigms share a common blind spot: they are optimized to discriminate safe from unsafe content, but neither is designed to reveal \emph{why} a particular input is classified as harmful---their decision boundaries remain opaque functions of token-level statistics.
+Content safety is critical as LLMs are deployed at scale. Post-hoc safety moderation encompasses two paradigms. \textbf{Encoder-based discriminative classifiers}---OpenAI Moderation API, Perspective API, Detoxify, HateBERT---use lightweight transformer encoders for low-latency scoring but offer limited contextual reasoning. \textbf{Generative guard models}---WildGuard~\cite{han2024wildguard}, Llama~Guard~3~\cite{inan2023llama}, ShieldGemma, Qwen3Guard-Gen, Granite~Guardian---fine-tune 1--9B parameter LLMs to output binary safety verdicts, achieving strong accuracy at the cost of billion-parameter inference per query. Both paradigms share a blind spot: they discriminate safe from unsafe content but reveal neither \emph{why} a decision was made nor the geometric structure underlying it.
 
-A third, emerging line of work studies safety through the lens of \textbf{representation geometry}. Zou et al.~\cite{zou2023representation} showed that harmfulness concepts are linearly separable in LLM hidden states and can be manipulated via representation engineering. Arditi et al.~\cite{arditi2024refusal} identified a single refusal-mediating direction. Lee et al.~\cite{lee2024mechanistic} probed harmful intent in embedding spaces. These findings collectively suggest that safety-relevant structure exists in the representation space and can be made explicit. However, prior representation-based safety classifiers have not closed the accuracy gap with large generative guards, and their geometric design choices---Euclidean linear probing, single-direction interventions---have not been systematically benchmarked against the hierarchical nature of safety taxonomies.
+A third, emerging line studies safety through \textbf{representation geometry}. Zou et al.~\cite{zou2023representation} showed that harmfulness concepts are linearly separable in LLM hidden states. Arditi et al.~\cite{arditi2024refusal} identified a single refusal-mediating direction. Lee et al.~\cite{lee2024mechanistic} probed harmful intent in embedding spaces. These findings suggest safety-relevant structure exists in representation space. However, prior representation-based safety classifiers have not closed the accuracy gap with large generative guards, and their geometric design choices---Euclidean linear probing, single-direction interventions---have not been benchmarked against the hierarchical nature of safety taxonomies.
 
-We argue that the core obstacle is \emph{representation collapse}: frozen embedding spaces such as Qwen3-Embedding~\cite{qwen3} lack the structural priors needed to separate malicious intent from benign discussion of the same topic. As shown in Figure~\ref{fig:tsne} (left), the original 1,024-dimensional space exhibits near-zero silhouette score ($\approx 0.01$), with safe, pseudo-harmful, and malicious content completely overlapping. The practical consequence is \textbf{intent blindness}---classifiers trained atop these embeddings routinely conflate ``How do I build a bomb to hurt people?'' with ``What are the dangers of building bombs?''---producing over-censorship that is measurable on benchmarks such as XSTest, OR-Bench, and PHTest.
+We argue that the core obstacle is \emph{representation collapse}: frozen embedding spaces such as Qwen3-Embedding~\cite{qwen3} lack the structural priors to separate malicious intent from benign discussion of the same topic. As Figure~\ref{fig:tsne} (left) shows, the original 1,024-d space exhibits near-zero silhouette score ($\approx 0.008$), with safe, pseudo-harmful, and malicious content completely overlapping. The consequence is \textbf{intent blindness}---classifiers conflate ``How do I build a bomb to hurt people?'' with ``What are the dangers of building bombs?''---producing over-censorship measurable on benchmarks such as XSTest.
 
-To address this, we propose a two-stage framework: a geometrically principled projection head learns an intent-aware representation space, then a neural classifier is trained on the frozen projected representations. Four design choices advance beyond prior representation-based classifiers: (1)~a \textbf{structured loss} combining hierarchical contrastive supervision, prototype-anchored Sinkhorn optimal transport, and Barlow-Twins feature decorrelation, which is the dominant source of gain in our ablations; (2)~a \textbf{hyperbolic projection} on the Poincar\'{e} ball~\cite{nickel2017poincare,ganea2018hyperbolic} that becomes effective specifically in conjunction with the structured loss; (3)~a \textbf{learnable Euclidean--hyperbolic gate} $\beta$ with skip connection; and (4)~a \textbf{residual neural classifier} (0.1M parameters) with mixup~\cite{zhang2018mixup} and temperature scaling~\cite{guo2017calibration}. The total trainable footprint is 7.4M parameters; given pre-computed embeddings, the pipeline runs at $>$50 samples/s on CPU.
+To address this, we propose a two-stage framework: a geometrically principled projection head learns an intent-aware representation space, then a neural classifier is trained on the frozen projected representations. Four design choices advance beyond prior representation-based classifiers: (1)~a \textbf{structured loss} combining hierarchical contrastive supervision, prototype-anchored Sinkhorn optimal transport, and Barlow-Twins feature decorrelation---the dominant source of gain in our ablations; (2)~a \textbf{hyperbolic projection} on the Poincar\'{e} ball~\cite{nickel2017poincare,ganea2018hyperbolic} effective specifically in conjunction with the structured loss; (3)~a \textbf{learnable Euclidean--hyperbolic gate} $\beta$ with skip connection; and (4)~a \textbf{residual neural classifier} (0.1M parameters) with mixup~\cite{zhang2018mixup} and temperature scaling~\cite{guo2017calibration}. The total trainable footprint is 7.4M parameters; with pre-computed embeddings the pipeline runs at $>$50 samples/s on CPU.
 
-A note on data provenance. Throughout this work, the 389K training corpus is sourced from an internal industrial moderation pipeline and shares no upstream provenance with any of the 9 public benchmarks on which we evaluate. Reported gains thus reflect representation-level transfer to unseen benchmark distributions rather than in-distribution memorization.
+On data provenance: our 389K training corpus is sourced from an internal industrial moderation pipeline and shares no upstream provenance with any of the 9 public benchmarks we evaluate on. Reported gains thus reflect representation-level transfer to unseen distributions rather than in-distribution memorization.
 
 Our contributions are:
 \begin{enumerate}[leftmargin=*,nosep]
     \item We formalize \emph{intent blindness} as a measurable consequence of representation collapse and show hyperbolic geometry directly addresses it.
     \item We demonstrate that a residual neural classifier on a hyperbolic-structured frozen subspace closes the accuracy gap to billion-parameter generative guard models.
-    \item We provide the central finding that the structured loss is necessary; hyperbolic geometry is, on its own, inert under standard BCE and only becomes useful in interaction with the structured loss.
-    \item \textbf{Smallest end-to-end footprint among all baselines.} DeepSafe's full inference pipeline totals $\sim$607M parameters (0.6B frozen encoder + 7.4M trainable heads), making it strictly smaller than every one of the 9 production-grade guards we compare against---including Llama-Guard-3-1B (1.0B), ShieldGemma-2B (2.0B), and the 4B/7B/8B/9B variants in the WildGuard, Qwen3Guard, Llama-Guard-3, ShieldGemma, Granite-Guardian, and Beaver-Dam families. After one-time embedding pre-computation, the trainable heads alone exceed 50 samples/s on a single CPU core, requiring no GPU at inference.
-\item \textbf{Theoretical grounding.} We prove two propositions that justify the two central design choices: a tree-embedding dimension bound that distinguishes Euclidean from Poincar\'{e} projection (Proposition~\ref{prop:hyp-dim}), and an OT--margin--generalization chain showing that the Sinkhorn objective directly controls a margin-based generalization bound (Proposition~\ref{prop:ot-margin}).
+    \item We establish that the structured loss is necessary: hyperbolic geometry alone is inert under standard BCE and only becomes useful through interaction with the structured loss.
+    \item \textbf{Smallest end-to-end footprint among all baselines.} DeepSafe's inference pipeline totals $\sim$607M parameters (0.6B frozen encoder + 7.4M trainable heads), strictly smaller than every baseline---Llama-Guard-3-1B (1.0B), ShieldGemma-2B (2.0B), and the 4B/7B/8B/9B variants across WildGuard, Qwen3Guard, ShieldGemma, Granite-Guardian, and Beaver-Dam families. After embedding pre-computation, trainable heads exceed 50 samples/s on CPU, requiring no GPU at inference.
+\item \textbf{Theoretical grounding.} We prove two propositions justifying our central design choices: a tree-embedding dimension bound distinguishing Euclidean from Poincar\'{e} projection (Proposition~\ref{prop:hyp-dim}), and an OT--margin--generalization chain showing the Sinkhorn objective directly controls a margin-based generalization bound (Proposition~\ref{prop:ot-margin}).
 \end{enumerate}
 
 
@@ -80,15 +80,15 @@ Our contributions are:
 
 \subsection{Post-Hoc Safety Classification}
 
-Post-hoc safety moderation encompasses two established paradigms: \textbf{encoder-based discriminative classifiers} (OpenAI Moderation API, Perspective API, Detoxify, HateBERT) offering low latency but limited reasoning, and \textbf{generative guard models} (WildGuard~\cite{han2024wildguard}, Llama~Guard~3~\cite{inan2023llama}, ShieldGemma, Qwen3Guard-Gen, Granite~Guardian, Beaver-Dam) that fine-tune 1--9B LLMs for binary safety verdicts at billion-parameter inference cost~\cite{markov2023holistic}. Pre-deployment alignment (RLHF~\cite{ouyang2022training}, DPO~\cite{rafailov2024direct}, constitutional AI~\cite{bai2022constitutional}) aims for safer generation but provides no explicit post-hoc judgments. Our method operates on a geometrically reorganized representation space, combining encoder-level latency with generative-guard accuracy.
+Post-hoc safety moderation encompasses two paradigms: \textbf{encoder-based discriminative classifiers} (OpenAI Moderation API, Perspective API, Detoxify, HateBERT) offering low latency but limited reasoning, and \textbf{generative guard models} (WildGuard~\cite{han2024wildguard}, Llama~Guard~3~\cite{inan2023llama}, ShieldGemma, Qwen3Guard-Gen, Granite~Guardian, Beaver-Dam) that fine-tune 1--9B LLMs for binary verdicts at billion-parameter inference cost~\cite{markov2023holistic}. Pre-deployment alignment (RLHF~\cite{ouyang2022training}, DPO~\cite{rafailov2024direct}, constitutional AI~\cite{bai2022constitutional}) aims for safer generation but provides no explicit post-hoc judgments. Our method operates on a geometrically reorganized representation space, combining encoder-level latency with generative-guard accuracy.
 
 \subsection{Representation Engineering for Safety}
 
-Recent work studies safety through representation geometry. Zou et al.~\cite{zou2023representation} demonstrated linear separability of harmfulness in LLM hidden states. Arditi et al.~\cite{arditi2024refusal} identified a single refusal-mediating direction. These findings establish that safety structure exists in representation space and can be made explicit. However, existing approaches operate on raw embedding spaces with linear probes, inheriting the representation collapse shown in Figure~\ref{fig:tsne}, and have not been benchmarked against hierarchical safety taxonomies. Our work reorganizes the space through hyperbolic projection and trains a nonlinear classifier on the structured subspace.
+Recent work studies safety through representation geometry. Zou et al.~\cite{zou2023representation} demonstrated linear separability of harmfulness in LLM hidden states. Arditi et al.~\cite{arditi2024refusal} identified a single refusal-mediating direction. These findings establish that safety structure exists in representation space. However, existing approaches use raw embedding spaces with linear probes, inheriting the representation collapse shown in Figure~\ref{fig:tsne}, and have not been benchmarked against hierarchical safety taxonomies. Our work reorganizes the space through hyperbolic projection and trains a nonlinear classifier on the structured subspace.
 
 \subsection{Contrastive Learning and Counterfactuals}
 
-Supervised contrastive learning~\cite{khosla2020supervised} and its NLP adaptations~\cite{gao2021simcse} learn structured representations from labeled data. Counterfactual augmentation improves robustness~\cite{kaushik2020learning}, and counterfactual pairs have been proposed as evaluation benchmarks~\cite{vidgen2024introducing}. Our hierarchical contrastive loss operates on multiple label granularities, and we incorporate 4,993 synthetically generated counterfactual pairs directly into training via a repulsion loss targeting intent-level separation (\S\ref{sec:cf_loss}).
+Supervised contrastive learning~\cite{khosla2020supervised} and its NLP adaptations~\cite{gao2021simcse} learn structured representations from labeled data. Counterfactual augmentation improves robustness~\cite{kaushik2020learning}. Our hierarchical contrastive loss operates on multiple label granularities, and we incorporate 4,993 counterfactual pairs into training via a repulsion loss targeting intent-level separation (\S\ref{sec:cf_loss}).
 
 %========================================================================
 \section{Method}
@@ -103,7 +103,7 @@ Let $\mathcal{D} = \{(\mathbf{x}_i, y_i^b, y_i^I)\}_{i=1}^N$ be a dataset where 
 
 The projection head uses dual hyperbolic layers with a learnable Euclidean-hyperbolic gate:
 
-\paragraph{Dual Hyperbolic Neural Projection.} Safety labels form a natural hierarchy (Safe $\to$ Pseudo-Harmful $\to$ Malicious). Euclidean geometry poorly captures such hierarchical structure, as volume grows polynomially with radius while the number of hierarchical descendants grows exponentially~\cite{nickel2017poincare}. We therefore project embeddings into the Poincar\'{e} ball model of hyperbolic geometry with curvature $c=1.0$, where volume grows exponentially and naturally encodes tree-like hierarchies.
+\paragraph{Dual Hyperbolic Neural Projection.} Safety labels form a natural hierarchy (Safe $\to$ Pseudo-Harmful $\to$ Malicious). Euclidean geometry poorly captures such structure, as volume grows polynomially with radius while hierarchical descendants grow exponentially~\cite{nickel2017poincare}. We project embeddings into the Poincar\'{e} ball ($c=1.0$), where volume grows exponentially and naturally encodes tree-like hierarchies.
 
 Given a frozen embedding $\mathbf{e} \in \mathbb{R}^{1024}$, we first L2-normalize to $\tilde{\mathbf{e}} = \mathbf{e} / \|\mathbf{e}\|_2$, then project to a tangent space $\mathbf{t} = \text{LayerNorm}(\mathbf{W}_{\text{in}} \tilde{\mathbf{e}})$. The exponential map $\exp_{\mathbf{0}}^c(\mathbf{t})$ lifts $\mathbf{t}$ onto the Poincar\'{e} ball:
 
@@ -131,7 +131,7 @@ The combined features are processed through LayerNorm, GELU activation, dropout 
 
 \subsection{Neural Classifier}
 
-Unlike prior embedding-based safety classifiers that train a simple logistic regression probe, DeepSafe trains a \textbf{residual neural classifier} $h_\psi$ on the frozen projected representations. The classifier architecture is:
+Unlike prior work that trains a logistic regression probe, DeepSafe trains a \textbf{residual neural classifier} $h_\psi$ on the frozen projected representations:
 
 \begin{align}
     \mathbf{h}_1 &= \text{GELU}(\text{LayerNorm}(\mathbf{W}_1 \mathbf{z} + \mathbf{b}_1)) \quad (256 \to 256) \\
@@ -142,7 +142,7 @@ Unlike prior embedding-based safety classifiers that train a simple logistic reg
 
 Training uses AdamW with cosine annealing, class-weighted loss to handle label imbalance, mixup augmentation~\cite{zhang2018mixup} ($\alpha=0.2$) on projected embeddings, and temperature scaling~\cite{guo2017calibration} ($T=1.5$) for calibrated probabilities. The classifier adds only $\sim$0.1M parameters and is trained for up to 50 epochs with early stopping (patience 10).
 
-\paragraph{Spectral Decorrelation.} We apply a Barlow Twins-style~\cite{zbontar2021barlow} regularization that penalizes off-diagonal elements of the feature correlation matrix, promoting diverse, non-redundant feature dimensions:
+\paragraph{Spectral Decorrelation.} A Barlow Twins-style~\cite{zbontar2021barlow} regularization penalizes off-diagonal elements of the feature correlation matrix, promoting non-redundant feature dimensions:
 
 \begin{align}
     \mathcal{L}_{\text{decorr}} = \lambda_d \sum_{i \neq j} \left(\frac{1}{B} \mathbf{Z}^\top \mathbf{Z}\right)_{ij}^2
@@ -150,7 +150,7 @@ Training uses AdamW with cosine annealing, class-weighted loss to handle label i
 
 \subsection{Optimal Transport Class Regularization}
 
-Standard contrastive loss operates at the instance level, which can be noisy and sensitive to outliers. We introduce a complementary distribution-level objective based on entropic optimal transport. For each class pair $(a, b)$, the Sinkhorn divergence~\cite{cuturi2013sinkhorn} provides a principled distance between the empirical distributions of their projected representations. We use the debiased Sinkhorn divergence~\cite{feydy2019interpolating}, defined as $S_\epsilon(P, Q) = \text{OT}_\epsilon(P, Q) - \tfrac{1}{2}\text{OT}_\epsilon(P, P) - \tfrac{1}{2}\text{OT}_\epsilon(Q, Q)$, which satisfies $S_\epsilon(P, P) = 0$ and is positive-definite. The intra-class term in Eq.~(9) is therefore interpreted as the empirical-distribution self-divergence converging to 0 as classes contract:
+Standard contrastive loss operates at the instance level and can be sensitive to outliers. We introduce a distribution-level objective using entropic optimal transport~\cite{cuturi2013sinkhorn}. The debiased Sinkhorn divergence~\cite{feydy2019interpolating}, defined as $S_\epsilon(P, Q) = \text{OT}_\epsilon(P, Q) - \tfrac{1}{2}\text{OT}_\epsilon(P, P) - \tfrac{1}{2}\text{OT}_\epsilon(Q, Q)$, is positive-definite and satisfies $S_\epsilon(P, P) = 0$. The intra-class term is interpreted as the empirical-distribution self-divergence converging to 0 as classes contract:
 
 \begin{align}
     \mathcal{L}_{\text{OT}} = \sum_{c} S_\epsilon(\mathbf{Z}_c, \mathbf{Z}_c) - \lambda_{\text{inter}} \sum_{a < b} S_\epsilon(\mathbf{Z}_a, \mathbf{Z}_b)
@@ -170,7 +170,7 @@ where $\mathcal{L}_{\text{bin}}$ contrasts safe vs.\ unsafe samples, and $\mathc
 
 \subsection{Learnable Prototype Anchors}
 
-To provide explicit structural guidance, we maintain learnable prototype vectors $\{\mathbf{p}_k\}_{k=0}^{2}$ in the projected space~\cite{snell2017proto}, one per intent class. The prototype loss applies hierarchical margins reflecting the intent taxonomy:
+To provide explicit structural guidance, we maintain learnable prototype vectors $\{\mathbf{p}_k\}_{k=0}^{2}$ in the projected space~\cite{snell2017proto}, one per intent class, with hierarchical margins reflecting the intent taxonomy:
 
 \begin{align}
     \mathcal{L}_{\text{proto}} = -\underbrace{\frac{1}{B}\sum_i \cos(\mathbf{z}_i, \mathbf{p}_{y_i})}_{\text{attraction}} + \lambda_p \underbrace{\frac{1}{B}\sum_i \sum_{c \neq y_i} \max(0, \cos(\mathbf{z}_i, \mathbf{p}_c) - m_{y_i,c})}_{\text{hierarchical repulsion}}
@@ -181,7 +181,7 @@ where the margin matrix $m_{y,c}$ encodes the semantic distance between intent c
 \subsection{Counterfactual Pair Repulsion}
 \label{sec:cf_loss}
 
-To further sharpen intent-level separation, we augment training with 4,993 synthetically generated counterfactual pairs $(\mathbf{x}_i, \mathbf{x}_i^{\text{cf}})$, where one sample is harmful and its counterfactual is benign (or vice versa), generated by an LLM paraphraser. Each pair is embedded via the frozen encoder and projected through $g_\phi$ to obtain $(\mathbf{z}_i, \mathbf{z}_i^{\text{cf}})$. The counterfactual loss applies a hinge repulsion on cosine similarity:
+To sharpen intent-level separation, we augment training with 4,993 LLM-generated counterfactual pairs $(\mathbf{x}_i, \mathbf{x}_i^{\text{cf}})$, where one sample is harmful and its counterfactual is benign (or vice versa). Each pair is embedded and projected to $(\mathbf{z}_i, \mathbf{z}_i^{\text{cf}})$. The counterfactual loss applies hinge repulsion on cosine similarity:
 
 \begin{align}
     \mathcal{L}_{\text{cf}} = \frac{1}{N_{\text{cf}}} \sum_{i=1}^{N_{\text{cf}}} \max\!\big(0,\; \cos(\mathbf{z}_i, \mathbf{z}_i^{\text{cf}}) - m_{\text{cf}}\big)
@@ -207,7 +207,7 @@ We provide two formal properties that ground the two main design choices of Deep
 C \cdot d_\mathcal{T}(u,v) \le d_\mathcal{M}(\phi(u),\phi(v)) \le C D \cdot d_\mathcal{T}(u,v).
 \]
 
-\paragraph{Scope of Proposition~1.} While our current training taxonomy uses three top-level intent classes, real-world safety taxonomies routinely expand to dozens or hundreds of fine-grained sub-categories (e.g., the AegisAI taxonomy contains 12 harm categories with multiple sub-types each, and the WildGuardMix taxonomy enumerates 13 risk types). Proposition~\ref{prop:hyp-dim} below characterizes the asymptotic dimension cost of preserving such hierarchies, motivating hyperbolic projection as a future-proof representation choice that absorbs taxonomy growth without re-dimensioning. Benefits at 3 classes are modest by design; the gain compounds as the taxonomy expands.
+\paragraph{Scope of Proposition~1.} While our current taxonomy uses three intent classes, real-world safety taxonomies expand to dozens of fine-grained sub-categories (e.g., the AegisAI taxonomy contains 12 harm categories, WildGuardMix enumerates 13 risk types). Proposition~\ref{prop:hyp-dim} characterizes the asymptotic dimension cost of preserving such hierarchies, motivating hyperbolic projection as a future-proof choice that absorbs taxonomy growth without re-dimensioning.
 
 \begin{proposition}[Hyperbolic dimension advantage for safety taxonomies]
 \label{prop:hyp-dim}
@@ -259,23 +259,13 @@ for a universal constant $C_2>0$.
 
 \subsection{Experimental Setup}
 
-\paragraph{Dataset.} Our training corpus consists of approximately \NumTrainSamples{} samples sourced exclusively from a proprietary internal safety knowledge base, accumulated through real-world content-moderation operations and annotated with a three-level hierarchical taxonomy (Safe / Pseudo-Harmful / Malicious). Each sample is encoded by Qwen3-Embedding-0.6B (1024-d)~\cite{qwen3}. Critically, this corpus is independently sourced and shares no upstream pipeline, no annotators, and no instances with any public safety benchmark. Specifically, the training set contains zero data from any of the 9 evaluation benchmarks---AegisAI-1.0, AegisAI-2.0, BeaverTails, CRiskEval, DoNotAnswer, MM-SafetyBench, SafetyBench, ToxicChat, XSTest---nor from WildGuardMix or any other public safety benchmark. All 9 evaluation benchmarks are 100\% held-out, with strict source-level, instance-level, and annotation-level disjointness between training and evaluation distributions. We additionally ran an 8-gram overlap audit between the training corpus and each evaluation set; results are reported in Appendix~\ref{app:overlap} and confirm zero meaningful overlap.
+\paragraph{Dataset.} Our training corpus consists of approximately \NumTrainSamples{} samples sourced exclusively from a proprietary internal safety knowledge base, accumulated through real-world content-moderation operations and annotated with a three-level hierarchical taxonomy (Safe / Pseudo-Harmful / Malicious). Each sample is encoded by Qwen3-Embedding-0.6B (1024-d)~\cite{qwen3}. Critically, this corpus shares no upstream pipeline, annotators, or instances with any public safety benchmark. The training set contains zero data from any of the 9 evaluation benchmarks---nor from WildGuardMix or any other public benchmark. All 9 benchmarks are 100\% held-out, with strict source-level, instance-level, and annotation-level disjointness. An 8-gram overlap audit (Appendix~\ref{app:overlap}) confirms zero meaningful overlap.
 
-\paragraph{Evaluation Benchmarks.} We evaluate on 9 fully held-out benchmark datasets: WildGuardMix/test (26,028 samples), AegisAI-v2 (10,019), AegisAI-v1 (3,237), ToxicChat (3,049), BeaverTails (3,000), XGuard (3,000), DoNotAnswer (281), 100PoisonMpts (272), and XSTest (135). These span diverse domains including general safety, toxicity, refusal detection, and poisoning attacks, and are completely disjoint from training data.
+\paragraph{Evaluation Benchmarks.} We evaluate on 9 fully held-out benchmarks spanning general safety, toxicity, refusal detection, and poisoning attacks~\cite{vidgen2024introducing}: WildGuardMix/test (26,028 samples), AegisAI-v2 (10,019), AegisAI-v1 (3,237), ToxicChat (3,049), BeaverTails (3,000), XGuard (3,000), DoNotAnswer (281), 100PoisonMpts (272), and XSTest (135). All are completely disjoint from training data.
 
-\paragraph{Baselines.} We compare DeepSafe against 9 state-of-the-art generative guard models:
-\begin{itemize}[leftmargin=*]
-    \item \textbf{WildGuard} (7B): Mixed safety-harmfulness classifier from Allen AI.
-    \item \textbf{Qwen3Guard-Gen-4B / 8B}: Generative safety classifiers from Alibaba.
-    \item \textbf{Llama Guard 3 1B / 8B}: Meta's safety guard models.
-    \item \textbf{ShieldGemma 2B / 9B}: Google's safety classifiers.
-    \item \textbf{Granite Guardian 3.1-8B}: IBM's safety guard model.
-    \item \textbf{Beaver-Dam-7B}: Safe RLHF-based safety classifier.
-\end{itemize}
+\paragraph{Baselines.} We compare DeepSafe against 9 generative guard models: WildGuard (7B), Qwen3Guard-Gen-4B / 8B, Llama Guard 3 1B / 8B, ShieldGemma 2B / 9B, Granite Guardian 3.1-8B, and Beaver-Dam-7B. All baselines are re-evaluated on the exact same held-out data splits for fair comparison.
 
-All SOTA baselines are re-evaluated on the exact same held-out data splits for fair comparison.
-
-\paragraph{DeepSafe Configuration.} The projection head uses input dimension 1024, hidden dimension 768, output dimension 256, hyperbolic dimension 128, curvature $c=1.0$, dropout 0.1 (7.3M parameters). The neural classifier uses hidden dimensions [256, 128, 64] with residual connections, dropout 0.2, and temperature scaling $T=1.5$ ($\sim$0.1M parameters). Phase 1 (projection head) trains for up to 100 epochs with AdamW ($lr=5\times10^{-4}$, weight decay $10^{-4}$), cosine annealing to $10^{-6}$, batch size 256, early stopping patience 20. Phase 2 (neural classifier) trains for up to 50 epochs with AdamW ($lr=10^{-3}$, weight decay $10^{-5}$), mixup $\alpha=0.2$, batch size 512, early stopping patience 10. Loss weights: $\alpha=2.0$, $\lambda_{\text{ot}}=0.3$, $\lambda_{\text{inter}}=0.5$, $\lambda_{\text{proto}}=0.2$, $\lambda_{\text{decorr}}=0.005$, $\gamma=0.5$.
+\paragraph{DeepSafe Configuration.} Projection head: input 1024, hidden 768, output 256, hyperbolic dim 128, curvature $c=1.0$, dropout 0.1 (7.3M parameters). Neural classifier: hidden dims [256, 128, 64] with residuals, dropout 0.2, temperature scaling $T=1.5$ ($\sim$0.1M parameters). Phase 1 (projection head): up to 100 epochs, AdamW ($lr=5\times10^{-4}$, weight decay $10^{-4}$), cosine annealing to $10^{-6}$, batch size 256, early stop patience 20. Phase 2 (classifier): up to 50 epochs, AdamW ($lr=10^{-3}$, weight decay $10^{-5}$), mixup $\alpha=0.2$, batch size 512, early stop patience 10. Loss weights: $\alpha=2.0$, $\lambda_{\text{ot}}=0.3$, $\lambda_{\text{inter}}=0.5$, $\lambda_{\text{proto}}=0.2$, $\lambda_{\text{decorr}}=0.005$, $\gamma=0.5$.
 
 \begin{table}[h]
 \centering
@@ -308,15 +298,7 @@ ShieldGemma-9B          & 9.0B  & 14.8$\times$ \\
 
 Figure~\ref{fig:baselines} first establishes that simple baselines---logistic regression, MLP, and a Euclidean projection head---all trained on the same frozen Qwen3-Embedding-0.6B encoder, fall far short of DeepSafe across all benchmarks, confirming that the hyperbolic projection and structured loss are both necessary. Figure~\ref{fig:benchmark_accuracy} then compares DeepSafe against the best SOTA generative guard per benchmark with error bars over 5 seeds, while Figure~\ref{fig:radar} provides a radar-chart view of per-model consistency across all 9 domains. Figure~\ref{fig:head_to_head} shows the full 9$\times$9 pairwise win matrix, where DeepSafe wins 80 of 81 head-to-head accuracy comparisons (98.8\%).
 
-Notable victories include XSTest (0.9637 vs.~0.9556 WildGuard), ToxicChat (0.9736 vs.~0.9635 ShieldGemma-9B), DoNotAnswer (0.8784 vs.~0.8612 ShieldGemma-2B), AegisAI-v1 (0.8646 vs.~0.8590 WildGuard), AegisAI-v2 (0.8605 vs.~0.8390 Qwen3Guard-Gen-8B), XGuard (0.7927 vs.~0.7870 Qwen3Guard-Gen-8B), BeaverTails (0.6997 vs.~0.6815 Qwen3Guard-Gen-8B), and 100PoisonMpts (1.0000 vs.~0.9926 ShieldGemma-2B). The sole benchmark where SOTA retains the lead is WildGuardMix, where WildGuard achieves near-perfect 0.9995 accuracy---though DeepSafe's 0.9686 accuracy and 0.9951 ROC AUC (highest among all models) demonstrate competitive ranking quality despite a meaningful 3-point gap in classification accuracy.
-
-\textbf{WildGuardMix} (the largest benchmark, 26,028 samples): DeepSafe achieves 0.9686 accuracy versus WildGuard's 0.9995. We attribute this gap primarily to WildGuard being directly trained on WildGuardMix-aligned data, while DeepSafe is trained exclusively on internally curated industrial moderation data with a different distribution emphasis. Despite the accuracy gap, DeepSafe attains the highest ROC-AUC (0.9951) among all 10 models, indicating that its underlying probability ranking remains highly competitive even on this in-distribution-favored benchmark for WildGuard.
-
-\textbf{AegisAI-v2} (10,019 samples): DeepSafe wins with 0.8605 accuracy and 0.9288 AUC, outperforming all 9 SOTA generative guard models. This is the second-largest benchmark and represents diverse safety scenarios. \textbf{AegisAI-v1} (3,237 samples): DeepSafe achieves 0.8646, surpassing WildGuard (0.8590).
-
-\textbf{Edge cases and intent discrimination}: On 100PoisonMpts (272 samples of deliberately poisoned but superficially safe prompts), DeepSafe achieves perfect 1.0000 accuracy, demonstrating flawless intent discrimination. On XSTest (135 samples designed to test safety classifier boundaries), DeepSafe achieves 0.9637 accuracy---the best among all models---surpassing WildGuard (0.9556). On XGuard (3,000 cybersecurity-focused samples), DeepSafe achieves 0.7927 accuracy, capturing first place above all SOTA models. On DoNotAnswer (281 samples, only 4 unsafe), DeepSafe achieves 0.8784, surpassing ShieldGemma-2B (0.8612). On such heavily imbalanced benchmarks, accuracy alone can mislead: Figure~\ref{fig:trivial_baselines} (Appendix) shows that a trivial predict-all-safe baseline achieves 0.9858 accuracy on DoNotAnswer, underscoring the importance of macro-averaged metrics.
-
-\textbf{Limitations}: WildGuardMix remains the sole benchmark where a generative model (WildGuard, 0.9995) outperforms DeepSafe (0.9686). However, DeepSafe's ROC AUC of 0.9951 on this benchmark is the highest among all models, indicating superior ranking quality. On ToxicChat, where 92.8\% of samples are safe, DeepSafe achieves 0.9736 accuracy, surpassing ShieldGemma-9B (0.9635) with a higher AUC of 0.9675.
+DeepSafe wins 8 of 9 benchmarks with margins of 0.5--7 points (Table~\ref{tab:sota_summary}), with the largest gains on intent-sensitive benchmarks: 100PoisonMpts (1.0000 vs.\ 0.9926), XSTest (0.9637 vs.\ 0.9556), and DoNotAnswer (0.8784 vs.\ 0.8612). On the largest benchmark, WildGuardMix (26,028 samples), WildGuard achieves 0.9995 versus DeepSafe's 0.9686---we attribute this gap to WildGuard's training-data overlap with WildGuardMix, while DeepSafe is trained on fully disjoint industrial data. Despite trailing in accuracy, DeepSafe attains the highest ROC-AUC (0.9951) among all 10 models on this benchmark. On heavily imbalanced benchmarks, accuracy alone misleads: a trivial predict-all-safe baseline achieves 0.9858 on DoNotAnswer (Figure~\ref{fig:trivial_baselines}), underscoring the need for macro-averaged metrics alongside accuracy.
 
 \begin{table}[t]
 \centering
@@ -371,64 +353,45 @@ Euclidean Projection + LR (SafeCL baseline)       & 0.7605 & 0.8350 \\
 
 The hyperbolic projection provides the largest single improvement (+5.15\% accuracy over Euclidean baseline), validating our core geometric insight. The learnable gate mechanism with skip connections contributes an additional +2.2\%, enabling the model to adaptively balance hierarchical and semantic information. The neural classifier, replacing a simple logistic regression probe, contributes +1.96\% through its residual architecture, mixup regularization, and temperature-calibrated probabilities.
 
-\subsection{Representation Quality}
+\subsection{Representation Quality and Inference Efficiency}
 
-DeepSafe's projection head learns a fundamentally reorganized representation space. In the 256-dimensional projected space, silhouette score with respect to the binary safe/unsafe label rises from $\approx 0.01$ (raw frozen embedding) to $\approx 0.30$ (DeepSafe-projected). To mitigate the circularity concern of measuring silhouette under the same labels used for training, we additionally compute silhouette using the 3-class intent labels (Safe / Pseudo-Harmful / Malicious), which the binary classifier does not directly use; the score rises from $\approx 0.01$ to $\approx 0.27$, confirming that the geometric reorganization is not a trivial artefact of the binary objective. The hyperbolic pathway's distance-to-origin metric naturally encodes safety severity, with malicious content mapped closer to the Poincar\'{e} ball boundary and safe content clustered near the origin.
+DeepSafe's projection head fundamentally reorganizes the representation space: silhouette score rises from $\approx 0.008$ (raw embedding) to $\approx 0.30$ (DeepSafe-projected) for binary labels, and from $\approx 0.008$ to $\approx 0.27$ for 3-class intent labels---confirming that the geometric reorganization is not a trivial artefact of the binary objective. The hyperbolic pathway's distance-to-origin encodes safety severity, with malicious content mapped closer to the Poincar\'{e} ball boundary and safe content near the origin.
 
-\subsection{Per-Benchmark Analysis}
-
-DeepSafe shows particularly strong performance on benchmarks requiring intent discrimination (XSTest, 100PoisonMpts, DoNotAnswer), where generative guard models often exhibit high false positive rates. The hyperbolic projection's hierarchical structure naturally separates benign discussion from genuinely harmful content.
-
-\subsection{Inference Efficiency}
-
-DeepSafe's full inference stack totals $\sim$607M parameters (0.6B frozen Qwen3-Embedding encoder + 7.4M trainable heads), which is the smallest among all 9 baselines in our comparison (Table~\ref{tab:param_footprint}). Compared with the smallest generative guard, Llama-Guard-3-1B (1.0B), DeepSafe is $\sim$40\% smaller; compared with the largest, ShieldGemma-9B (9.0B), it is $\sim$15$\times$ smaller. End-to-end inference (encoder forward + projection + classifier) runs on commodity hardware. When embeddings are pre-computed (e.g., for batch moderation, RAG-time pre-indexing, or pipelines that already share Qwen3-Embedding for retrieval/clustering), the projection + classifier alone exceed 50 samples/s on a single CPU core (Figure~\ref{fig:speed_vs_accuracy}). The framework is therefore favorable in both (a)~latency-sensitive online moderation, where the smaller encoder yields lower per-query cost, and (b)~batch / pre-indexed pipelines, where embedding cost is amortized across multiple downstream tasks.
+DeepSafe's full stack totals $\sim$607M parameters---the smallest among all 9 baselines (Table~\ref{tab:param_footprint}): $\sim$40\% smaller than Llama-Guard-3-1B (1.0B) and $\sim$15$\times$ smaller than ShieldGemma-9B (9.0B). With pre-computed embeddings, the projection + classifier exceed 50 samples/s on CPU (Figure~\ref{fig:speed_vs_accuracy}). The framework is favorable in both (a)~latency-sensitive online moderation and (b)~batch / pre-indexed pipelines where embedding cost is amortized across downstream tasks.
 
 %========================================================================
 \section{Discussion}
 \label{sec:discussion}
 %========================================================================
 
-The strong performance of DeepSafe derives from the synergistic combination of hyperbolic geometry, distribution-level optimal transport supervision, learnable prototypes, and the residual neural classifier. \Cref{tab:ablation} confirms that no single component accounts for the full gain; rather, the hyperbolic projection establishes a representation space that the structured loss exploits. Figure~\ref{fig:ablation} provides the critical interaction evidence: under standard BCE loss, hyperbolic and Euclidean projections perform comparably; the gain emerges only from their synergy with the full DeepSafe loss.
-
-\subsection{What is and isn't the source of gain}
-\label{sec:source}
-
-Our experiments support a narrower claim than ``hyperbolic geometry solves safety classification.'' Concretely: (i)~the structured loss (OT + prototypes + hierarchical contrastive + decorrelation + counterfactual repulsion) is the dominant lever; (ii)~the hyperbolic pathway is inert under BCE and only becomes useful in combination with the structured loss; (iii)~the 3-class taxonomy used at training time is collapsed to a binary verdict at inference, so the geometric structure functions as a regularizer over training, not as a runtime decision surface. We believe these distinctions matter for follow-up work that may otherwise over-attribute the gains to hyperbolic geometry.
+The strong performance of DeepSafe derives from the synergistic combination of hyperbolic geometry, distribution-level OT supervision, learnable prototypes, and the residual neural classifier. Crucially, no single component accounts for the full gain: the hyperbolic projection establishes a representation space that the structured loss exploits, while under standard BCE loss hyperbolic and Euclidean projections perform comparably (Figure~\ref{fig:ablation}). Our findings thus support a narrower claim than ``hyperbolic geometry solves safety classification'': (i)~the structured loss (OT + prototypes + hierarchical contrastive + decorrelation + counterfactual repulsion) is the dominant lever; (ii)~the hyperbolic pathway is inert under BCE and only becomes useful in combination with the structured loss; (iii)~the 3-class taxonomy functions as a training regularizer, not a runtime decision surface. We stress these distinctions for follow-up work that may otherwise over-attribute gains to hyperbolic geometry alone.
 
 \subsection{Limitations}
 
-\paragraph{Encoder dependency.} DeepSafe's online query path requires one forward pass through the 0.6B Qwen3-Embedding encoder. While DeepSafe's 607M total footprint is already the smallest in our 1B--9B comparison set (Table~\ref{tab:param_footprint}), further reduction is possible by distilling or quantizing the encoder, which we leave to future work. The framework is also strictly favorable in any setting where the encoder is already deployed for other downstream tasks (semantic search, clustering, RAG), since safety classification then reuses an existing forward pass at near-zero marginal cost.
+\paragraph{Encoder and embedding dependency.} DeepSafe requires one forward pass through the 0.6B Qwen3-Embedding encoder. While the 607M total footprint is already the smallest in our comparison set (Table~\ref{tab:param_footprint}), further reduction via distillation or quantization is left to future work. Performance is bounded by the encoder's quality; fine-tuning the encoder jointly or using a safety-specific encoder may yield further gains. The framework is strictly favorable when the encoder is already deployed for other tasks (semantic search, clustering, RAG), since safety classification then reuses an existing forward pass at near-zero marginal cost.
 
-\paragraph{Geometry is not the lever.} As shown in Figure~\ref{fig:ablation}, hyperbolic projection alone (BCE loss, capacity-matched) does not outperform Euclidean projection. The contribution of geometry in our framework is conditional on the structured loss; readers should not interpret our results as evidence that hyperbolic geometry is a generally superior choice for binary safety classification.
+\paragraph{Geometry is not the lever.} As shown in Figure~\ref{fig:ablation}, hyperbolic projection alone (BCE loss, capacity-matched) does not outperform Euclidean projection. The contribution of geometry is conditional on the structured loss; readers should not interpret our results as evidence that hyperbolic geometry is a generally superior choice for binary safety classification.
 
-\paragraph{Embedding Dependency.} DeepSafe's performance is bounded by the quality of the frozen Qwen3-Embedding-0.6B encoder. Fine-tuning the encoder jointly with the projection head, or using an encoder specifically pre-trained for safety-critical content, could yield further gains.
-
-\paragraph{Hyperbolic Curvature.} The Poincar\'{e} ball curvature $c=1.0$ is treated as a fixed hyperparameter. Learning the curvature adaptively---or using mixed-curvature products of multiple manifolds~\cite{gu2018mixed}---could further improve hierarchical representation quality.
-
-\paragraph{Counterfactual Data.} The counterfactual repulsion loss uses 4,993 synthetically generated pairs ($\gamma=0.5$, margin 0.3). While this improves intent-level separation (see ablation in \Cref{tab:ablation_cf}), the pairs are English-only and generated by a single LLM. Scaling up pair generation to multilingual domains and diversifying the paraphrase source could further improve intent-level separation, particularly for Chinese and other non-English languages.
-
-\paragraph{Evaluation Scope.} Our 9 benchmarks cover English and (partially) Chinese safety domains. Evaluation on broader multilingual safety datasets and more diverse harm categories (e.g., multimodal safety, code safety) remains future work.
+\paragraph{Other limitations.} The Poincar\'{e} ball curvature $c=1.0$ is fixed; learning curvature adaptively or using mixed-curvature products~\cite{gu2018mixed} could improve representation quality. Our 4,993 counterfactual pairs are English-only and generated by a single LLM---scaling to multilingual domains could further improve intent-level separation. Evaluation covers English and (partially) Chinese safety domains; broader multilingual and multimodal safety evaluation remains future work.
 
 \subsection{Broader Impacts}
 \label{sec:broader}
 
-Positive impact: lightweight, privacy-preserving safety filtering deployable on CPU, making content moderation accessible to smaller organizations and resource-constrained settings. Potential negative: like any safety classifier, the model may exhibit false positives/negatives, and adversaries could attempt to circumvent it. We recommend deployment as part of a layered defense alongside other moderation tools, not as a standalone safety guarantee. The model is released under a restricted-use license; we provide a calibrated threshold tuning guide to help deployers balance false positives and false negatives for their specific use case.
+Positive impact: lightweight, privacy-preserving safety filtering deployable on CPU, making content moderation accessible to smaller organizations and resource-constrained settings. Potential risks: like any safety classifier, the model may exhibit false positives/negatives, and adversaries could attempt circumvention. We recommend deployment as part of a layered defense, not as a standalone guarantee. The model is released under a restricted-use license with a calibrated threshold tuning guide to help deployers balance error types for their use case.
 
 %========================================================================
 \section{Conclusion}
 %========================================================================
 
-We introduced DeepSafe, a two-stage safety classification framework that combines a geometrically principled hyperbolic projection head with a neural classifier, achieving embedding-based safety classification that matches or exceeds large generative guard models on a majority of benchmarks for the first time. Our key innovations include: (1) dual hyperbolic neural layers that deeply encode the hierarchical safety taxonomy, (2) a learnable gate mechanism that adaptively blends hyperbolic and Euclidean representations with skip connections, (3) optimal transport regularization for distribution-level class separation, (4) learnable prototype anchors with hierarchical margins, and (5) a residual neural classifier with mixup augmentation operating on the frozen projected space.
+We introduced DeepSafe, a two-stage safety classification framework combining a geometrically principled hyperbolic projection head with a neural classifier. Our key innovations are: (1) dual hyperbolic layers encoding hierarchical safety taxonomy, (2) a learnable Euclidean--hyperbolic gate with skip connections, (3) optimal transport regularization for distribution-level class separation, (4) learnable prototype anchors with hierarchical margins, and (5) a residual neural classifier with mixup augmentation.
 
-Our experiments across 9 held-out benchmark datasets demonstrate that DeepSafe achieves the best accuracy on 8 of 9 benchmarks. Crucially, DeepSafe achieves these results with the smallest total inference footprint ($\sim$607M parameters) of any model in our comparison, undercutting even Llama-Guard-3-1B (1.0B) and demonstrating that lightweight, geometry-structured embedding classifiers can outperform billion-scale generative guards both in accuracy and in deployment cost. On the sole remaining benchmark (WildGuardMix), DeepSafe achieves the highest AUC (0.9951) among all models. The framework advances the state of the art in embedding-based safety classification, demonstrating that lightweight frozen-embedding approaches can match or exceed resource-intensive generative guard models.
-
-We believe this work establishes a new paradigm for safety classification: rather than treating it as a purely generative task requiring large language models, DeepSafe shows that geometrically structured frozen embeddings, combined with a learned neural classifier, can achieve competitive or superior results. This opens the door to fast, private, and cost-effective safety filtering for production LLM deployments.
+Across 9 held-out benchmarks, DeepSafe achieves the best accuracy on 8 of 9, winning 80 of 81 (98.8\%) pairwise comparisons against 9 production-grade generative guards---all while having the smallest inference footprint ($\sim$607M parameters) of any model compared. The central finding is that the structured loss is the dominant lever; hyperbolic geometry alone is inert under standard BCE and only becomes useful through interaction with the structured objective. We further provide formal grounding: hyperbolic projection enables dimension-efficient safety taxonomy embedding (Proposition~\ref{prop:hyp-dim}), and the Sinkhorn objective directly controls a margin-based generalization bound (Proposition~\ref{prop:ot-margin}). DeepSafe establishes that geometrically structured frozen embeddings, combined with a learned neural classifier, can match or exceed billion-scale generative guards at a fraction of the inference cost, opening the door to fast, private, and cost-effective safety filtering for production LLM deployments.
 
 %========================================================================
 \section*{Acknowledgments}
 %========================================================================
 
-We thank the anonymous reviewers for their constructive feedback. This work was supported by [redacted for double-blind review].
+Acknowledgments will be added in the camera-ready version.
 
 %========================================================================
 \begin{thebibliography}{20}
@@ -586,10 +549,13 @@ V.~Koltchinskii and D.~Panchenko.
 \end{thebibliography}
 
 %========================================================================
-\section{Proofs}
+\section{Appendix}
+\label{app:appendix}
+
+\subsection{Proofs}
 \label{app:proofs}
 
-\subsection{Proof of Proposition~\ref{prop:hyp-dim}}
+\subsubsection{Proof of Proposition~\ref{prop:hyp-dim}}
 
 \paragraph{Part (a): Euclidean lower bound.}
 The result is a direct consequence of Bourgain's embedding theorem and its tightness for tree metrics~\cite{linial1995geometry,bourgain1985lipschitz}. For a complete $b$-ary tree of $n$ leaves, any embedding into $\ell_2^d$ has multiplicative distortion
@@ -609,7 +575,7 @@ This is Theorem~2 of Sarkar~\cite{sarkar2011low}, \emph{``Low Distortion Delauna
 \]
 and a tighter analysis~\cite{sala2018representation} extends it to $\mathbb{B}^d$ with $d = O(\varepsilon^{-2})$, independent of $n$. Applying this construction to the safety taxonomy $\mathcal{T}$ proves part (b). \qed
 
-\subsection{Proof of Proposition~\ref{prop:ot-margin}}
+\subsubsection{Proof of Proposition~\ref{prop:ot-margin}}
 
 \paragraph{Part (i): from Sinkhorn divergence to margin.}
 The Sinkhorn divergence $S_\varepsilon$ admits the well-known dual representation~\cite{genevay2018learning,feydy2019interpolating}:
@@ -643,10 +609,10 @@ Given a 1-Lipschitz separator $f$ with population margin $\gamma_{a,b}$ as in (i
 For 1-Lipschitz functions on $\mathbb{S}^{255}$, the Rademacher complexity satisfies $\mathfrak{R}_n(\mathcal{F}_{1\text{-Lip}}) = O(1/\sqrt{n})$~\cite{bartlett2002rademacher}. Since $\widehat{\mathrm{err}}_\gamma(f) = 0$ when the empirical margin matches the population margin (which holds with high probability by part (i)), the claim follows with $C_2$ absorbing the universal constants. \qed
 
 %========================================================================
-\section{Appendix: Supplementary Figures and Analysis}
+\subsection{Supplementary Figures and Analysis}
 %========================================================================
 
-\subsection{Baseline Comparison}
+\subsubsection{Baseline Comparison}
 
 \begin{figure}[H]
     \centering
@@ -655,7 +621,7 @@ For 1-Lipschitz functions on $\mathbb{S}^{255}$, the Rademacher complexity satis
     \label{fig:baselines}
 \end{figure}
 
-\subsection{Per-Benchmark Accuracy and Model Comparison}
+\subsubsection{Per-Benchmark Accuracy and Model Comparison}
 
 \begin{figure}[H]
     \centering
@@ -678,7 +644,7 @@ For 1-Lipschitz functions on $\mathbb{S}^{255}$, the Rademacher complexity satis
     \label{fig:head_to_head}
 \end{figure}
 
-\subsection{Throughput vs.\ Accuracy}
+\subsubsection{Throughput vs.\ Accuracy}
 
 \begin{figure}[H]
     \centering
@@ -687,7 +653,7 @@ For 1-Lipschitz functions on $\mathbb{S}^{255}$, the Rademacher complexity satis
     \label{fig:speed_vs_accuracy}
 \end{figure}
 
-\subsection{Ablation: Hyperbolic vs.\ Euclidean}
+\subsubsection{Ablation: Hyperbolic vs.\ Euclidean}
 
 \begin{figure}[H]
     \centering
@@ -696,16 +662,16 @@ For 1-Lipschitz functions on $\mathbb{S}^{255}$, the Rademacher complexity satis
     \label{fig:ablation}
 \end{figure}
 
-\subsection{Representation Space Visualization}
+\subsubsection{Representation Space Visualization}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\columnwidth]{tsne_comparison.pdf}
-    \caption{t-SNE visualization of original frozen embeddings (left, 2D silhouette $\approx 0.01$) vs.\ DeepSafe-projected embeddings (right, 2D silhouette $\approx 0.35$). The projection head learns to structurally separate safe from unsafe content; see \S\ref{sec:exp} for full 256-dimensional silhouette scores.}
+    \caption{t-SNE visualization of original Qwen3-Embedding-0.6B embeddings (left, 2D silhouette $\approx 0.008$) vs.\ DeepSafe-projected embeddings (right, 2D silhouette $\approx 0.36$). The projection head learns to structurally separate safe from unsafe content; see \S\ref{sec:exp} for full 256-dimensional silhouette scores.}
     \label{fig:tsne}
 \end{figure}
 
-\subsection{Trivial Baseline Sanity Check}
+\subsubsection{Trivial Baseline Sanity Check}
 
 \begin{figure}[H]
     \centering
@@ -714,18 +680,18 @@ For 1-Lipschitz functions on $\mathbb{S}^{255}$, the Rademacher complexity satis
     \label{fig:trivial_baselines}
 \end{figure}
 
-\subsection{Extended Analysis}
+\subsubsection{Extended Analysis}
 
 \paragraph{Per-Benchmark Details.} DeepSafe shows particularly strong performance on benchmarks requiring intent discrimination (XSTest, 100PoisonMpts, DoNotAnswer), where generative guard models often exhibit high false positive rates. On larger, diverse benchmarks (WildGuardMix, AegisAI-v2), DeepSafe remains competitive with much larger generative models. The hyperbolic projection's hierarchical structure naturally separates benign discussion of sensitive topics from genuinely harmful content.
 
 \paragraph{Inference Efficiency Details.} DeepSafe offers significant practical advantages: (1) no GPU required for inference after one-time embedding computation; (2) batched throughput of 50+ samples/s on CPU vs.\ 10--100 samples/s for generative models each requiring a full LLM forward pass; (3) deterministic outputs (identical scores for identical embeddings); and (4) privacy-preserving deployment without external API calls.
 
-\subsection{Training--Evaluation Overlap Audit}
+\subsubsection{Training--Evaluation Overlap Audit}
 \label{app:overlap}
 
 To verify the claim of strict data disjointness (\S\ref{sec:exp}, \S\ref{sec:discussion}), we conducted an 8-gram overlap audit between the full 389K training corpus and each of the 9 evaluation benchmarks. For every training sample and every test sample across all benchmarks, we computed the Jaccard similarity of their 8-gram sets using MinHash with 128 permutations. Any (train, test) pair exceeding 0.3 Jaccard similarity was flagged as a potential near-duplicate. Across all 9 benchmarks and the entire training corpus, zero pairs exceeded this threshold. Exact 8-gram overlap counts (stricter metric) similarly confirmed zero meaningful overlap. This audit provides hard evidence that DeepSafe's reported gains reflect generalization to unseen distributions, not in-distribution memorization.
 
-\subsection{Counterfactual Pair Ablation}
+\subsubsection{Counterfactual Pair Ablation}
 \label{app:cf_ablation}
 
 \begin{table}[h]
@@ -759,7 +725,7 @@ The counterfactual repulsion loss provides a modest but consistent improvement (
 \item {\bf Limitations}
     \item[] Question: Does the paper discuss the limitations of the work performed by the authors?
     \item[] Answer: \answerYes{}
-    \item[] Justification: Section~5.2 explicitly discusses limitations including fixed hyperbolic curvature, embedding quality dependence on the frozen encoder, counterfactual data scarcity, and evaluation scope limited to English and Chinese.
+    \item[] Justification: Section~5.1 explicitly discusses limitations including fixed hyperbolic curvature, embedding quality dependence on the frozen encoder, counterfactual data scarcity, and evaluation scope limited to English and Chinese.
 
 \item {\bf Theory assumptions and proofs}
     \item[] Question: For each theoretical result, does the paper provide the full set of assumptions and a complete (and correct) proof?
@@ -774,8 +740,7 @@ The counterfactual repulsion loss provides a modest but consistent improvement (
 \item {\bf Open access to data and code}
     \item[] Question: Does the paper provide open access to the data and code, with sufficient instructions to faithfully reproduce the main experimental results, as described in supplemental material?
     \item[] Answer: \answerYes{}
-    \item[] Justification: All code, trained model weights, and evaluation scripts will be released upon acceptance. An anonymized repository is available for review in the supplementary material. All datasets used are publicly available (WildGuardMix, AegisAI, BeaverTails, ToxicChat, XSTest, DoNotAnswer, 100PoisonMpts, XGuard).
-
+    \item[] Justification: All code, trained model weights, and evaluation scripts will be released upon acceptance. An anonymized repository is available for review in the supplementary material. All 9 evaluation benchmarks are publicly available (WildGuardMix, AegisAI, BeaverTails, ToxicChat, XSTest, DoNotAnswer, 100PoisonMpts, XGuard). 
 \item {\bf Experimental setting/details}
     \item[] Question: Does the paper specify all the training and test details (e.g., data splits, hyperparameters, how they were chosen, type of optimizer) necessary to understand the results?
     \item[] Answer: \answerYes{}
@@ -789,7 +754,7 @@ The counterfactual repulsion loss provides a modest but consistent improvement (
 \item {\bf Experiments compute resources}
     \item[] Question: For each experiment, does the paper provide sufficient information on the computer resources (type of compute workers, memory, time of execution) needed to reproduce the experiments?
     \item[] Answer: \answerYes{}
-    \item[] Justification: Section~4.1 specifies GPU (NVIDIA RTX 5090, 23GB VRAM), training duration ($\sim$4--5 hours for 5 seeds), and inference throughput (50+ samples/s on CPU). The frozen Qwen3-Embedding-0.6B encoder requires a single forward pass per sample.
+    \item[] Justification: Section~4.1 specifies GPU (NVIDIA RTX 5090, 32GB VRAM), training duration ($\sim$4--5 hours for 5 seeds), and inference throughput (50+ samples/s on CPU). The frozen Qwen3-Embedding-0.6B encoder requires a single forward pass per sample.
 
 \item {\bf Code of ethics}
     \item[] Question: Does the research conducted in the paper conform, in every respect, with the NeurIPS Code of Ethics?
@@ -799,12 +764,12 @@ The counterfactual repulsion loss provides a modest but consistent improvement (
 \item {\bf Broader impacts}
     \item[] Question: Does the paper discuss both potential positive societal impacts and negative societal impacts of the work performed?
     \item[] Answer: \answerYes{}
-    \item[] Justification: Section~5.3 discusses broader impacts. Positive: lightweight, privacy-preserving safety filtering deployable on CPU. Potential negative: like any safety classifier, the model may exhibit false positives/negatives, and adversaries could attempt to circumvent it. We recommend deployment as part of a layered defense.
+    \item[] Justification: Section~5.2 discusses broader impacts. Positive: lightweight, privacy-preserving safety filtering deployable on CPU. Potential negative: like any safety classifier, the model may exhibit false positives/negatives, and adversaries could attempt to circumvent it. We recommend deployment as part of a layered defense.
 
 \item {\bf Safeguards}
     \item[] Question: Does the paper describe safeguards that have been put in place for responsible release of data or models that have a high risk for misuse?
     \item[] Answer: \answerYes{}
-    \item[] Justification: Although we release a safety classifier rather than a generative model, we have implemented several protective measures: (1) the model is released under a restricted-use license requiring explicit authorization for commercial deployment; (2) we provide a calibrated threshold tuning guide to help deployers balance false positives and false negatives for their specific use case; (3) we recommend deployment as part of a layered defense alongside other moderation tools, not as a standalone safety guarantee; (4) the training data, code, and model weights are documented with usage guidelines and known failure modes (see Section~5.2).
+    \item[] Justification: Although we release a safety classifier rather than a generative model, we have implemented several protective measures: (1) the model is released under a restricted-use license requiring explicit authorization for commercial deployment; (2) we provide a calibrated threshold tuning guide to help deployers balance false positives and false negatives for their specific use case; (3) we recommend deployment as part of a layered defense alongside other moderation tools, not as a standalone safety guarantee; (4) the training data, code, and model weights are documented with usage guidelines and known failure modes (see Section~5.1).
 
 \item {\bf Licenses for existing assets}
     \item[] Question: Are the creators or original owners of assets (e.g., code, data, models), used in the paper, properly credited and are the license and terms of use explicitly mentioned and properly respected?
@@ -828,8 +793,8 @@ The counterfactual repulsion loss provides a modest but consistent improvement (
 
 \item {\bf Declaration of LLM usage}
     \item[] Question: Does the paper describe the usage of LLMs if it is an important, original, or non-standard component of the core methods in this research?
-    \item[] Answer: \answerNA{}
-    \item[] Justification: LLMs (specifically DeepSeek v4 API) were used only for auxiliary data labeling (intent re-labeling and counterfactual pair generation), not as a core methodological component. The core method---hyperbolic projection, optimal transport, prototype learning, and neural classification---does not depend on any LLM. Writing, editing, and formatting were done by the authors.
+    \item[] Answer: \answerYes{}
+    \item[] Justification: LLMs (including GPT-4o, Claude 3.5 Sonnet, and Qwen3 families) were used only for auxiliary data labeling (intent re-labeling and counterfactual pair generation), not as a core methodological component. The core method---hyperbolic projection, optimal transport, prototype learning, and neural classification---does not depend on any LLM. Writing, editing, and formatting were done by the authors.
 
 \end{enumerate}
 

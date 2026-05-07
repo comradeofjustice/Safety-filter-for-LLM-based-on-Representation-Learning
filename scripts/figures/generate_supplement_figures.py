@@ -58,34 +58,27 @@ def fig_ablation():
     fig, axes = plt.subplots(2, 2, figsize=(9, 7.6))
     fig.subplots_adjust(left=0.09, right=0.97, top=0.92, bottom=0.08, hspace=0.35, wspace=0.25)
 
-    # Benchmark-average accuracy (user-provided values)
     methods = ["Euclidean\n+ BCE", "Hyperbolic\n+ BCE", "Hyperbolic\n+ DeepSafe"]
     colors_bar = [COLOR_EUCLIDEAN, COLOR_HYPERBOLIC, COLOR_DEEPSAFE]
-    bench_accs = [0.6653, 0.74, 0.9008]
+    # All values on same 20K i.i.d. test split (ablation dim=256; DSv3 from seed=42 classifier)
+    iid_accs = [0.8003, 0.8111, 0.8798]
+    iid_f1s  = [0.8295, 0.8201, 0.8789]
 
-    # ── Accuracy: 3-way bar chart (9-benchmark average) ──
+    # ── Accuracy: 3-way bar chart (i.i.d. test) ──
     ax = axes[0, 0]
-    bars = ax.bar(methods, bench_accs, color=colors_bar, width=0.5, edgecolor="white", linewidth=0.5)
-    for bar, acc in zip(bars, bench_accs):
+    bars = ax.bar(methods, iid_accs, color=colors_bar, width=0.5, edgecolor="white", linewidth=0.5)
+    for bar, acc in zip(bars, iid_accs):
         ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.01,
                 f"{acc:.4f}", ha="center", fontsize=9, fontweight="bold")
     ax.set_ylabel("Accuracy", fontsize=10)
-    ax.set_title("9-Benchmark Avg Accuracy", fontsize=10, fontweight="bold", pad=12)
+    ax.set_title("I.I.D. Test Accuracy", fontsize=10, fontweight="bold", pad=12)
     ax.set_ylim(0, 1.05)
     ax.grid(axis="y", alpha=0.3)
 
-    # ── F1 comparison ──
+    # ── F1 Macro: 3-way bar chart (i.i.d. test) ──
     ax = axes[0, 1]
-    # Euclidean BCE (from ablation_table at dim=256) and estimated values
-    euc_f1 = df[(df["hidden_dim"] == 256) & (df["type"] == "euclidean")]["f1_macro"].values[0]
-    # Hyperbolic + BCE at dim=256
-    hyp_f1 = df[(df["hidden_dim"] == 256) & (df["type"] == "hyperbolic")]["f1_macro"].values[0]
-    # DeepSafe on 9 benchmarks: from stats_with_ci
-    ci_df = pd.read_csv(PROJ / "reports" / "stats_with_ci.csv")
-    ds_f1 = ci_df[ci_df["model"] == "DeepSafe-v3"]["f1_mean"].mean()
-    f1_vals = [euc_f1, hyp_f1, ds_f1]
-    bars = ax.bar(methods, f1_vals, color=colors_bar, width=0.5, edgecolor="white", linewidth=0.5)
-    for bar, v in zip(bars, f1_vals):
+    bars = ax.bar(methods, iid_f1s, color=colors_bar, width=0.5, edgecolor="white", linewidth=0.5)
+    for bar, v in zip(bars, iid_f1s):
         ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.01,
                 f"{v:.4f}", ha="center", fontsize=9, fontweight="bold")
     ax.set_ylabel("F1 Macro", fontsize=10)
@@ -126,8 +119,8 @@ def fig_ablation():
         ax.plot(sub["hidden_dim"], sub["time_s"], marker=marker,
                 color=color, linewidth=2, markersize=8, label=label)
     ax.set_xlabel("Hidden Dimension", fontsize=10)
-    ax.set_ylabel("Inference Time (s)", fontsize=10)
-    ax.set_title("Inference Time (lower is better)", fontsize=10, fontweight="bold")
+    ax.set_ylabel("Inference Speed(samples/s)", fontsize=10)
+    ax.set_title("Inference Speed", fontsize=10, fontweight="bold")
     ax.legend(fontsize=8, loc="upper left")
     ax.set_xticks(df["hidden_dim"].unique())
     ax.grid(True, alpha=0.3)
